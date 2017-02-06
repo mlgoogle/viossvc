@@ -19,6 +19,7 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
 
     
     func updateChatSessions(chatSession:[ChatSessionModel]) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = ChatSessionHelper.shared.noReadingNumber()
         dataSource = chatSession
         tableView.reloadData()
     }

@@ -54,12 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
     
     
     func pushMessageRegister() {
+        
         //注册消息推送
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
+            var appid = "d2YVUlrbRU6yF0PFQJfPkA"
+            var appkey =  "yEIPB4YFxw64Ag9yJpaXT9"
+            var appSecret = "TMQWRB2KrG7QAipcBKGEyA"
+            if let id = NSBundle.mainBundle().bundleIdentifier {
+                if id == "com.yundian.assistant" {
+                    appid = "ym6gRyDFK08iP0seFqYmm3"
+                    appkey = "Ut4rL2IDMP8Gj0biBFc3UA"
+                    appSecret = "NlDoS6zaEt8Uguav5ZKrE7"
+                }
+                
+            }
             
-#if true
-            GeTuiSdk.startSdkWithAppId("d2YVUlrbRU6yF0PFQJfPkA", appKey: "yEIPB4YFxw64Ag9yJpaXT9", appSecret: "TMQWRB2KrG7QAipcBKGEyA", delegate: self)
-#endif
+            GeTuiSdk.startSdkWithAppId(appid, appKey: appkey, appSecret: appSecret, delegate: self)
             
             let notifySettings = UIUserNotificationSettings.init(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(notifySettings)
