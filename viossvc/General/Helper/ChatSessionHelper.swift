@@ -28,13 +28,21 @@ class ChatSessionHelper: NSObject {
     }
     weak var chatSessionsDelegate:ChatSessionsProtocol?
     weak private var currentChatSessionDelegate:ChatSessionProtocol?
-    
+    func noReadingNumber() -> Int {
+        var number = 0
+        for chatSession in chatSessions {
+            let seesion = chatSession 
+            number += seesion.noReading
+        }
+        return number
+    }
 
     func findHistorySession() {
         
         _chatSessions = ChatDataBaseHelper.ChatSession.findHistorySession()
         syncUserInfos()
         chatSessionSort()
+        
     }
     
     func openChatSession(chatSessionDelegate:ChatSessionProtocol) {
