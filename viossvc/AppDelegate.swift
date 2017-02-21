@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        if let token = NSUserDefaults.standardUserDefaults().objectForKey("DeviceToken") as? String {
+            CurrentUserHelper.shared.deviceToken = token
+        }
         Fabric.with([Crashlytics.self])
         appearance()
         pushMessageRegister()
@@ -76,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
             UIApplication.sharedApplication().registerForRemoteNotifications()
             
         })
+        
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -85,16 +89,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         token = token.stringByReplacingOccurrencesOfString(">", withString: "")
         
         XCGLogger.debug("\(token)")
+        CurrentUserHelper.shared.deviceToken = token
+        NSUserDefaults.standardUserDefaults().setObject(token, forKey: "DeviceToken")
 #if true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
             GeTuiSdk.registerDeviceToken(token)
         })
 #endif
-        CurrentUserHelper.shared.deviceToken = token
+        
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        
+        SVProgressHUD.showWainningMessage(WainningMessage: "\(error)", ForDuration: 1.5, completion: nil)
     }
     
     private func appearance() {

@@ -93,9 +93,9 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         dismissController()
     }
     @IBAction func SureBtnTapped(sender: AnyObject) {
-        if checkServerTime([time(startTimeLabel.text!),time(endTimeLabel.text!)]) == false {
-            return
-        }
+//        if checkServerTime([time(startTimeLabel.text!),time(endTimeLabel.text!)]) == false {
+//            return
+//        }
         
         if time(startTimeLabel.text!) > time(endTimeLabel.text!) {
             SVProgressHUD.showWainningMessage(WainningMessage: "服务结束时间应晚于服务开始时间", ForDuration: 1, completion: nil)

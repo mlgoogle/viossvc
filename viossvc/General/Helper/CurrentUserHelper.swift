@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import SVProgressHUD
+
 
 class CurrentUserHelper: NSObject {
     static let shared = CurrentUserHelper()
     private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.account", accessGroup:nil)
-    private var _userInfo:UserInfoModel!
+    private var _userInfo:UserInfoModel?
     private var _password:String!
-    private var _deviceToken:String!
+    private var _deviceToken:String? = NSUserDefaults.standardUserDefaults().objectForKey("DeviceToken") as? String
     private var _firstLanuch = true
     
     var deviceToken:String! {
         get {
-            return _deviceToken
+            return _deviceToken ?? ""
         }
         set {
             _deviceToken = newValue
@@ -28,7 +30,7 @@ class CurrentUserHelper: NSObject {
     
     var userInfo:UserInfoModel! {
         get {
-            return _userInfo
+            return _userInfo ?? UserInfoModel()
         }
     }
     
@@ -37,7 +39,7 @@ class CurrentUserHelper: NSObject {
     }
     
     var uid : Int {
-        return _userInfo.uid
+        return _userInfo!.uid
     }
     
     
@@ -66,7 +68,7 @@ class CurrentUserHelper: NSObject {
     private func loginComplete(model:AnyObject?) {
         self._userInfo = model as? UserInfoModel
         keychainItem.resetKeychainItem()
-        keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
+        keychainItem.setObject(_userInfo!.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
         initChatHelper()
         updateDeviceToken()
@@ -93,15 +95,16 @@ class CurrentUserHelper: NSObject {
         })
     }
     
+    
     private func initChatHelper() {
-        ChatDataBaseHelper.shared.open(_userInfo.uid)
+        ChatDataBaseHelper.shared.open(_userInfo!.uid)
         ChatSessionHelper.shared.findHistorySession()
         ChatMsgHepler.shared.chatSessionHelper = ChatSessionHelper.shared
         ChatMsgHepler.shared.offlineMsgs()
     }
     
     func logout() {
-        AppAPIHelper.userAPI().logout(_userInfo.uid)
+        AppAPIHelper.userAPI().logout(_userInfo!.uid)
         nodifyPassword("")
         self._userInfo = nil
         ChatDataBaseHelper.shared.close()
@@ -117,8 +120,8 @@ class CurrentUserHelper: NSObject {
     
     
     private func updateDeviceToken() {
-        if isLogin && !NSString.isEmpty(_deviceToken) {
-            AppAPIHelper.userAPI().updateDeviceToken(uid, deviceToken: _deviceToken, complete: nil, error: nil)
+        if isLogin && _deviceToken != nil {
+            AppAPIHelper.userAPI().updateDeviceToken(uid, deviceToken: _deviceToken!, complete: nil, error: nil)
         }
     }
     
