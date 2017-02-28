@@ -8,6 +8,8 @@
 
 import Foundation
 import SVProgressHUD
+import Kingfisher
+
 class UserHomeViewController: BaseTableViewController {
     
     

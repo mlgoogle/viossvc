@@ -146,19 +146,3 @@ class PhotoWallRequestModel: BaseModel {
     var size: Int = 0
     var num: Int = 0
 }
-    
-class UserServerModel: BaseModel {
-    var service_id: Int = 0
-    var service_name: String?
-    var service_start: Int = 0
-    var service_end: Int = 0
-    var service_price: Int = 0
-    var change_type: Int = 0 //0:删除，1:修改，2:新增
-    var service_type: Int = 0
-}
-
-class UpdateServerModel:  BaseModel{
-    var uid: Int = 0
-    var service_list: [UserServerModel] = []
-}
-

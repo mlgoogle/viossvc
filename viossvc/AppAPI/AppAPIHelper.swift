@@ -14,31 +14,10 @@ class AppAPIHelper: NSObject {
         return _userAPI
     }
     
-    private static var _skillShareAPI = SkillShareSocketAPI()
-    class func skillShareAPI() ->SkillShareAPI {
-        return _skillShareAPI
-    }
-    
-    private static var _tourShareAPI = TourShareSocketAPI()
-    class func tourShareAPI() -> TourShareAPI{
-        return _tourShareAPI
-    }
-    
     private static var _commenShareAPI = CommenSocketAPI()
     class func commenAPI() -> CommenAPI {
         return _commenShareAPI
     }
     
-    private static var _orderAPI = OrderListSocketAPI()
-    class func orderAPI() -> OrderListAPI {
-        
-        return _orderAPI
-    }
-    
-    private static var _chatAPI = ChatSocketAPI()
-    
-    class func chatAPI() ->ChatAPI {
-        return _chatAPI
-    }
 }
 
