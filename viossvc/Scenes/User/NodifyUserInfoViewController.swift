@@ -11,6 +11,8 @@ import SVProgressHUD
 import CoreLocation
 import MapKit
 import SVProgressHUD
+import Kingfisher
+
 class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,CLLocationManagerDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var sexLabel: UILabel!

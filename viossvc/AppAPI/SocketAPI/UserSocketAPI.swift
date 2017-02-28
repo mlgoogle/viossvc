@@ -146,34 +146,6 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
 //        startModelsRequest(packet, modelClass: PhotoWallModel.classForCoder(), complete: complete, error: error)
     }
     
-    //V领队服务列表
-    func serviceList(complete: CompleteBlock, error: ErrorBlock) {
-        let pack = SocketDataPacket(opcode: .ServiceList, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
-        startModelsRequest(pack, listName: "service_list_", modelClass: UserServerModel.classForCoder(), complete: complete, error: error)
-    }
-
-    //更新服务列表
-    func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock) {
-        let packet = SocketDataPacket(opcode: .UpdateServiceList, model: model)
-        startModelRequest(packet, modelClass: UpdateServerModel.classForCoder(), complete: complete, error: error)
-    }
-    /**
-     操作技能标签
-     
-     - parameter getOrModfy: 0 获取用户技能 1 修改
-     - parameter skills:     技能标签id 集合
-     - parameter complete:   完成回调
-     - parameter error:      失败错误
-     */
-    func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock) {
-        
-        let dict:[String : AnyObject] = [SocketConst.Key.change_type : getOrModfy,
-                                         SocketConst.Key.skills : skills,
-                                         SocketConst.Key.uid : CurrentUserHelper.shared.userInfo.uid]
-        let packet = SocketDataPacket(opcode: .HandleSkills, dict: dict)
-        startRequest(packet, complete: complete, error: error)
-    }
-    
     func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock?) {
         let packet = SocketDataPacket(opcode: .UserInfo, dict: ["uid_str_":uids.joinWithSeparator(",")])
         startModelsRequest(packet, listName:"userinfo_list_",  modelClass: UserInfoModel.classForCoder(), complete: complete, error: error)
@@ -184,7 +156,6 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
                 complete((array as? [AnyObject])?.first)
             }, error: error)
     }
-    
     
     func updateDeviceToken(uid:Int,deviceToken:String,complete: CompleteBlock?, error: ErrorBlock?) {
         let packet = SocketDataPacket(opcode: .UpdateDeviceToken, dict: [SocketConst.Key.uid:uid,"device_token_":deviceToken])

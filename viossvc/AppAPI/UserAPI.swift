@@ -57,13 +57,6 @@ protocol UserAPI {
     func photoWallRequest(model: PhotoWallRequestModel, complete: CompleteBlock, error: ErrorBlock)
     //请求上传照片
     func uploadPhoto2Wall(data: [String: AnyObject], complete: CompleteBlock, error: ErrorBlock)
-    //V领队服务
-    func serviceList(complete: CompleteBlock, error: ErrorBlock)
-    //更新V领队服务
-    func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock)
-    //操作技能标签
-    func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock)
-    //获取用户信息
     func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock?)
     //
     func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock?)
