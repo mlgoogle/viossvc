@@ -76,6 +76,48 @@ class CurrentUserHelper: NSObject {
             versionCheck()
             _firstLanuch = false
         }
+        requestUserCash()
+        checkAuthStatus()
+    }
+    
+    //查询用户余额
+    func requestUserCash() {
+        AppAPIHelper.userAPI().userCash(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
+            if result == nil{
+                return
+            }
+            let resultDic = result as? Dictionary<String, AnyObject>
+            
+            if let hasPassword = resultDic!["has_passwd_"] as? Int{
+                CurrentUserHelper.shared.userInfo.has_passwd_ = hasPassword
+            }
+            if let userCash = resultDic!["user_cash_"] as? Int{
+                CurrentUserHelper.shared.userInfo.user_cash_ =  userCash
+            }
+            
+            }, error: { (err) in
+            
+            })
+    }
+    /**
+     查询认证状态
+     */
+    func checkAuthStatus() {
+        AppAPIHelper.userAPI().anthStatus(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
+            if let errorReason = result?.valueForKey("failed_reason_") as? String {
+                if  errorReason.characters.count != 0 {
+                    SVProgressHUD.showErrorMessage(ErrorMessage: errorReason, ForDuration: 1,
+                        completion: nil)
+                }
+            }
+            
+            if let status = result?.valueForKey("review_status_") as? Int {
+                CurrentUserHelper.shared.userInfo.auth_status_ = status
+            }
+            
+            }, error: { (err) in
+            
+            })
     }
     
     func versionCheck() {
