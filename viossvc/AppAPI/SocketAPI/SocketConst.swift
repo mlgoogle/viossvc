@@ -108,6 +108,10 @@ class SocketConst: NSObject {
         case VersionInfo = 1115
         
         case IDVerifyRequest = 1121
+        
+        case PriceList = 1123
+        
+        case PriceSetting = 1131
     }
     enum type:UInt8 {
         case Error = 0

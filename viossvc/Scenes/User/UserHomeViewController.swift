@@ -37,6 +37,7 @@ class UserHomeViewController: BaseTableViewController {
             }
         }
     }
+    @IBOutlet weak var priceSettingCell: UITableViewCell!
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
@@ -48,12 +49,12 @@ class UserHomeViewController: BaseTableViewController {
         super.viewWillAppear(animated)
         initData()
         initUI()
-        hidesBottomBarWhenPushed = true
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        hidesBottomBarWhenPushed = false
+        
     }
     
     //MARK: --DATA
@@ -110,7 +111,7 @@ class UserHomeViewController: BaseTableViewController {
         qustionContent.addGestureRecognizer(askTapGesture)
         
         authStatusLabel.text = authStatus
-        authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
+        authCell.accessoryType = authStatus == "未认证" || authStatus == "认证失败" ? .DisclosureIndicator : .None
     }
     func askTapGestureTapped() {
         MobClick.event(AppConst.Event.user_question)
@@ -134,8 +135,40 @@ class UserHomeViewController: BaseTableViewController {
             let vc = IDVerifyVC()
             navigationController?.pushViewController(vc, animated: true)
             return
+//        } else if cell == priceSettingCell && authStatus == "认证通过" {
+        } else if cell == priceSettingCell {
+            NSLog("金额设置")
+            priceList()
+//            priceSetting()
+            return
         }
 
+    }
+    
+    func priceList() {
+        AppAPIHelper.userAPI().priceList({ (response) in
+            if let models = response as? [PriceModel] {
+                NSLog("\(models)")
+            }
+            }, error: { (error) in
+        
+        })
+    }
+    
+    func priceSetting() {
+        let req = PriceSettingRequestModel()
+        req.uid = CurrentUserHelper.shared.uid
+        req.wx_num = "12345asdfg"
+        req.wx_url = "http://xxx.xxx.com/xxx.png"
+        req.service_price = 88
+        AppAPIHelper.userAPI().priceSetting(req, complete: { (response) in
+            if let model = response as? PriceSettingModel {
+                let msg = model.result == 0 ? "设置成功" : "设置失败"
+                SVProgressHUD.showWithStatus(msg)
+            }
+            }, error: { (err) in
+                
+        })
     }
     
 }

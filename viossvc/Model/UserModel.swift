@@ -150,11 +150,34 @@ class PhotoWallRequestModel: BaseModel {
 //身份证信息
 class IDverifyRequestModel: BaseModel {
     
-    dynamic var uid_ = 0
+    var uid = 0
     
-    dynamic var idcard_urlname_:String?
+    var idcard_urlname:String?
     
-    dynamic var idcard_num_:String?
+    var idcard_num:String?
     
-    dynamic var idcard_name_:String?
+    var idcard_name:String?
+}
+
+// 金额/服务设置
+class PriceSettingRequestModel: BaseModel {
+    var uid = 0
+    
+    var wx_num:String?
+    
+    var wx_url:String?
+    
+    var service_price = 0
+}
+
+class PriceSettingModel: BaseModel {
+    
+    var result = -1 // 0：成功 1：失败
+}
+
+// 服务价格推荐
+class PriceModel: BaseModel {
+    var price_id = 0
+    
+    var price = 0
 }
