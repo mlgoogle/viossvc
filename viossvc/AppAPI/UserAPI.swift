@@ -61,4 +61,6 @@ protocol UserAPI {
     //
     func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock?)
     func updateDeviceToken(uid:Int,deviceToken:String,complete: CompleteBlock?, error: ErrorBlock?)
+    
+    func IDVerify(model: IDverifyRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
 }

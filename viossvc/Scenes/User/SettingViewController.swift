@@ -11,29 +11,12 @@ import SVProgressHUD
 class SettingViewController: BaseTableViewController {
     
     @IBOutlet weak var userNumLabel: UILabel!
-    @IBOutlet weak var authLabel: UILabel!
-    @IBOutlet weak var authCell: UITableViewCell!
     @IBOutlet weak var cacheLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var aboutUSCell: UITableViewCell!
     @IBOutlet weak var cacheCell: UITableViewCell!
     @IBOutlet weak var versionCell: UITableViewCell!
-    var authStatus: String? {
-        get{
-            switch CurrentUserHelper.shared.userInfo.auth_status_ {
-            case -1:
-                return "未认证"
-            case 0:
-                return "认证中"
-            case 1:
-                return "认证通过"
-            case 2:
-                return "认证失败"
-            default:
-                return ""
-            }
-        }
-    }
+    
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
@@ -43,8 +26,7 @@ class SettingViewController: BaseTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        authLabel.text = authStatus
-        authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
+
     }
     //MARK: --UI
     func initUI() {
@@ -53,8 +35,6 @@ class SettingViewController: BaseTableViewController {
         //缓存
         cacheLabel.text = String(format:"%.2f M",Double(calculateCacle()))
         
-        authLabel.text = authStatus
-        authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
     }
     @IBAction func logoutBtnTapped(sender: AnyObject) {
         MobClick.event(AppConst.Event.user_logout)
@@ -110,10 +90,10 @@ class SettingViewController: BaseTableViewController {
             return
         }
         
-        if cell == authCell && (authStatus == "未认证" || authStatus == "认证失败"){
-            performSegueWithIdentifier("AuthUserViewController", sender: nil)
-            return
-        }
+//        if cell == authCell && (authStatus == "未认证" || authStatus == "认证失败"){
+//            performSegueWithIdentifier("AuthUserViewController", sender: nil)
+//            return
+//        }
         
         if cell == versionCell {
             MobClick.event(AppConst.Event.user_version)
