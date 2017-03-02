@@ -179,4 +179,9 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func priceList(complete: CompleteBlock?, error: ErrorBlock?) {
         startModelsRequest(SocketDataPacket(opcode: .PriceList), listName:"price_list_",  modelClass: PriceModel.classForCoder(), complete: complete, error: error)
     }
+    
+    func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .FollowCount, model: model)
+        startModelRequest(packet, modelClass: FollowCountModel.classForCoder(), complete: complete, error: error)
+    }
 }

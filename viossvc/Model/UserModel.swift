@@ -181,3 +181,16 @@ class PriceModel: BaseModel {
     
     var price = 0
 }
+
+// 关注数
+class FollowCountRequestModel: BaseModel {
+    var uid = 0
+    
+    var type = 1 // 1：uid_关注的人数 2：uid_被关注的数量
+}
+// 关注数请求结果
+class FollowCountModel: BaseModel {
+    
+    dynamic var follow_count = 0
+}
+

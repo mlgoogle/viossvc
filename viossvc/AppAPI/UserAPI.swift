@@ -67,4 +67,6 @@ protocol UserAPI {
     func priceSetting(model: PriceSettingRequestModel, complete: CompleteBlock, error: ErrorBlock?)
     // 服务价格推荐表
     func priceList(complete: CompleteBlock?, error: ErrorBlock?)
+    // 关注数
+    func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
 }
