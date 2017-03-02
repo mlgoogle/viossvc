@@ -39,11 +39,13 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         super.viewWillAppear(animated)
         registerNotify()
         initNav()
+        hidesBottomBarWhenPushed = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        hidesBottomBarWhenPushed = false
     }
     
     //MARK: -- Nav
@@ -68,10 +70,10 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         
         let req = IDverifyRequestModel()
-        req.idcard_urlname_ = name!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
-        req.uid_ = CurrentUserHelper.shared.uid
-        req.idcard_name_ = name
-        req.idcard_num_ = id
+        req.idcard_urlname = name!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
+        req.uid = CurrentUserHelper.shared.uid
+        req.idcard_name = name
+        req.idcard_num = id
         AppAPIHelper.userAPI().IDVerify(req, complete: { [weak self](response) in
             CurrentUserHelper.shared.userInfo.auth_status_ = 0
             SVProgressHUD.showWainningMessage(WainningMessage: "提交验证信息成功", ForDuration: 1.5, completion: { () in

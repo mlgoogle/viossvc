@@ -61,6 +61,12 @@ protocol UserAPI {
     //
     func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock?)
     func updateDeviceToken(uid:Int,deviceToken:String,complete: CompleteBlock?, error: ErrorBlock?)
-    
+    // 身份验证
     func IDVerify(model: IDverifyRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
+    // 设置金额
+    func priceSetting(model: PriceSettingRequestModel, complete: CompleteBlock, error: ErrorBlock?)
+    // 服务价格推荐表
+    func priceList(complete: CompleteBlock?, error: ErrorBlock?)
+    // 关注数
+    func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
 }

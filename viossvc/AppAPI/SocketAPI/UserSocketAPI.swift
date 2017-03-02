@@ -169,4 +169,19 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
             complete?(nil)
             }, error: error)
     }
+    
+    // 设置金额
+    func priceSetting(model: PriceSettingRequestModel, complete: CompleteBlock, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .PriceSetting, model: model)
+        startModelRequest(packet, modelClass: PriceSettingModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    func priceList(complete: CompleteBlock?, error: ErrorBlock?) {
+        startModelsRequest(SocketDataPacket(opcode: .PriceList), listName:"price_list_",  modelClass: PriceModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .FollowCount, model: model)
+        startModelRequest(packet, modelClass: FollowCountModel.classForCoder(), complete: complete, error: error)
+    }
 }
