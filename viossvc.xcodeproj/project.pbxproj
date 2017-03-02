@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
+		2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */; };
 		2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */; };
 		2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */; };
 		2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */; };
@@ -91,6 +92,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDVerifyVC.swift; sourceTree = "<group>"; };
 		2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateModule.swift; sourceTree = "<group>"; };
 		2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -521,6 +523,7 @@
 				B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */,
 				B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */,
 				BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */,
+				2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */,
 				B03B12421DE5BFDE00B00D2E /* BaseTableViewController.swift in Sources */,
 				BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */,
+				2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */,
 				B03B12181DE5BFDE00B00D2E /* AppDelegate.swift in Sources */,
 				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,

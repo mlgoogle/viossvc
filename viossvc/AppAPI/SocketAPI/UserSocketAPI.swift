@@ -162,4 +162,11 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         startRequest(packet, complete: complete, error: error)
     }
 
+    // 提交身份证信息
+    func IDVerify(model: IDverifyRequestModel, complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .IDVerifyRequest, model: model)
+        startRequest(packet, complete: { (response) in
+            complete?(nil)
+            }, error: error)
+    }
 }

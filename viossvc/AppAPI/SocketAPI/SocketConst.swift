@@ -106,6 +106,8 @@ class SocketConst: NSObject {
         case UpdateDeviceToken = 1031
         
         case VersionInfo = 1115
+        
+        case IDVerifyRequest = 1121
     }
     enum type:UInt8 {
         case Error = 0

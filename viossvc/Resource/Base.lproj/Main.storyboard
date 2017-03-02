@@ -243,28 +243,31 @@
                                             <segue destination="XCo-Gx-Stq" kind="push" identifier="userInfoPushToSelectBankCard" id="5MR-6j-d18"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="m0o-Wv-vyA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8jy-NR-ywF" detailTextLabel="ABE-db-CJO" imageView="pGQ-ox-Phb" style="IBUITableViewCellStyleValue1" id="m0o-Wv-vyA">
                                         <rect key="frame" x="0.0" y="276" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0o-Wv-vyA" id="huf-r7-Gi2">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.0" contentMode="left" fixedFrame="YES" text="0张" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udL-dn-S6y">
-                                                    <rect key="frame" x="348" y="13" width="24.5" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="个人认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8jy-NR-ywF">
+                                                    <rect key="frame" x="52" y="12" width="64" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="wodefuwu" translatesAutoresizingMaskIntoConstraints="NO" id="eXf-dF-S6d">
-                                                    <rect key="frame" x="15" y="13" width="22" height="22"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="未认证" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ABE-db-CJO">
+                                                    <rect key="frame" x="517" y="12" width="48" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bank_card" id="pGQ-ox-Phb">
+                                                    <rect key="frame" x="15" y="10" width="22" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="个人认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBL-Kn-1fe">
-                                                    <rect key="frame" x="53" y="13" width="99" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -357,6 +360,8 @@
                         <barButtonItem key="backBarButtonItem" title="返回" id="vLi-jZ-SaS"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="authCell" destination="m0o-Wv-vyA" id="ypo-4e-1n6"/>
+                        <outlet property="authStatusLabel" destination="ABE-db-CJO" id="Cod-XL-ELW"/>
                         <outlet property="bankCardNumLabel" destination="kBE-Mf-lhO" id="qD7-0N-5IN"/>
                         <outlet property="qustionContent" destination="PQ3-LK-rbM" id="idr-Ub-WTF"/>
                         <outlet property="userCashLabel" destination="WCl-t9-bcO" id="NbM-h4-kSS"/>
@@ -2833,7 +2838,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="viM-Pv-Nfv">
-                            <rect key="frame" x="0.0" y="358" width="600" height="90"/>
+                            <rect key="frame" x="0.0" y="314" width="600" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQv-y7-u73">
@@ -2902,30 +2907,6 @@
                                             <segue destination="B6Z-lP-7lW" kind="show" id="fei-xX-Eg5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hIr-Vx-yXs" detailTextLabel="027-Kg-3PE" style="IBUITableViewCellStyleValue1" id="yfs-gH-Uje">
-                                        <rect key="frame" x="0.0" y="162" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yfs-gH-Uje" id="mXa-xp-Ooa">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="个人认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hIr-Vx-yXs">
-                                                    <rect key="frame" x="15" y="13" width="60" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="已认证" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="027-Kg-3PE">
-                                                    <rect key="frame" x="520" y="13" width="45" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="lai-f9-JS5">
@@ -2934,7 +2915,7 @@
                             <tableViewSection headerTitle=" " id="xqD-KZ-bIi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TNI-c4-M3U" detailTextLabel="LRp-Cf-tKQ" style="IBUITableViewCellStyleValue1" id="Rv3-i1-1NB">
-                                        <rect key="frame" x="0.0" y="226" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="182" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rv3-i1-1NB" id="XMA-eo-i8j">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -2958,7 +2939,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="IyR-2N-PmZ" detailTextLabel="QFR-Id-rVP" style="IBUITableViewCellStyleValue1" id="apm-et-2sT">
-                                        <rect key="frame" x="0.0" y="270" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="226" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="apm-et-2sT" id="d3P-dK-9vY">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -2982,7 +2963,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="mDl-g0-CON" style="IBUITableViewCellStyleDefault" id="hXE-Vw-Lz3">
-                                        <rect key="frame" x="0.0" y="314" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="270" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hXE-Vw-Lz3" id="bN8-hz-bLM">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -3008,8 +2989,6 @@
                     </tableView>
                     <connections>
                         <outlet property="aboutUSCell" destination="hXE-Vw-Lz3" id="jnL-gK-N5x"/>
-                        <outlet property="authCell" destination="yfs-gH-Uje" id="Ed9-HW-Z0n"/>
-                        <outlet property="authLabel" destination="027-Kg-3PE" id="G5v-mt-5ro"/>
                         <outlet property="cacheCell" destination="Rv3-i1-1NB" id="9tD-0H-gfq"/>
                         <outlet property="cacheLabel" destination="LRp-Cf-tKQ" id="diF-0l-gV0"/>
                         <outlet property="userNumLabel" destination="TEK-DY-Bzh" id="XN2-pJ-oRa"/>

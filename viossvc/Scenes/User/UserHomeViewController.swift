@@ -19,18 +19,43 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var qustionContent: UIView!
     @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var userContentView: UIView!
-    
+    @IBOutlet weak var authCell: UITableViewCell!
+    @IBOutlet weak var authStatusLabel: UILabel!
+    var authStatus: String? {
+        get{
+            switch CurrentUserHelper.shared.userInfo.auth_status_ {
+            case -1:
+                return "未认证"
+            case 0:
+                return "认证中"
+            case 1:
+                return "认证通过"
+            case 2:
+                return "认证失败"
+            default:
+                return ""
+            }
+        }
+    }
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         initData()
         initUI()
+        hidesBottomBarWhenPushed = true
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        hidesBottomBarWhenPushed = false
+    }
+    
     //MARK: --DATA
     func initData() {
         checkAuthStatus()
@@ -83,6 +108,9 @@ class UserHomeViewController: BaseTableViewController {
         
         let askTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(askTapGestureTapped))
         qustionContent.addGestureRecognizer(askTapGesture)
+        
+        authStatusLabel.text = authStatus
+        authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
     }
     func askTapGestureTapped() {
         MobClick.event(AppConst.Event.user_question)
@@ -100,6 +128,14 @@ class UserHomeViewController: BaseTableViewController {
 //        UIApplication.sharedApplication().openURL(NSURL.init(string: "telprompt:0571-87611687")!)
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if cell == authCell && (authStatus == "未认证" || authStatus == "认证失败"){
+            let vc = IDVerifyVC()
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
 
+    }
     
 }

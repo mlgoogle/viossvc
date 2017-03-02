@@ -146,3 +146,15 @@ class PhotoWallRequestModel: BaseModel {
     var size: Int = 0
     var num: Int = 0
 }
+
+//身份证信息
+class IDverifyRequestModel: BaseModel {
+    
+    dynamic var uid_ = 0
+    
+    dynamic var idcard_urlname_:String?
+    
+    dynamic var idcard_num_:String?
+    
+    dynamic var idcard_name_:String?
+}
