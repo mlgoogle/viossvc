@@ -139,9 +139,13 @@ class UserHomeViewController: BaseTableViewController {
 //        } else if cell == priceSettingCell && authStatus == "认证通过" {
         } else if cell == priceSettingCell {
             NSLog("金额设置")
-            updateFollowCount()
-            priceList()
-            priceSetting()
+            let vc = PriceAndContactSettingVC()
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            
+//            updateFollowCount()
+//            priceList()
+//            priceSetting()
             return
         }
 
@@ -156,16 +160,6 @@ class UserHomeViewController: BaseTableViewController {
                 NSLog("\(model.follow_count)")
             }
             }, error: nil)
-    }
-    
-    func priceList() {
-        AppAPIHelper.userAPI().priceList({ (response) in
-            if let models = response as? [PriceModel] {
-                NSLog("\(models)")
-            }
-            }, error: { (error) in
-        
-        })
     }
     
     func priceSetting() {
