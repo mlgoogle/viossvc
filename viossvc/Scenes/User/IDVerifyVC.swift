@@ -39,13 +39,11 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         super.viewWillAppear(animated)
         registerNotify()
         initNav()
-        hidesBottomBarWhenPushed = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        hidesBottomBarWhenPushed = false
     }
     
     //MARK: -- Nav

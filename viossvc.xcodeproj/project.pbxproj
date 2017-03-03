@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
 		2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */; };
+		2F9F53C41E69505000E77BF1 /* PriceAndContactSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */; };
+		2F9F53C61E6969AD00E77BF1 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */; };
+		2F9F53C81E696A8100E77BF1 /* PriceSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C71E696A8100E77BF1 /* PriceSelectionCell.swift */; };
 		2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */; };
 		2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */; };
 		2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */; };
@@ -93,6 +96,9 @@
 
 /* Begin PBXFileReference section */
 		2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDVerifyVC.swift; sourceTree = "<group>"; };
+		2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceAndContactSettingVC.swift; sourceTree = "<group>"; };
+		2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		2F9F53C71E696A8100E77BF1 /* PriceSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceSelectionCell.swift; sourceTree = "<group>"; };
 		2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateModule.swift; sourceTree = "<group>"; };
 		2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -524,6 +530,9 @@
 				B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */,
 				BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */,
 				2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */,
+				2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */,
+				2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */,
+				2F9F53C71E696A8100E77BF1 /* PriceSelectionCell.swift */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -732,9 +741,12 @@
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
 				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
 				BF9B6BCA1DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift in Sources */,
+				2F9F53C61E6969AD00E77BF1 /* ContactCell.swift in Sources */,
+				2F9F53C41E69505000E77BF1 /* PriceAndContactSettingVC.swift in Sources */,
 				BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */,
 				B03B12401DE5BFDE00B00D2E /* BaseCustomTableViewController.swift in Sources */,
 				BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */,
+				2F9F53C81E696A8100E77BF1 /* PriceSelectionCell.swift in Sources */,
 				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
 				2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */,
