@@ -133,6 +133,7 @@ class UserHomeViewController: BaseTableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell == authCell && (authStatus == "未认证" || authStatus == "认证失败"){
             let vc = IDVerifyVC()
+            vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
             return
 //        } else if cell == priceSettingCell && authStatus == "认证通过" {
