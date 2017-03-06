@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AA011F91E6D4C820028D000 /* SendMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */; };
+		1AA011FB1E6D58E30028D000 /* SendMsgPickPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */; };
+		1ADA432B1E6D4302009AC3A3 /* CommonDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */; };
+		1ADA432F1E6D431C009AC3A3 /* ButtonEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432C1E6D431C009AC3A3 /* ButtonEx.swift */; };
+		1ADA43301E6D431C009AC3A3 /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432D1E6D431C009AC3A3 /* ColorExt.swift */; };
+		1ADA43311E6D431C009AC3A3 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432E1E6D431C009AC3A3 /* UIViewEx.swift */; };
+		1ADA43351E6D4510009AC3A3 /* ServantFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43331E6D4510009AC3A3 /* ServantFooterView.swift */; };
+		1ADA43361E6D4510009AC3A3 /* ServantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43341E6D4510009AC3A3 /* ServantHeaderView.swift */; };
+		1ADA43381E6D45F0009AC3A3 /* ServantPersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43371E6D45F0009AC3A3 /* ServantPersonalCell.swift */; };
+		1ADA43431E6D49E8009AC3A3 /* ServantPersonalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */; };
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
 		2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */; };
 		2F9F53C41E69505000E77BF1 /* PriceAndContactSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */; };
@@ -95,6 +105,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgViewController.swift; sourceTree = "<group>"; };
+		1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgPickPhotoCell.swift; sourceTree = "<group>"; };
+		1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDefine.swift; sourceTree = "<group>"; };
+		1ADA432C1E6D431C009AC3A3 /* ButtonEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonEx.swift; sourceTree = "<group>"; };
+		1ADA432D1E6D431C009AC3A3 /* ColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
+		1ADA432E1E6D431C009AC3A3 /* UIViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
+		1ADA43331E6D4510009AC3A3 /* ServantFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantFooterView.swift; sourceTree = "<group>"; };
+		1ADA43341E6D4510009AC3A3 /* ServantHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantHeaderView.swift; sourceTree = "<group>"; };
+		1ADA43371E6D45F0009AC3A3 /* ServantPersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalCell.swift; sourceTree = "<group>"; };
+		1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalVC.swift; sourceTree = "<group>"; };
 		2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDVerifyVC.swift; sourceTree = "<group>"; };
 		2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceAndContactSettingVC.swift; sourceTree = "<group>"; };
 		2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -229,6 +249,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1AA011F71E6D4C3C0028D000 /* SendMsg */ = {
+			isa = PBXGroup;
+			children = (
+				1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */,
+				1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */,
+			);
+			path = SendMsg;
+			sourceTree = "<group>";
+		};
+		1ADA43321E6D4510009AC3A3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1AA011F71E6D4C3C0028D000 /* SendMsg */,
+				1ADA43371E6D45F0009AC3A3 /* ServantPersonalCell.swift */,
+				1ADA43331E6D4510009AC3A3 /* ServantFooterView.swift */,
+				1ADA43341E6D4510009AC3A3 /* ServantHeaderView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		2FECFBD91E1F4C760065AF60 /* Update */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +290,7 @@
 		6E3C93C41E1E3D3D0002EEB4 /* CommenClass */ = {
 			isa = PBXGroup;
 			children = (
+				1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */,
 				6E46153A1E308EE80045C115 /* CommonWebVC.swift */,
 				6E46153C1E308EFE0045C115 /* YD_ContactManager.swift */,
 			);
@@ -339,9 +380,11 @@
 		B03B11C91DE5BFDD00B00D2E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1ADA43321E6D4510009AC3A3 /* Home */,
 				BF9B6BC21DE96F3F009FFEB7 /* Commen */,
 				B08673471DE5C62B008DD8A1 /* User */,
 				B03B11D51DE5BFDD00B00D2E /* MainTabBarController.swift */,
+				1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */,
 				B03B11CE1DE5BFDD00B00D2E /* HomeViewController.swift */,
 				B03B11EC1DE5BFDD00B00D2E /* UserViewController.swift */,
 			);
@@ -397,6 +440,9 @@
 		B03B12071DE5BFDE00B00D2E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				1ADA432C1E6D431C009AC3A3 /* ButtonEx.swift */,
+				1ADA432D1E6D431C009AC3A3 /* ColorExt.swift */,
+				1ADA432E1E6D431C009AC3A3 /* UIViewEx.swift */,
 				BFDAB1031DEFEE320012671B /* NSDateExt.swift */,
 				BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */,
 				B03B12081DE5BFDE00B00D2E /* UIScreen+Extension.swift */,
@@ -718,9 +764,13 @@
 				B03B12421DE5BFDE00B00D2E /* BaseTableViewController.swift in Sources */,
 				BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */,
 				2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */,
+				1ADA43301E6D431C009AC3A3 /* ColorExt.swift in Sources */,
 				B03B12181DE5BFDE00B00D2E /* AppDelegate.swift in Sources */,
 				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
+				1ADA43361E6D4510009AC3A3 /* ServantHeaderView.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
+				1ADA432F1E6D431C009AC3A3 /* ButtonEx.swift in Sources */,
+				1ADA43381E6D45F0009AC3A3 /* ServantPersonalCell.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */,
 				BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */,
@@ -736,20 +786,24 @@
 				B024A1791DE7CDCC0095A691 /* SocketRequest.swift in Sources */,
 				7C6758FC1DF1291E00560601 /* UIFont+Extension.swift in Sources */,
 				BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */,
+				1ADA43351E6D4510009AC3A3 /* ServantFooterView.swift in Sources */,
 				B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */,
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
 				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
 				BF9B6BCA1DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift in Sources */,
+				1ADA43431E6D49E8009AC3A3 /* ServantPersonalVC.swift in Sources */,
 				2F9F53C61E6969AD00E77BF1 /* ContactCell.swift in Sources */,
 				2F9F53C41E69505000E77BF1 /* PriceAndContactSettingVC.swift in Sources */,
 				BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */,
+				1ADA432B1E6D4302009AC3A3 /* CommonDefine.swift in Sources */,
 				B03B12401DE5BFDE00B00D2E /* BaseCustomTableViewController.swift in Sources */,
 				BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */,
 				2F9F53C81E696A8100E77BF1 /* PriceSelectionCell.swift in Sources */,
 				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
 				2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */,
+				1AA011F91E6D4C820028D000 /* SendMsgViewController.swift in Sources */,
 				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,
 				B03B12361DE5BFDE00B00D2E /* UserViewController.swift in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,
@@ -758,7 +812,9 @@
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				6EFEF7801E1364E600F4A19D /* YD_MaskView.swift in Sources */,
 				B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */,
+				1AA011FB1E6D58E30028D000 /* SendMsgPickPhotoCell.swift in Sources */,
 				B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */,
+				1ADA43311E6D431C009AC3A3 /* UIViewEx.swift in Sources */,
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
 				BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */,
 				7CFB87FD1DF665B9009E78E2 /* FaceKeyboardView.swift in Sources */,

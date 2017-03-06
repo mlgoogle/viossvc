@@ -21,5 +21,6 @@ target 'viossvc' do
     pod 'UMengAnalytics-NO-IDFA'
     pod 'AMapSearch'
     pod 'AMap2DMap', '~> 4.2.0'
+    pod 'MJRefresh', '~> 3.1.12'
 
 end
