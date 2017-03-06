@@ -69,4 +69,6 @@ protocol UserAPI {
     func priceList(complete: CompleteBlock?, error: ErrorBlock?)
     // 关注数
     func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
+    // 获取联系方式金额
+    func contactAndPrice(model: ContactAndPriceRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
 }

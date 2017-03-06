@@ -194,3 +194,22 @@ class FollowCountModel: BaseModel {
     dynamic var follow_count = 0
 }
 
+// 获取联系方式
+class ContactAndPriceRequestModel: BaseModel {
+    var order_id = 0
+    
+    var uid_form = 0
+    
+    var uid_to = 0
+}
+
+class ContactAndPriceModel: BaseModel {
+    var result = 0
+    
+    var wx_url:String?
+    
+    var wx_num:String?
+    
+    var service_price = 0
+}
+

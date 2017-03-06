@@ -11,7 +11,7 @@ import XCGLogger
 import SVProgressHUD
 
 
-class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, PriceSelectionCellDelegate {
+class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ContactCellDelegate, PriceSelectionCellDelegate {
     
     lazy var tips:UILabel = {
         let label = UILabel()
@@ -30,6 +30,7 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         button.setTitle("完成", forState: .Normal)
         button.setTitleColor(UIColor.init(hexString: "#cccccc"), forState: .Normal)
         button.setTitleColor(UIColor.init(hexString: "#ffffff"), forState: .Normal)
+        button.addTarget(self, action: #selector(submit(_:)), forControlEvents: .TouchUpInside)
         return button
     }()
     
@@ -39,7 +40,16 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     var wxQRCodeUrl:String?
     
     var priceList:[PriceModel] = []
-    var selectedPriceID = 0
+    var selectedPrice = -1
+    
+    var qrCodeImage:UIImage?
+    
+    lazy var imagePicker:UIImagePickerController = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        return imagePicker
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +72,25 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
             if let models = response as? [PriceModel] {
                 self?.priceList = models
                 self?.table?.reloadSections(NSIndexSet.init(index: 2), withRowAnimation: .Fade)
+                self?.getContactAndPrice()
             }
             }, error: { (error) in
                 
         })
+    }
+    
+    func getContactAndPrice() {
+        let req = ContactAndPriceRequestModel()
+        req.uid_form = CurrentUserHelper.shared.uid
+        req.uid_to = CurrentUserHelper.shared.uid
+        AppAPIHelper.userAPI().contactAndPrice(req, complete: { [weak self](response) in
+            if let model = response as? ContactAndPriceModel {
+                self?.wxQRCodeUrl = model.wx_url
+                self?.wxAccount = model.wx_num
+                self?.selectedPrice = model.service_price
+                self?.table?.reloadData()
+            }
+            }, error: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -83,33 +108,6 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     func initNav()  {
         title = "金额设置"
         
-    }
-    
-    func rightItemTapped(item: UIBarButtonItem) {
-        view.endEditing(true)
-//        guard name != nil && id != nil else {
-//            SVProgressHUD.showWainningMessage(WainningMessage: "请完善信息", ForDuration: 1.5, completion: nil)
-//            return
-//        }
-//        if id!.characters.count != 18  {
-//            SVProgressHUD.showWainningMessage(WainningMessage: "身份证号长度有误", ForDuration: 1.5, completion: nil)
-//            return
-//        }
-        
-        
-//        let req = IDverifyRequestModel()
-//        req.idcard_urlname = name!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
-//        req.uid = CurrentUserHelper.shared.uid
-//        req.idcard_name = name
-//        req.idcard_num = id
-//        AppAPIHelper.userAPI().IDVerify(req, complete: { [weak self](response) in
-//            CurrentUserHelper.shared.userInfo.auth_status_ = 0
-//            SVProgressHUD.showWainningMessage(WainningMessage: "提交验证信息成功", ForDuration: 1.5, completion: { () in
-//                self?.navigationController?.popViewControllerAnimated(true)
-//            })
-//            }, error: { (err) in
-//                SVProgressHUD.showWainningMessage(WainningMessage: "提交验证信息失败，请稍后再试", ForDuration: 1.5, completion: nil)
-//        })
     }
     
     //MARK: -- tableView
@@ -152,6 +150,8 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
+            cell.delegate = self
+            cell.update(wxAccount, qrCodeImgae: qrCodeImage, qrCodeURL: wxQRCodeUrl)
             return cell
         } else if indexPath.section == 1 {
             var cell = tableView.dequeueReusableCellWithIdentifier("PriceSelectionTipsCell")
@@ -178,10 +178,10 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
                     infos.append(priceList[i])
                 } else { break }
             }
-            cell.update(infos, selectedID: selectedPriceID)
+            cell.update(infos, selectedPrice: selectedPrice)
             return cell
         } else if indexPath.section == 3 {
-            var cell = tableView.dequeueReusableCellWithIdentifier("IDVerifyCell")
+            var cell = tableView.dequeueReusableCellWithIdentifier("SubmitCell")
             if cell == nil {
                 cell = UITableViewCell()
                 cell?.accessoryType = .None
@@ -208,6 +208,32 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         return cell!
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        qrCodeImage = image
+        imagePicker.dismissViewControllerAnimated(true, completion: { () in
+            self.table?.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: .Fade)
+            self.submitCheck()
+        })
+        
+        let data = UIImageJPEGRepresentation(image, 0.5)
+        let homeDirectory = NSHomeDirectory()
+        let documentPath = homeDirectory + "/Documents"
+        let fileManager: NSFileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.createDirectoryAtPath(documentPath, withIntermediateDirectories: true, attributes: nil)
+            
+        } catch _ {
+        }
+        let timestemp:Int = Int(NSDate().timeIntervalSince1970)
+        let key = "/\(CurrentUserHelper.shared.uid)\(timestemp)\(index).png"
+        fileManager.createFileAtPath(documentPath.stringByAppendingString(key), contents: data, attributes: nil)
+        
+    }
+    
     func keyboardWillShow(notification: NSNotification?) {
         let frame = notification!.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
         let inset = UIEdgeInsetsMake(0, 0, frame.size.height, 0)
@@ -232,9 +258,73 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         view.endEditing(true)
     }
     
-    func selectedPrice(priceID: Int) {
-        selectedPriceID = priceID
+    func selectedPrice(price: Int) {
+        selectedPrice = price
         table?.reloadSections(NSIndexSet.init(index: 2), withRowAnimation: .None)
+        submitCheck()
     }
     
+    func qrCodeSelecte() {
+        let sheetController = UIAlertController.init(title: "选择二维码图片", message: nil, preferredStyle: .ActionSheet)
+        let cancelAction:UIAlertAction! = UIAlertAction.init(title: "取消", style: .Cancel) { action in
+            
+        }
+        
+        let labAction:UIAlertAction! = UIAlertAction.init(title: "相册", style: .Default) { action in
+            self.imagePicker.sourceType = .PhotoLibrary
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        }
+        sheetController.addAction(cancelAction)
+        sheetController.addAction(labAction)
+        presentViewController(sheetController, animated: true, completion: nil)
+    }
+    
+    func accountDidChange(account: String?) {
+        wxAccount = account
+        
+        submitCheck()
+    }
+    
+    func submitCheck() {
+        if (wxAccount != nil && wxAccount != "") && (qrCodeImage != nil || wxQRCodeUrl != nil) && selectedPrice != -1 {
+            submit.backgroundColor = UIColor.init(hexString: "#fca311")
+            submit.enabled = true
+        } else {
+            submit.backgroundColor = UIColor.init(hexString: "#eeeeee")
+            submit.enabled = false
+        }
+    }
+    
+    func submit(sender: UIButton) {
+        if qrCodeImage != nil {
+            let imageName = "qrcode"
+            qiniuUploadImage(qrCodeImage!, imageName: imageName, complete: { [weak self](imageUrl) in
+                if let url = imageUrl as? String {
+                    self?.wxQRCodeUrl = url
+                    self?.changeContactAndPrice()
+                }
+            })
+        } else {
+            changeContactAndPrice()
+        }
+    }
+    
+    func changeContactAndPrice() {
+        let req = PriceSettingRequestModel()
+        req.uid = CurrentUserHelper.shared.uid
+        req.wx_num = wxAccount
+        req.wx_url = wxQRCodeUrl
+        req.service_price = selectedPrice
+        AppAPIHelper.userAPI().priceSetting(req, complete: { (response) in
+            if let model = response as? PriceSettingModel {
+                let msg = model.result == 0 ? "设置成功" : "设置失败"
+                SVProgressHUD.showWithStatus(msg)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64 (1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                    SVProgressHUD.dismiss()
+                })
+            }
+            }, error: { (err) in
+                
+        })
+    }
 }

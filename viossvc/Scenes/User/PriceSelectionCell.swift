@@ -10,7 +10,7 @@ import Foundation
 
 protocol PriceSelectionCellDelegate: NSObjectProtocol {
     
-    func selectedPrice(priceID: Int)
+    func selectedPrice(price: Int)
 }
 
 class PriceSelectionCell: UITableViewCell {
@@ -68,6 +68,7 @@ class PriceSelectionCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .None
         
         contentView.addSubview(leftPrice)
         leftPrice.snp_makeConstraints(closure: { (make) in
@@ -99,13 +100,13 @@ class PriceSelectionCell: UITableViewCell {
         items.append(rightPrice)
     }
     
-    func update(priceInfos: [PriceModel], selectedID: Int) {
+    func update(priceInfos: [PriceModel], selectedPrice: Int) {
         self.priceInfos = priceInfos
         for i in 0..<3 {
             items[i].hidden = i >= priceInfos.count
             guard i < priceInfos.count else { continue }
             items[i].setTitle("\(priceInfos[i].price)", forState: .Normal)
-            items[i].selected = selectedID == priceInfos[i].price_id
+            items[i].selected = selectedPrice == priceInfos[i].price
         }
         
     }
@@ -113,7 +114,7 @@ class PriceSelectionCell: UITableViewCell {
     func selecteAction(sender: UIButton) {
         for i in 0..<items.count {
             if items[i] == sender {
-                delegate?.selectedPrice(priceInfos![i].price_id)
+                delegate?.selectedPrice(priceInfos![i].price)
                 break
             }
         }
