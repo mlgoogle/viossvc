@@ -8,15 +8,15 @@
 
 import UIKit
 
-class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate {
+class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
     var topView:UIView?
     var textView:UITextView?
     var placeHolderLabel:UILabel?
     var collection:UICollectionView?
     var imageArray:NSMutableArray?
-    
-    
+    // 选择图片
+    let imagePickerController: UIImagePickerController = UIImagePickerController()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,7 +94,9 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         navigationController?.popViewControllerAnimated(true)
     }
     
+    // 先上传图片
     func sendMessage() {
+        
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -116,6 +118,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         if indexPath.row == imageArray?.count {
             cell.contentView.backgroundColor = UIColor.cyanColor()
+        }else {
+            cell.imageView?.image = imageArray![indexPath.row] as? UIImage
         }
         return cell
         
@@ -127,7 +131,59 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // 点击进入相册选取图片
+        if imageArray?.count != 9 {
+            self.imagePickerController.delegate = self
+            self.imagePickerController.allowsEditing = true
+            
+            if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+                let alertController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                
+                let cameraAction: UIAlertAction = UIAlertAction(title: "拍摄照片", style: .Default) { (action: UIAlertAction!) -> Void in
+                    // 设置类型
+                    self.imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+                    self.presentViewController(self.imagePickerController, animated: true, completion: nil)
+                }
+                alertController.addAction(cameraAction)
+                let photoLibraryAction: UIAlertAction = UIAlertAction(title: "从相册选择图片", style: .Default) { (action: UIAlertAction!) -> Void in
+                    // 设置类型
+                    self.imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+                    self.imagePickerController.navigationBar.barTintColor = UIColor(red: 171/255, green: 202/255, blue: 41/255, alpha: 1.0)
+                    self.imagePickerController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+                    self.imagePickerController.navigationBar.tintColor = UIColor.whiteColor()
+                    self.presentViewController(self.imagePickerController, animated: true, completion: nil)
+                }
+                alertController.addAction(photoLibraryAction)
+                let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                presentViewController(alertController, animated: true, completion: nil)
+            }else{
+                let alertController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                let photoLibraryAction: UIAlertAction = UIAlertAction(title: "从相册选择图片", style: .Default) { (action: UIAlertAction!) -> Void in
+                    self.imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+                    self.imagePickerController.navigationBar.barTintColor = UIColor(red: 171/255, green: 202/255, blue: 41/255, alpha: 1.0)
+                    self.imagePickerController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+                    self.imagePickerController.navigationBar.tintColor = UIColor.whiteColor()
+                    self.presentViewController(self.imagePickerController, animated: true, completion: nil)
+                }
+                alertController.addAction(photoLibraryAction)
+                let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        imagePickerController.dismissController()
+        
+        let image:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if imageArray?.count == 0 {
+            imageArray?.addObject(image)
+        }else {
+            imageArray?.insertObject(image, atIndex: (imageArray?.count)! - 1)
+        }
+        collection?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
