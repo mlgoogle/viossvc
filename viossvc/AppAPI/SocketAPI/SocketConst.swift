@@ -114,6 +114,8 @@ class SocketConst: NSObject {
         case FollowCount = 1129
         
         case PriceSetting = 1131
+        
+        case ContactAndPrice = 1133
     }
     enum type:UInt8 {
         case Error = 0
