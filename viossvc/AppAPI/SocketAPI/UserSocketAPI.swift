@@ -184,4 +184,10 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .FollowCount, model: model)
         startModelRequest(packet, modelClass: FollowCountModel.classForCoder(), complete: complete, error: error)
     }
+    
+    // 获取联系方式金额
+    func contactAndPrice(model: ContactAndPriceRequestModel, complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
+        startModelRequest(packet, modelClass: ContactAndPriceModel.classForCoder(), complete: complete, error: error)
+    }
 }

@@ -8,7 +8,16 @@
 
 import Foundation
 
+protocol ContactCellDelegate: NSObjectProtocol {
+    
+    func accountDidChange(account: String?)
+    
+    func qrCodeSelecte()
+}
+
 class ContactCell: UITableViewCell, UITextFieldDelegate {
+    
+    weak var delegate:ContactCellDelegate?
     
     var wxAccount:String?
     
@@ -65,6 +74,7 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
         button.backgroundColor = UIColor.init(hexString: "#f2f2f2")
         button.setTitle("点此上传二维码", forState: .Normal)
         button.titleLabel?.font = UIFont.systemFontOfSize(12)
+        button.addTarget(self, action: #selector(uploadQRCode), forControlEvents: .TouchUpInside)
         button.setTitleColor(UIColor.init(hexString: "#999999"), forState: .Normal)
         return button
     }()
@@ -75,6 +85,7 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
         button.setTitle("点击修改", forState: .Normal)
         button.titleLabel?.font = UIFont.systemFontOfSize(9)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.addTarget(self, action: #selector(uploadQRCode), forControlEvents: .TouchUpInside)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         return button
@@ -132,7 +143,6 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
             make.height.equalTo(130)
             make.bottom.equalTo(wxQRBGView).offset(-5.5)
         })
-        wxQRCodeView.hidden = true
         
         contentView.addSubview(wxQRCodeResetTips)
         wxQRCodeResetTips.snp_makeConstraints(closure: { (make) in
@@ -143,6 +153,22 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
         })
     }
     
+    func update(account:String? ,qrCodeImgae:UIImage?, qrCodeURL:String?) {
+        wxAccount = account
+        wxAccountField.text = account
+        
+        if qrCodeImgae != nil {
+            wxQRCodeView.image = qrCodeImgae
+        } else if qrCodeURL != nil {
+            wxQRCodeView.kf_setImageWithURL(NSURL.init(string: qrCodeURL!))
+        }
+        
+        wxQRCodeSettingTips.hidden = qrCodeURL != nil || qrCodeImgae != nil
+        wxQRCodeResetTips.hidden = !wxQRCodeSettingTips.hidden
+        wxQRCodeView.hidden = wxQRCodeResetTips.hidden
+        
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -150,7 +176,7 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
     //MARK: - UITextField
     func textFieldDidEndEditing(textField: UITextField) {
         wxAccount = textField.text
-        
+        delegate?.accountDidChange(wxAccount)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -170,4 +196,9 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
         wxAccount = nil
         return true
     }
+    
+    func uploadQRCode(sender: UIButton) {
+        delegate?.qrCodeSelecte()
+    }
+    
 }
