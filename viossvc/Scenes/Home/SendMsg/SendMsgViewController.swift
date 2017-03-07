@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
@@ -17,6 +18,13 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     var imageArray:NSMutableArray?
     // 选择图片
     let imagePickerController: UIImagePickerController = UIImagePickerController()
+    // 上传图片的Index
+    var imgIndex:Int = 0
+    // 存放图片链接的数组
+    var imgUrlArray:NSMutableArray = NSMutableArray()
+    
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -96,6 +104,52 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     // 先上传图片
     func sendMessage() {
+        
+//        print(imageArray)
+//        SVProgressHUD.show()
+//        let image:UIImage = imageArray![0] as! UIImage
+////        let imageRotation = imgIndex == 0 ? "front" : "back"
+////        let imageName = "\(CurrentUserHelper.shared.userInfo.uid)" + imageRotation
+//        qiniuUploadImage(image, imageName: "") { [weak self](imageUrl) in
+//         SVProgressHUD.dismiss()
+//            print(imageUrl)
+//            self!.imgUrlArray.addObject(imageUrl!)
+//        }
+        
+        
+         //创建串行队列，上传图片
+        SVProgressHUD.showProgressMessage(ProgressMessage: "图片上传中...")
+        
+        let serial_queue:dispatch_queue_t = dispatch_queue_create("com.yundian.www", DISPATCH_QUEUE_SERIAL)
+        imgIndex = 0
+        for i in 0..<(imageArray!.count) {
+            dispatch_sync(serial_queue, {
+                
+                let image:UIImage = (self.imageArray![i]) as! UIImage
+                
+                self.qiniuUploadImage(image, imageName: "", complete: { (imageUrl) in
+                    print(imageUrl)
+                    
+                    if imageUrl == nil{
+                        SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
+                        return
+                    }
+                    self.imgUrlArray.addObject(imageUrl!)
+                    if self.imgUrlArray.count == self.imageArray?.count {
+                        self.finallSendDymicMessage()
+                    }
+                })
+                
+            })
+        }
+        print(imgUrlArray)
+    }
+    
+    func finallSendDymicMessage() {
+        
+        print(imgUrlArray)
+        SVProgressHUD.dismiss()
+        // 进行最后的发布
         
     }
     

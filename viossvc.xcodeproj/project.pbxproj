@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A4341ED1E6E599B00F62636 /* ServantModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4341EC1E6E599B00F62636 /* ServantModels.swift */; };
 		1AA011F91E6D4C820028D000 /* SendMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */; };
 		1AA011FB1E6D58E30028D000 /* SendMsgPickPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */; };
 		1ADA432B1E6D4302009AC3A3 /* CommonDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */; };
@@ -105,6 +106,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A4341EC1E6E599B00F62636 /* ServantModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantModels.swift; sourceTree = "<group>"; };
 		1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgViewController.swift; sourceTree = "<group>"; };
 		1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgPickPhotoCell.swift; sourceTree = "<group>"; };
 		1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDefine.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				B03B11BE1DE5BFDD00B00D2E /* BaseModel.swift */,
 				B03B11BF1DE5BFDD00B00D2E /* UserModel.swift */,
+				1A4341EC1E6E599B00F62636 /* ServantModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
+				1A4341ED1E6E599B00F62636 /* ServantModels.swift in Sources */,
 				BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */,
 				B086734D1DE5C62B008DD8A1 /* LoginViewController.swift in Sources */,
 				B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */,
