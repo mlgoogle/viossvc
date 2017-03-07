@@ -14,12 +14,12 @@ class ServantModels: BaseModel {
 
 // 添加动态的 model
 class SendDynamicMessageModel: BaseModel {
-    dynamic var uid_ = 0
-    dynamic var dynamic_text_:String?
-    dynamic var dynamic_url_:String?
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var dynamic_text:String?
+    dynamic var dynamic_url:String?
 }
 // 添加动态返回结果
 class SendDynamicResultModel:BaseModel {
-    dynamic var result_ = 0
-    dynamic var dynamic_ = 0
+    dynamic var result = 0
+    dynamic var dynamic_id = 0
 }

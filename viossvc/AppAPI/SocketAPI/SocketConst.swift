@@ -116,6 +116,8 @@ class SocketConst: NSObject {
         case PriceSetting = 1131
         
         case ContactAndPrice = 1133
+        
+        case SendDynamic = 1135
     }
     enum type:UInt8 {
         case Error = 0

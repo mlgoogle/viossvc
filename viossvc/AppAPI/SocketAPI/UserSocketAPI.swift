@@ -190,4 +190,10 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
         startModelRequest(packet, modelClass: ContactAndPriceModel.classForCoder(), complete: complete, error: error)
     }
+    
+    // 发布动态
+    func sendDynamicMessage(model:SendDynamicMessageModel,complete:CompleteBlock?, error:ErrorBlock?) {
+        let packet  = SocketDataPacket(opcode: .SendDynamic,model: model)
+        startModelRequest(packet, modelClass: SendDynamicResultModel.classForCoder(), complete: complete, error: error)
+    }
 }

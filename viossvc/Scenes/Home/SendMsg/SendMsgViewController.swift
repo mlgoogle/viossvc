@@ -104,19 +104,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     // 先上传图片
     func sendMessage() {
-        
-//        print(imageArray)
-//        SVProgressHUD.show()
-//        let image:UIImage = imageArray![0] as! UIImage
-////        let imageRotation = imgIndex == 0 ? "front" : "back"
-////        let imageName = "\(CurrentUserHelper.shared.userInfo.uid)" + imageRotation
-//        qiniuUploadImage(image, imageName: "") { [weak self](imageUrl) in
-//         SVProgressHUD.dismiss()
-//            print(imageUrl)
-//            self!.imgUrlArray.addObject(imageUrl!)
-//        }
-        
-        
          //创建串行队列，上传图片
         SVProgressHUD.showProgressMessage(ProgressMessage: "图片上传中...")
         
@@ -151,6 +138,29 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         SVProgressHUD.dismiss()
         // 进行最后的发布
         
+        var urlString = imgUrlArray[0]
+        if imgUrlArray.count > 1 {
+            
+            for i in 1..<imgUrlArray.count {
+                let string = imgUrlArray[i]
+                
+                let finallStr = (urlString as! String) + "," + (string as! String)
+                urlString = finallStr
+            }
+        }
+        
+        let sendModel:SendDynamicMessageModel = SendDynamicMessageModel()
+        sendModel.dynamic_text = "我就是个测试的数据"
+        sendModel.dynamic_url = urlString as? String
+        AppAPIHelper.userAPI().sendDynamicMessage(sendModel, complete: { (response) in
+            print(response)
+            let resultModel:SendDynamicResultModel = response as! SendDynamicResultModel
+            if resultModel.result == 0 {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 1.5, completion: {
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+            }
+            }, error: nil )
     }
     
     func textViewDidChange(textView: UITextView) {
