@@ -18,6 +18,7 @@
 		1ADA43361E6D4510009AC3A3 /* ServantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43341E6D4510009AC3A3 /* ServantHeaderView.swift */; };
 		1ADA43381E6D45F0009AC3A3 /* ServantPersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43371E6D45F0009AC3A3 /* ServantPersonalCell.swift */; };
 		1ADA43431E6D49E8009AC3A3 /* ServantPersonalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */; };
+		1ADAF8561E6E913000CA80EE /* SendDynamicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADAF8551E6E913000CA80EE /* SendDynamicHeaderView.swift */; };
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
 		2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */; };
 		2F9F53C41E69505000E77BF1 /* PriceAndContactSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */; };
@@ -117,6 +118,7 @@
 		1ADA43341E6D4510009AC3A3 /* ServantHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantHeaderView.swift; sourceTree = "<group>"; };
 		1ADA43371E6D45F0009AC3A3 /* ServantPersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalCell.swift; sourceTree = "<group>"; };
 		1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalVC.swift; sourceTree = "<group>"; };
+		1ADAF8551E6E913000CA80EE /* SendDynamicHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendDynamicHeaderView.swift; sourceTree = "<group>"; };
 		2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDVerifyVC.swift; sourceTree = "<group>"; };
 		2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceAndContactSettingVC.swift; sourceTree = "<group>"; };
 		2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */,
+				1ADAF8551E6E913000CA80EE /* SendDynamicHeaderView.swift */,
 				1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */,
 			);
 			path = SendMsg;
@@ -812,6 +815,7 @@
 				B03B12361DE5BFDE00B00D2E /* UserViewController.swift in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,
 				B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */,
+				1ADAF8561E6E913000CA80EE /* SendDynamicHeaderView.swift in Sources */,
 				B024A17A1DE7CDCC0095A691 /* SocketRequestManage.swift in Sources */,
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				6EFEF7801E1364E600F4A19D /* YD_MaskView.swift in Sources */,
