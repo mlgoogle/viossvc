@@ -30,7 +30,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -42,6 +42,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewDidLoad()
         self.tabBarController?.hidesBottomBarWhenPushed = true
         view.backgroundColor = UIColor.cyanColor()
+        automaticallyAdjustsScrollViewInsets = false
         
         imageArray = NSMutableArray()
         addTopView()
@@ -196,6 +197,11 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     // MARK: UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if imageArray?.count == 9 {
+            return 9
+        }
+        
         return (imageArray?.count)! + 1
     }
     
