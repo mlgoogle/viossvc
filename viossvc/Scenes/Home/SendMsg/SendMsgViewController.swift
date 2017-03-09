@@ -283,11 +283,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         imagePickerController.dismissController()
         
         let image:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        if imageArray?.count == 0 {
-            imageArray?.addObject(image)
-        }else {
-            imageArray?.insertObject(image, atIndex: (imageArray?.count)! - 1)
-        }
+        imageArray?.addObject(image)
         collection?.reloadData()
     }
     
