@@ -116,40 +116,40 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             return
         }
         
-        if imageArray?.count != 0 {
+        if imageArray?.count > 0 {
             
-            
-            //创建串行队列，上传图片
-            SVProgressHUD.showProgressMessage(ProgressMessage: "图片上传中...")
-            
-            let serial_queue:dispatch_queue_t = dispatch_queue_create("com.yundian.www", DISPATCH_QUEUE_SERIAL)
             imgIndex = 0
-            for i in 0..<(imageArray!.count) {
-                dispatch_sync(serial_queue, {
-                    
-                    let image:UIImage = (self.imageArray![i]) as! UIImage
-                    
-                    self.qiniuUploadImage(image, imageName: "", complete: { (imageUrl) in
-                        print(imageUrl)
-                        
-                        if imageUrl == nil{
-                            SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
-                            return
-                        }
-                        self.imgUrlArray.addObject(imageUrl!)
-                        if self.imgUrlArray.count == self.imageArray?.count {
-                            self.finallSendDymicMessage()
-                        }
-                    })
-                    
-                })
-            }
-            print(imgUrlArray)
-        }else {
-            // 直接发布文字
-            finallSendDymicMessage()
+            self.uploadImages()
         }
+        
     }
+    
+    func uploadImages() {
+        
+        let image:UIImage = imageArray![imgIndex] as! UIImage
+        self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
+            
+            if imageUrl == nil {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
+                return
+            }
+            
+            self.imgUrlArray.addObject(imageUrl!)
+            
+            self.imgIndex += 1
+            if self.imgIndex == self.imageArray?.count {
+                // 出口
+                self.finallSendDymicMessage()
+            }else {
+                self.uploadImages()
+            }
+            
+            
+        }
+        
+        
+    }
+    
     
     func finallSendDymicMessage() {
         
