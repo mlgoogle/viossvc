@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     
@@ -17,10 +18,19 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     var imageArray:NSMutableArray?
     // 选择图片
     let imagePickerController: UIImagePickerController = UIImagePickerController()
+    // 上传图片的Index
+    var imgIndex:Int = 0
+    // 存放图片链接的数组
+    var imgUrlArray:NSMutableArray = NSMutableArray()
+    
+    var headerView:SendDynamicHeaderView?
+    
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -32,6 +42,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewDidLoad()
         self.tabBarController?.hidesBottomBarWhenPushed = true
         view.backgroundColor = UIColor.cyanColor()
+        automaticallyAdjustsScrollViewInsets = false
         
         imageArray = NSMutableArray()
         addTopView()
@@ -63,23 +74,22 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         topTitle.textAlignment = .Center
         topTitle.textColor = UIColor.init(decR: 51, decG: 51, decB: 51, a: 1)
         topTitle.text = "发布动态"
+        
+        let lineView:UIView = UIView.init(frame: CGRectMake(0, (topView?.Height)! - 1, ScreenWidth, 1))
+        lineView.backgroundColor = UIColor.init(decR: 153, decG: 153, decB: 153, a: 1)
+        lineView.alpha = 0.35
+        topView?.addSubview(lineView)
+        
     }
     
     func addViews() {
         
-        
-        //定义collectionView的布局类型，流布局
         let layout = UICollectionViewFlowLayout()
-        //设置cell的大小
         layout.itemSize = CGSize(width: (ScreenWidth - 60)/4.0, height: (ScreenWidth - 60)/4.0)
-        //滑动方向 默认方向是垂直
         layout.scrollDirection = .Vertical
-        //每个Item之间最小的间距
         layout.minimumInteritemSpacing = 10
-        //每行之间最小的间距
         layout.minimumLineSpacing = 10
-        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10) ;
-//        let layout:UICollectionViewLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
         collection = UICollectionView.init(frame: CGRectMake(0, 64, ScreenWidth, view.Height - 64), collectionViewLayout: layout)
         collection?.backgroundColor = UIColor.whiteColor()
         collection?.showsVerticalScrollIndicator = false
@@ -88,6 +98,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         collection?.dataSource = self
         view.addSubview(collection!)
         collection?.registerClass(SendMsgPickPhotoCell.self, forCellWithReuseIdentifier: "SendMsgPickPhotoCell")
+        collection?.registerClass(SendDynamicHeaderView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "SendDynamicHeaderView")
     }
     
     func backAction() {
@@ -97,6 +108,87 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     // 先上传图片
     func sendMessage() {
         
+        view.endEditing(true)
+        
+        let message:String = (headerView?.textView?.text)!
+        let count:Int = (imageArray?.count)!
+        if message.length() == 0 && count == 0 {
+            SVProgressHUD.showErrorMessage(ErrorMessage: "请输入发布内容或者图片", ForDuration: 1.5, completion: {
+            })
+            return
+        }
+        
+        if imageArray?.count > 0 {
+            
+            imgIndex = 0
+            self.uploadImages()
+        }else {
+            SVProgressHUD.show()
+            finallSendDymicMessage()
+        }
+        
+    }
+    
+    func uploadImages() {
+        
+        let image:UIImage = imageArray![imgIndex] as! UIImage
+        self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
+            
+            if imageUrl == nil {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
+                return
+            }
+            
+            self.imgUrlArray.addObject(imageUrl!)
+            
+            self.imgIndex += 1
+            if self.imgIndex == self.imageArray?.count {
+                // 出口
+                self.finallSendDymicMessage()
+            }else {
+                self.uploadImages()
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    
+    func finallSendDymicMessage() {
+        
+        print(imgUrlArray)
+        
+        var urlString:String? = ""
+        
+        if imgUrlArray.count != 0 {
+            
+            urlString = (imgUrlArray[0] as! String)
+            if imgUrlArray.count > 1 {
+                
+                for i in 1..<imgUrlArray.count {
+                    let string = imgUrlArray[i]
+                    
+                    let finallStr = urlString! + "," + (string as! String)
+                    urlString = finallStr
+                }
+            }
+        }
+        let message:String = (headerView?.textView?.text)!
+        let sendModel:SendDynamicMessageModel = SendDynamicMessageModel()
+        sendModel.dynamic_text = message
+        sendModel.dynamic_url = urlString!
+        AppAPIHelper.userAPI().sendDynamicMessage(sendModel, complete: { (response) in
+            print(response)
+            let resultModel:SendDynamicResultModel = response as! SendDynamicResultModel
+            if resultModel.result == 0 {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 1.5, completion: {
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+            }
+            }, error: nil )
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -110,6 +202,11 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     // MARK: UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if imageArray?.count == 9 {
+            return 9
+        }
+        
         return (imageArray?.count)! + 1
     }
     
@@ -127,6 +224,19 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: (ScreenWidth - 60)/4.0, height: (ScreenWidth - 60)/4.0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSizeMake(ScreenWidth, 116)
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            headerView = collection?.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SendDynamicHeaderView", forIndexPath: indexPath) as? SendDynamicHeaderView
+            return headerView!
+            
+        }
+        return UICollectionReusableView.init()
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -178,11 +288,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         imagePickerController.dismissController()
         
         let image:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        if imageArray?.count == 0 {
-            imageArray?.addObject(image)
-        }else {
-            imageArray?.insertObject(image, atIndex: (imageArray?.count)! - 1)
-        }
+        imageArray?.addObject(image)
         collection?.reloadData()
     }
     

@@ -116,6 +116,12 @@ class SocketConst: NSObject {
         case PriceSetting = 1131
         
         case ContactAndPrice = 1133
+        // 发布动态
+        case SendDynamic = 1135
+        // 动态列表
+        case DynamicList = 1139
+        // 动态点赞
+        case ThumbUp = 1137
     }
     enum type:UInt8 {
         case Error = 0

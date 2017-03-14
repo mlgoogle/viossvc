@@ -190,4 +190,21 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
         startModelRequest(packet, modelClass: ContactAndPriceModel.classForCoder(), complete: complete, error: error)
     }
+    
+    // 发布动态
+    func sendDynamicMessage(model:SendDynamicMessageModel,complete:CompleteBlock?, error:ErrorBlock?) {
+        let packet  = SocketDataPacket(opcode: .SendDynamic,model: model)
+        startModelRequest(packet, modelClass: SendDynamicResultModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    // 获取动态列表
+    func requestDynamicList(model:ServantInfoModel, complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .DynamicList,model: model)
+        startModelsRequest(packet, listName: "dynamic_list_", modelClass: servantDynamicModel.classForCoder(), complete: complete, error: error)
+    }
+    // 点赞
+    func servantThumbup(model:ServantThumbUpModel,complete:CompleteBlock?,error:ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .ThumbUp, model: model)
+        startModelRequest(packet, modelClass: ServantThumbUpResultModel.classForCoder(), complete: complete, error: error)
+    }
 }
