@@ -209,4 +209,16 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ThumbUp, model: model)
         startModelRequest(packet, modelClass: ServantThumbUpResultModel.classForCoder(), complete: complete, error: error)
     }
+    
+    //订单消息列表
+    func orderList(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?){
+        let packet = SocketDataPacket(opcode: .ClientOrderList, model: model)
+        startModelsRequest(packet, listName: "order_msg_list_", modelClass: OrderListCellModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //获取微信联系方式
+    func getRelation(model:GetRelationRequestModel,complete:CompleteBlock?,error:ErrorBlock?){
+        let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
+        startModelRequest(packet, modelClass: GetRelationStatusModel.classForCoder(), complete: complete, error: error)
+    }
 }

@@ -229,6 +229,22 @@ class servantDynamicModel: BaseModel {
     dynamic var is_liked = 0
     
 }
+//订单消息列表
+class OrderListCellModel: BaseModel{
+    dynamic var order_id = 0
+    dynamic var to_uid = 0
+    dynamic var to_uid_nickename:String?
+    dynamic var order_time: String?
+    dynamic var is_evaluate = -1
+    dynamic var to_uid_url: String?
+}
+//获取微信联系方式
+class GetRelationStatusModel: BaseModel{
+    dynamic var result = -1
+    dynamic var wx_url: String?
+    dynamic var wx_num: String?
+    dynamic var service_price = 0
+}
 
 class ServantDynamicListModel: BaseModel {
     var dynamic_list:[servantDynamicModel] = []
@@ -256,3 +272,16 @@ class ServantThumbUpResultModel: BaseModel {
     dynamic var dynamic_like_count = 0
 }
 
+//订单列表
+class OrderListRequestModel: BaseModel{
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var uid_type = 1
+    dynamic var page_num = 0
+    dynamic var page_count = 10
+}
+//获取微信联系方式
+class GetRelationRequestModel: BaseModel {
+    dynamic var order_id = 0
+    dynamic var uid_form = 0
+    dynamic var uid_to = 0
+}
