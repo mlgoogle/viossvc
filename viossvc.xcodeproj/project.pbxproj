@@ -104,6 +104,8 @@
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
 		BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
+		D0F5064A1E7797D5001BDE98 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F506491E7797D5001BDE98 /* LoginVC.swift */; };
+		D0F5064C1E779818001BDE98 /* LoginWithMSGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +211,8 @@
 		BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5/UMMobClick.framework"; sourceTree = "<group>"; };
 		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F506491E7797D5001BDE98 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithMSGVC.swift; sourceTree = "<group>"; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -567,6 +571,8 @@
 			isa = PBXGroup;
 			children = (
 				B08673491DE5C62B008DD8A1 /* MainViewController.swift */,
+				D0F506491E7797D5001BDE98 /* LoginVC.swift */,
+				D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */,
 				B08673481DE5C62B008DD8A1 /* LoginViewController.swift */,
 				B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */,
 				B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */,
@@ -778,6 +784,7 @@
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
 				1ADA432F1E6D431C009AC3A3 /* ButtonEx.swift in Sources */,
 				1ADA43381E6D45F0009AC3A3 /* ServantPersonalCell.swift in Sources */,
+				D0F5064C1E779818001BDE98 /* LoginWithMSGVC.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */,
 				BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */,
@@ -785,6 +792,7 @@
 				B03B124B1DE5BFDE00B00D2E /* UITableView+Extension.swift in Sources */,
 				6E46153B1E308EE80045C115 /* CommonWebVC.swift in Sources */,
 				B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */,
+				D0F5064A1E7797D5001BDE98 /* LoginVC.swift in Sources */,
 				6E5870B41E0BB04E00AC5B09 /* UIViewController+Analysis.swift in Sources */,
 				B08673511DE5C62B008DD8A1 /* UserHomeViewController.swift in Sources */,
 				B03B124D1DE5BFDE00B00D2E /* TableViewHelper.swift in Sources */,
