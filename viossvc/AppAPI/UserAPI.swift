@@ -71,7 +71,6 @@ protocol UserAPI {
     func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
     // 获取联系方式金额
     func contactAndPrice(model: ContactAndPriceRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
-    
     // 发布动态
     func sendDynamicMessage(model:SendDynamicMessageModel,complete:CompleteBlock?, error:ErrorBlock?)
     

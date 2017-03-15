@@ -108,7 +108,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     // 先上传图片
     func sendMessage() {
         
-        view.endEditing(true)
+      view.endEditing(true)
         
         let message:String = (headerView?.textView?.text)!
         let count:Int = (imageArray?.count)!
@@ -122,6 +122,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             imgIndex = 0
             self.uploadImages()
+          
         }else {
             SVProgressHUD.show()
             finallSendDymicMessage()

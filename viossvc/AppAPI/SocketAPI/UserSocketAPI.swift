@@ -196,7 +196,6 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet  = SocketDataPacket(opcode: .SendDynamic,model: model)
         startModelRequest(packet, modelClass: SendDynamicResultModel.classForCoder(), complete: complete, error: error)
     }
-    
     // 获取动态列表
     func requestDynamicList(model:ServantInfoModel, complete: CompleteBlock?, error: ErrorBlock?) {
         let packet = SocketDataPacket(opcode: .DynamicList,model: model)
