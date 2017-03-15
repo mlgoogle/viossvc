@@ -78,4 +78,9 @@ protocol UserAPI {
     func requestDynamicList(model:ServantInfoModel, complete: CompleteBlock?, error: ErrorBlock?)
     // 给动态点赞
     func servantThumbup(model:ServantThumbUpModel,complete:CompleteBlock?,error:ErrorBlock?)
+    //订单消息列表
+    func orderList(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
+    //获取微信联系方式
+    func getRelation(model:GetRelationRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
+    
 }

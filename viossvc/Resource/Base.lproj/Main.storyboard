@@ -359,6 +359,7 @@
                         <outlet property="authCell" destination="m0o-Wv-vyA" id="ypo-4e-1n6"/>
                         <outlet property="authStatusLabel" destination="ABE-db-CJO" id="Cod-XL-ELW"/>
                         <outlet property="bankCardNumLabel" destination="kBE-Mf-lhO" id="qD7-0N-5IN"/>
+                        <outlet property="myClientCell" destination="2Yp-55-GN6" id="8Eg-qk-8ht"/>
                         <outlet property="priceSettingCell" destination="UMM-5N-Qts" id="Xak-Hz-6sc"/>
                         <outlet property="qustionContent" destination="PQ3-LK-rbM" id="idr-Ub-WTF"/>
                         <outlet property="userCashLabel" destination="WCl-t9-bcO" id="NbM-h4-kSS"/>
@@ -533,7 +534,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E2AC073F-DD35-47D3-B40E-38FDFD2D4943" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2C758388-18E3-4A18-88FB-DC71022C7B93" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -5797,7 +5798,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E2AC073F-DD35-47D3-B40E-38FDFD2D4943" width="125" height="125">
+        <image name="2C758388-18E3-4A18-88FB-DC71022C7B93" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
