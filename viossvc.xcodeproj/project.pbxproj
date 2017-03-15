@@ -7,15 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A4341ED1E6E599B00F62636 /* ServantModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4341EC1E6E599B00F62636 /* ServantModels.swift */; };
-		1AA011F91E6D4C820028D000 /* SendMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */; };
-		1AA011FB1E6D58E30028D000 /* SendMsgPickPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */; };
 		1ADA432B1E6D4302009AC3A3 /* CommonDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */; };
 		1ADA432F1E6D431C009AC3A3 /* ButtonEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432C1E6D431C009AC3A3 /* ButtonEx.swift */; };
 		1ADA43301E6D431C009AC3A3 /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432D1E6D431C009AC3A3 /* ColorExt.swift */; };
 		1ADA43311E6D431C009AC3A3 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA432E1E6D431C009AC3A3 /* UIViewEx.swift */; };
 		1ADA43431E6D49E8009AC3A3 /* ServantPersonalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */; };
-		1ADAF8561E6E913000CA80EE /* SendDynamicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADAF8551E6E913000CA80EE /* SendDynamicHeaderView.swift */; };
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
 		2F9F53C21E67E42D00E77BF1 /* IDVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */; };
 		2F9F53C41E69505000E77BF1 /* PriceAndContactSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */; };
@@ -101,24 +97,20 @@
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
 		BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
-		E908FB611E77D96200B2AE18 /* SendDynamicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908FB5E1E77D96200B2AE18 /* SendDynamicHeaderView.swift */; };
-		E908FB621E77D96200B2AE18 /* SendMsgPickPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908FB5F1E77D96200B2AE18 /* SendMsgPickPhotoCell.swift */; };
-		E908FB631E77D96200B2AE18 /* SendMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908FB601E77D96200B2AE18 /* SendMsgViewController.swift */; };
 		E959F5561E77A1390039E880 /* ServantFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5531E77A1390039E880 /* ServantFooterView.swift */; };
 		E959F5571E77A1390039E880 /* ServantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5541E77A1390039E880 /* ServantHeaderView.swift */; };
 		E959F5581E77A1390039E880 /* ServantPersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5551E77A1390039E880 /* ServantPersonalCell.swift */; };
+		E9A3CAC61E78D063007737AA /* SendDynamicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3CAC31E78D063007737AA /* SendDynamicHeaderView.swift */; };
+		E9A3CAC71E78D063007737AA /* SendMsgPickPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3CAC41E78D063007737AA /* SendMsgPickPhotoCell.swift */; };
+		E9A3CAC81E78D063007737AA /* SendMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3CAC51E78D063007737AA /* SendMsgViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A4341EC1E6E599B00F62636 /* ServantModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantModels.swift; sourceTree = "<group>"; };
-		1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgViewController.swift; sourceTree = "<group>"; };
-		1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgPickPhotoCell.swift; sourceTree = "<group>"; };
 		1ADA432A1E6D4302009AC3A3 /* CommonDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDefine.swift; sourceTree = "<group>"; };
 		1ADA432C1E6D431C009AC3A3 /* ButtonEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonEx.swift; sourceTree = "<group>"; };
 		1ADA432D1E6D431C009AC3A3 /* ColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
 		1ADA432E1E6D431C009AC3A3 /* UIViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 		1ADA43421E6D49E8009AC3A3 /* ServantPersonalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalVC.swift; sourceTree = "<group>"; };
-		1ADAF8551E6E913000CA80EE /* SendDynamicHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendDynamicHeaderView.swift; sourceTree = "<group>"; };
 		2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDVerifyVC.swift; sourceTree = "<group>"; };
 		2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceAndContactSettingVC.swift; sourceTree = "<group>"; };
 		2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -209,12 +201,12 @@
 		BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5/UMMobClick.framework"; sourceTree = "<group>"; };
 		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E908FB5E1E77D96200B2AE18 /* SendDynamicHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendDynamicHeaderView.swift; sourceTree = "<group>"; };
-		E908FB5F1E77D96200B2AE18 /* SendMsgPickPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgPickPhotoCell.swift; sourceTree = "<group>"; };
-		E908FB601E77D96200B2AE18 /* SendMsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgViewController.swift; sourceTree = "<group>"; };
 		E959F5531E77A1390039E880 /* ServantFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantFooterView.swift; sourceTree = "<group>"; };
 		E959F5541E77A1390039E880 /* ServantHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantHeaderView.swift; sourceTree = "<group>"; };
 		E959F5551E77A1390039E880 /* ServantPersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalCell.swift; sourceTree = "<group>"; };
+		E9A3CAC31E78D063007737AA /* SendDynamicHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendDynamicHeaderView.swift; sourceTree = "<group>"; };
+		E9A3CAC41E78D063007737AA /* SendMsgPickPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgPickPhotoCell.swift; sourceTree = "<group>"; };
+		E9A3CAC51E78D063007737AA /* SendMsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMsgViewController.swift; sourceTree = "<group>"; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,12 +254,9 @@
 		1AA011F71E6D4C3C0028D000 /* SendMsg */ = {
 			isa = PBXGroup;
 			children = (
-				E908FB5E1E77D96200B2AE18 /* SendDynamicHeaderView.swift */,
-				E908FB5F1E77D96200B2AE18 /* SendMsgPickPhotoCell.swift */,
-				E908FB601E77D96200B2AE18 /* SendMsgViewController.swift */,
-				1AA011F81E6D4C820028D000 /* SendMsgViewController.swift */,
-				1ADAF8551E6E913000CA80EE /* SendDynamicHeaderView.swift */,
-				1AA011FA1E6D58E30028D000 /* SendMsgPickPhotoCell.swift */,
+				E9A3CAC31E78D063007737AA /* SendDynamicHeaderView.swift */,
+				E9A3CAC41E78D063007737AA /* SendMsgPickPhotoCell.swift */,
+				E9A3CAC51E78D063007737AA /* SendMsgViewController.swift */,
 			);
 			path = SendMsg;
 			sourceTree = "<group>";
@@ -375,7 +364,6 @@
 			children = (
 				B03B11BE1DE5BFDD00B00D2E /* BaseModel.swift */,
 				B03B11BF1DE5BFDD00B00D2E /* UserModel.swift */,
-				1A4341EC1E6E599B00F62636 /* ServantModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -773,7 +761,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
-				1A4341ED1E6E599B00F62636 /* ServantModels.swift in Sources */,
 				BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */,
 				B086734D1DE5C62B008DD8A1 /* LoginViewController.swift in Sources */,
 				B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */,
@@ -794,16 +781,15 @@
 				B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */,
 				6E5870B41E0BB04E00AC5B09 /* UIViewController+Analysis.swift in Sources */,
 				B08673511DE5C62B008DD8A1 /* UserHomeViewController.swift in Sources */,
+				E9A3CAC81E78D063007737AA /* SendMsgViewController.swift in Sources */,
 				B03B124D1DE5BFDE00B00D2E /* TableViewHelper.swift in Sources */,
 				B03B12261DE5BFDE00B00D2E /* MainTabBarController.swift in Sources */,
 				BF9B6BC11DE9620F009FFEB7 /* DrawCashTableViewController.swift in Sources */,
 				B024A1791DE7CDCC0095A691 /* SocketRequest.swift in Sources */,
-				E908FB611E77D96200B2AE18 /* SendDynamicHeaderView.swift in Sources */,
 				E959F5571E77A1390039E880 /* ServantHeaderView.swift in Sources */,
 				7C6758FC1DF1291E00560601 /* UIFont+Extension.swift in Sources */,
 				BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */,
 				B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */,
-				E908FB631E77D96200B2AE18 /* SendMsgViewController.swift in Sources */,
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
 				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
@@ -824,16 +810,16 @@
 				E959F5561E77A1390039E880 /* ServantFooterView.swift in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,
 				B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */,
-				1ADAF8561E6E913000CA80EE /* SendDynamicHeaderView.swift in Sources */,
 				B024A17A1DE7CDCC0095A691 /* SocketRequestManage.swift in Sources */,
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				6EFEF7801E1364E600F4A19D /* YD_MaskView.swift in Sources */,
+				E9A3CAC71E78D063007737AA /* SendMsgPickPhotoCell.swift in Sources */,
 				B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */,
 				B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */,
-				E908FB621E77D96200B2AE18 /* SendMsgPickPhotoCell.swift in Sources */,
 				1ADA43311E6D431C009AC3A3 /* UIViewEx.swift in Sources */,
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
 				BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */,
+				E9A3CAC61E78D063007737AA /* SendDynamicHeaderView.swift in Sources */,
 				E959F5581E77A1390039E880 /* ServantPersonalCell.swift in Sources */,
 				7CFB87FD1DF665B9009E78E2 /* FaceKeyboardView.swift in Sources */,
 				B024A1781DE7CDCC0095A691 /* SocketDataPacket.swift in Sources */,
