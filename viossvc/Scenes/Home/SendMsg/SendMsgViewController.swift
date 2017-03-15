@@ -9,23 +9,19 @@
 import UIKit
 import SVProgressHUD
 
-class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UIActionSheetDelegate,ZLPhotoPickerViewControllerDelegate {
     
     var topView:UIView?
     var textView:UITextView?
     var placeHolderLabel:UILabel?
     var collection:UICollectionView?
     var imageArray:NSMutableArray?
-    // 选择图片
-    let imagePickerController: UIImagePickerController = UIImagePickerController()
     // 上传图片的Index
     var imgIndex:Int = 0
     // 存放图片链接的数组
     var imgUrlArray:NSMutableArray = NSMutableArray()
     
     var headerView:SendDynamicHeaderView?
-    
-    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -132,7 +128,9 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func uploadImages() {
         
-        let image:UIImage = imageArray![imgIndex] as! UIImage
+        let asset:ZLPhotoAssets = imageArray![imgIndex] as! ZLPhotoAssets
+        let image:UIImage = asset.originImage()
+//        let image:UIImage = imageArray![imgIndex] as! UIImage
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
             
             if imageUrl == nil {
@@ -149,11 +147,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             }else {
                 self.uploadImages()
             }
-            
-            
         }
-        
-        
     }
     
     
@@ -217,7 +211,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         if indexPath.row == imageArray?.count {
             cell.contentView.backgroundColor = UIColor.cyanColor()
         }else {
-            cell.imageView?.image = imageArray![indexPath.row] as? UIImage
+            let asset = imageArray![indexPath.row]
+            cell.imageView?.image = asset.originImage()
         }
         return cell
         
@@ -241,57 +236,34 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // 点击进入相册选取图片
-        if imageArray?.count != 9 {
-            self.imagePickerController.delegate = self
-            self.imagePickerController.allowsEditing = true
-            
-            if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
-                let alertController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                
-                let cameraAction: UIAlertAction = UIAlertAction(title: "拍摄照片", style: .Default) { (action: UIAlertAction!) -> Void in
-                    // 设置类型
-                    self.imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-                    self.presentViewController(self.imagePickerController, animated: true, completion: nil)
-                }
-                alertController.addAction(cameraAction)
-                let photoLibraryAction: UIAlertAction = UIAlertAction(title: "从相册选择图片", style: .Default) { (action: UIAlertAction!) -> Void in
-                    // 设置类型
-                    self.imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-                    self.imagePickerController.navigationBar.barTintColor = UIColor(red: 171/255, green: 202/255, blue: 41/255, alpha: 1.0)
-                    self.imagePickerController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-                    self.imagePickerController.navigationBar.tintColor = UIColor.whiteColor()
-                    self.presentViewController(self.imagePickerController, animated: true, completion: nil)
-                }
-                alertController.addAction(photoLibraryAction)
-                let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                presentViewController(alertController, animated: true, completion: nil)
-            }else{
-                let alertController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                let photoLibraryAction: UIAlertAction = UIAlertAction(title: "从相册选择图片", style: .Default) { (action: UIAlertAction!) -> Void in
-                    self.imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-                    self.imagePickerController.navigationBar.barTintColor = UIColor(red: 171/255, green: 202/255, blue: 41/255, alpha: 1.0)
-                    self.imagePickerController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-                    self.imagePickerController.navigationBar.tintColor = UIColor.whiteColor()
-                    self.presentViewController(self.imagePickerController, animated: true, completion: nil)
-                }
-                alertController.addAction(photoLibraryAction)
-                let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                presentViewController(alertController, animated: true, completion: nil)
-            }
+        
+        if indexPath.row == imageArray?.count && imageArray?.count != 9 {
+            let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "从相册选择图片")
+            actionSheet.showInView(self.view)
+        }else {
+            // 显示图片
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
-        imagePickerController.dismissController()
+        if buttonIndex == 0 {
+            
+            let pickerVC:ZLPhotoPickerViewController = ZLPhotoPickerViewController.init()
+            pickerVC.minCount = 9 - (imageArray?.count)!
+            pickerVC.status = .CameraRoll
+            pickerVC.delegate = self
+            pickerVC.show()
+        }
+    }
+    
+    // MARK: pickerDelegate
+    func pickerViewControllerDoneAsstes(assets: [AnyObject]!) {
         
-        let image:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageArray?.addObject(image)
+        imageArray?.addObjectsFromArray(assets)
         collection?.reloadData()
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
