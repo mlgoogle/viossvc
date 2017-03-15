@@ -19,21 +19,24 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func logout(uid:Int) {
         SocketRequestManage.shared.stop()
     }
-
+    //请求手机短信验证码
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .SMSVerify, model: SMSVerifyModel(phone:phone,type:type))
         startModelRequest(packet, modelClass: SMSVerifyRetModel.classForCoder(), complete: complete, error: error)
     }
+    //检查邀请码是否正确
     func checkInviteCode(phoneNumber:String,inviteCode:String,complete:CompleteBlock,error:ErrorBlock)
     {
         let dict = [SocketConst.Key.phoneNum:phoneNumber, SocketConst.Key.invitationCode:inviteCode]
         let packet = SocketDataPacket(opcode: .CheckInviteCode,dict: dict)
         startResultIntRequest(packet, complete: complete, error: error)
     }
+    //验证手机短信是否正确
     func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock) {
         startRequest(SocketDataPacket(opcode: .VerifyCode,dict: paramDic), complete: complete, error: error)
     }
     
+    //注册
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .Register, model: model)
         startResultIntRequest(packet, complete: complete, error: error)

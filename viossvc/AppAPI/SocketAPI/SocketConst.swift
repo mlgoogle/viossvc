@@ -14,7 +14,7 @@ class SocketConst: NSObject {
         case Heart = 1000
         // 请求登录
         case Login = 1001
-        //验证手机短信
+        //请求手机短信
         case SMSVerify = 1019
         //验证手机验证码
         case VerifyCode = 1101
