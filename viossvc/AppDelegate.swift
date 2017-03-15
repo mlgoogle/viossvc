@@ -105,13 +105,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
     
     private func appearance() {
         let navigationBar:UINavigationBar = UINavigationBar.appearance() as UINavigationBar;
-        navigationBar.setBackgroundImage(UIImage(named: "head_bg"), forBarMetrics: .Default)
+//        navigationBar.setBackgroundImage(UIImage(named: "head_bg"), forBarMetrics: .Default)
         
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()];
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGrayColor()];
         navigationBar.translucent = false;
-        navigationBar.tintColor = UIColor.whiteColor();
+//        navigationBar.tintColor = UIColor.whiteColor();
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:.Default);
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default;
         UITableView.appearance().backgroundColor = AppConst.Color.C6;
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
         //        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)

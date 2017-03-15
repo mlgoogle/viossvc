@@ -98,6 +98,11 @@
 		BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
 		E957B2DC1E793EAC004321D8 /* PhotoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */; };
+		D0F5064A1E7797D5001BDE98 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F506491E7797D5001BDE98 /* LoginVC.swift */; };
+		D0F5064C1E779818001BDE98 /* LoginWithMSGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */; };
+		D0FA0E3B1E79050A00609214 /* MyClientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3A1E79050A00609214 /* MyClientVC.swift */; };
+		D0FA0E3D1E79052C00609214 /* MyClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3C1E79052C00609214 /* MyClientCell.swift */; };
+		D0FA0E3F1E793B7300609214 /* ClientWeiXinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */; };
 		E959F5561E77A1390039E880 /* ServantFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5531E77A1390039E880 /* ServantFooterView.swift */; };
 		E959F5571E77A1390039E880 /* ServantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5541E77A1390039E880 /* ServantHeaderView.swift */; };
 		E959F5581E77A1390039E880 /* ServantPersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5551E77A1390039E880 /* ServantPersonalCell.swift */; };
@@ -259,6 +264,11 @@
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E957B2DA1E793EAC004321D8 /* PhotoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoNavigationController.h; sourceTree = "<group>"; };
 		E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoNavigationController.m; sourceTree = "<group>"; };
+		D0F506491E7797D5001BDE98 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithMSGVC.swift; sourceTree = "<group>"; };
+		D0FA0E3A1E79050A00609214 /* MyClientVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClientVC.swift; sourceTree = "<group>"; };
+		D0FA0E3C1E79052C00609214 /* MyClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClientCell.swift; sourceTree = "<group>"; };
+		D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientWeiXinVC.swift; sourceTree = "<group>"; };
 		E959F5531E77A1390039E880 /* ServantFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantFooterView.swift; sourceTree = "<group>"; };
 		E959F5541E77A1390039E880 /* ServantHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantHeaderView.swift; sourceTree = "<group>"; };
 		E959F5551E77A1390039E880 /* ServantPersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalCell.swift; sourceTree = "<group>"; };
@@ -724,6 +734,8 @@
 			isa = PBXGroup;
 			children = (
 				B08673491DE5C62B008DD8A1 /* MainViewController.swift */,
+				D0F506491E7797D5001BDE98 /* LoginVC.swift */,
+				D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */,
 				B08673481DE5C62B008DD8A1 /* LoginViewController.swift */,
 				B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */,
 				B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */,
@@ -740,6 +752,9 @@
 				BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */,
 				2F9F53C11E67E42D00E77BF1 /* IDVerifyVC.swift */,
 				2F9F53C31E69505000E77BF1 /* PriceAndContactSettingVC.swift */,
+				D0FA0E3A1E79050A00609214 /* MyClientVC.swift */,
+				D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */,
+				D0FA0E3C1E79052C00609214 /* MyClientCell.swift */,
 				2F9F53C51E6969AD00E77BF1 /* ContactCell.swift */,
 				2F9F53C71E696A8100E77BF1 /* PriceSelectionCell.swift */,
 			);
@@ -1172,7 +1187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
@@ -1226,6 +1241,7 @@
 				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
 				1ADA432F1E6D431C009AC3A3 /* ButtonEx.swift in Sources */,
+				D0F5064C1E779818001BDE98 /* LoginWithMSGVC.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */,
 				BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */,
@@ -1237,6 +1253,7 @@
 				B03B124B1DE5BFDE00B00D2E /* UITableView+Extension.swift in Sources */,
 				6E46153B1E308EE80045C115 /* CommonWebVC.swift in Sources */,
 				B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */,
+				D0F5064A1E7797D5001BDE98 /* LoginVC.swift in Sources */,
 				6E5870B41E0BB04E00AC5B09 /* UIViewController+Analysis.swift in Sources */,
 				B08673511DE5C62B008DD8A1 /* UserHomeViewController.swift in Sources */,
 				E9ADF2701E792D0400FEEB9A /* UIImage+WebP.m in Sources */,
@@ -1256,6 +1273,7 @@
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
 				E9ADF2681E792D0400FEEB9A /* SDWebImageDecoder.m in Sources */,
+				D0FA0E3B1E79050A00609214 /* MyClientVC.swift in Sources */,
 				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
 				E9ADF2961E792D0400FEEB9A /* ZLPhotoPickerGroupTableViewCell.m in Sources */,
 				BF9B6BCA1DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift in Sources */,
@@ -1301,6 +1319,7 @@
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
 				BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */,
 				E9ADF2741E792D0400FEEB9A /* UIView+ZLAutoLayout.m in Sources */,
+				D0FA0E3F1E793B7300609214 /* ClientWeiXinVC.swift in Sources */,
 				E9A3CAC61E78D063007737AA /* SendDynamicHeaderView.swift in Sources */,
 				E9ADF26A1E792D0400FEEB9A /* SDWebImageDownloaderOperation.m in Sources */,
 				E9ADF2841E792D0400FEEB9A /* ZLCameraImageView.m in Sources */,
@@ -1327,6 +1346,7 @@
 				E9ADF2871E792D0400FEEB9A /* ZLPhotoPickerBrowserPhoto.m in Sources */,
 				ACABDFFD286587F50681B491 /* UserAPI.swift in Sources */,
 				BF9B6BC61DEB1B9F009FFEB7 /* UserWalletViewController.swift in Sources */,
+				D0FA0E3D1E79052C00609214 /* MyClientCell.swift in Sources */,
 				BF9B6BD21DEB1CF3009FFEB7 /* AddBankCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
