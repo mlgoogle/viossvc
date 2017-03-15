@@ -213,3 +213,46 @@ class ContactAndPriceModel: BaseModel {
     var service_price = 0
 }
 
+// 助理model，用于获取助理动态
+class ServantInfoModel:BaseModel {
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var view_uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var page_num = 0
+    dynamic var page_count = 10
+}
+
+class servantDynamicModel: BaseModel {
+    dynamic var dynamic_id = 0
+    dynamic var dynamic_text:String?
+    dynamic var dynamic_url:String?
+    dynamic var dynamic_like_count = 0
+    dynamic var is_liked = 0
+    
+}
+
+class ServantDynamicListModel: BaseModel {
+    var dynamic_list:[servantDynamicModel] = []
+}
+
+// 添加动态的 model
+class SendDynamicMessageModel: BaseModel {
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var dynamic_text:String?
+    dynamic var dynamic_url:String?
+}
+// 添加动态返回结果
+class SendDynamicResultModel:BaseModel {
+    dynamic var result = 0
+    dynamic var dynamic_id = 0
+}
+// 点赞model
+class ServantThumbUpModel:BaseModel {
+    dynamic var dynamic_id = 0
+    dynamic var like_uid = CurrentUserHelper.shared.uid
+}
+
+class ServantThumbUpResultModel: BaseModel {
+    dynamic var result = -1
+    dynamic var dynamic_like_count = 0
+}
+
