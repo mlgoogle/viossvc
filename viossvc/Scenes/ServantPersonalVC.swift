@@ -39,12 +39,11 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
     }
     
     override public func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override public func viewDidLoad() {
@@ -53,7 +52,8 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         personalInfo = CurrentUserHelper.shared.userInfo
         
         initViews()
-        
+        header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
+
     }
     // 加载页面
     func initViews(){
@@ -119,6 +119,8 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         let vc =  MyInformationVC()
         vc.title = "我的消息"
         vc.hidesBottomBarWhenPushed = true
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -359,6 +361,31 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
             model.dynamic_like_count = likecount
             
             }, error: nil)
+    }
+    
+    // 图片点击放大
+    func servantImageDidClicked(model: servantDynamicModel, index: Int) {
+        // 解析图片链接
+        let urlString:String = model.dynamic_url!
+        let imageUrls:NSArray = urlString.componentsSeparatedByString(",")
+        
+        // 显示图片
+        PhotoBroswerVC.show(self, type: PhotoBroswerVCTypePush , index: UInt(index)) {() -> [AnyObject]! in
+            
+            let photoArray:NSMutableArray = NSMutableArray()
+            let count:Int = imageUrls.count
+            
+            for i  in 0..<count {
+                
+                let model: PhotoModel = PhotoModel.init()
+                model.mid = UInt(i) + 1
+                model.image_HD_U = imageUrls.objectAtIndex(i) as! String
+                photoArray.addObject(model)
+            }
+            
+            return photoArray as [AnyObject]
+        }
+        
     }
     
 }

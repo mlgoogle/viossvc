@@ -31,7 +31,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+//        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func viewDidLoad() {
@@ -209,7 +209,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         let cell:SendMsgPickPhotoCell = collection?.dequeueReusableCellWithReuseIdentifier("SendMsgPickPhotoCell", forIndexPath: indexPath) as! SendMsgPickPhotoCell
         
         if indexPath.row == imageArray?.count {
-            cell.contentView.backgroundColor = UIColor.cyanColor()
+            cell.imageView?.image = UIImage.init(named: "AddPic")
         }else {
             let asset = imageArray![indexPath.row]
             cell.imageView?.image = asset.originImage()
@@ -238,16 +238,34 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == imageArray?.count && imageArray?.count != 9 {
-            let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "从相册选择图片")
+            let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册选择图片")
+            
             actionSheet.showInView(self.view)
         }else {
             // 显示图片
+            PhotoBroswerVC.show(self, type:PhotoBroswerVCTypePush , index: UInt(indexPath.row), photoModelBlock: { [weak self]() -> [AnyObject]! in
+                
+                let photoArray:NSMutableArray = NSMutableArray()
+                let count:Int = (self!.imageArray?.count)!
+               
+                for i  in 0..<count {
+                    
+                    let model:PhotoModel = PhotoModel.init()
+                    model.mid = UInt(i) + 1
+                    let asset = self!.imageArray![i] as! ZLPhotoAssets
+                    model.image = asset.originImage()
+                    photoArray.addObject(model)
+                }
+                
+                return photoArray as [AnyObject]
+            })
         }
     }
     
+    
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
-        if buttonIndex == 0 {
+        if buttonIndex == 1 {
             
             let pickerVC:ZLPhotoPickerViewController = ZLPhotoPickerViewController.init()
             pickerVC.minCount = 9 - (imageArray?.count)!

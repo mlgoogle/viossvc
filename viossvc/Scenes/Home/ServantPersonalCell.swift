@@ -11,6 +11,7 @@ import UIKit
 protocol ServantPersonalCellDelegate {
     
     func servantIsLikedAction(sender:UIButton,model:servantDynamicModel)
+    func servantImageDidClicked(model:servantDynamicModel, index:Int)
 }
 
 class ServantPersonalCell: UITableViewCell {
@@ -106,7 +107,6 @@ class ServantOnePicCell: ServantPersonalCell {
         
         imgView = UIImageView.init()
         self.addSubview(imgView!)
-        
         imgView?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo((headerView?.snp_right)!).offset(5)
             make.top.equalTo((headerView?.snp_bottom)!).offset(8)
@@ -114,6 +114,17 @@ class ServantOnePicCell: ServantPersonalCell {
             make.height.equalTo(200)
             make.bottom.equalTo(-45)
         })
+        
+        imgView?.userInteractionEnabled = true
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageAction(_:)))
+        imgView?.addGestureRecognizer(tap)
+        
+    }
+    
+    // 图片点击了
+    func imageAction(tap:UITapGestureRecognizer) {
+        
+        delegate?.servantImageDidClicked(personModel!, index: 0)
     }
     
     func updateImage(model:servantDynamicModel) {
@@ -267,8 +278,14 @@ class ServantPicAndLabelCell: ServantPersonalCell {
             
             let imgV:UIImageView = UIImageView.init()
             imageContianer?.addSubview(imgV)
+            imgV.tag = 30000 + i
             // 加图片链接
             imgV.kf_setImageWithURL(NSURL.init(string: imageUrl))
+            
+            imgV.userInteractionEnabled = true
+            let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageAction(_:)))
+            imgV.addGestureRecognizer(tap)
+            
             // 加约束
             imgV.snp_makeConstraints(closure: { (make) in
                 make.width.height.equalTo(imageWidth)
@@ -314,6 +331,13 @@ class ServantPicAndLabelCell: ServantPersonalCell {
                 
             })
         }
+    }
+    
+    func imageAction(tap:UITapGestureRecognizer) {
+        
+        let index:Int = (tap.view?.tag)! - 30000
+        
+        delegate?.servantImageDidClicked(personModel!, index: index)
     }
 }
 
