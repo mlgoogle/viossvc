@@ -53,6 +53,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         
         initViews()
         header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
+
     }
     // 加载页面
     func initViews(){
@@ -115,7 +116,12 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     }
     
     func backAction() {
-        navigationController?.popViewControllerAnimated(true)
+        let vc =  MyInformationVC()
+        vc.title = "我的消息"
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func reportAction() {

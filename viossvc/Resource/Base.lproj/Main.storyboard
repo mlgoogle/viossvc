@@ -439,26 +439,6 @@
                                     <constraint firstAttribute="width" secondItem="BZA-Kc-bbK" secondAttribute="height" multiplier="750:1334" id="l5S-LF-dye"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qI-dB-hf4">
-                                <rect key="frame" x="62" y="285" width="476" height="45"/>
-                                <color key="backgroundColor" red="0.9882352941176471" green="0.63921568627450975" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="h9m-KM-FF1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="登录">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="22"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="didActionLogin:" destination="M6m-Mi-4VE" eventType="touchUpInside" id="5w3-oQ-5ct"/>
-                                </connections>
-                            </button>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEL-KH-6So">
                                 <rect key="frame" x="33" y="464" width="600" height="536"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4lG-QL-5eC">
@@ -468,10 +448,11 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJO-U7-cUo">
-                                <rect key="frame" x="62" y="374" width="476" height="45"/>
+                                <rect key="frame" x="310" y="441" width="260" height="45"/>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.63921568627450975" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="6yg-c7-Smh"/>
+                                    <constraint firstAttribute="height" constant="45" id="A5d-wr-bbc"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="ynK-zh-Q3i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="注册">
@@ -483,27 +464,58 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ynK-zh-Q3i"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="didActionRegister:" destination="M6m-Mi-4VE" eventType="touchUpInside" id="jDQ-lY-Q35"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qI-dB-hf4">
+                                <rect key="frame" x="30" y="441" width="260" height="45"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="hWU-Bg-sDG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didActionLogin:" destination="M6m-Mi-4VE" eventType="touchUpInside" id="5w3-oQ-5ct"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="JEL-KH-6So" firstAttribute="top" secondItem="26F-Th-kdL" secondAttribute="top" id="4Xq-AO-H7i"/>
                             <constraint firstItem="Xcv-nO-XQn" firstAttribute="top" secondItem="BZA-Kc-bbK" secondAttribute="bottom" id="7LV-ad-AW4"/>
-                            <constraint firstItem="wJO-U7-cUo" firstAttribute="leading" secondItem="8qI-dB-hf4" secondAttribute="leading" id="89m-PI-ap8"/>
-                            <constraint firstItem="8qI-dB-hf4" firstAttribute="top" secondItem="8Jb-bg-1h4" secondAttribute="bottom" constant="285" id="8OI-1A-BNd"/>
                             <constraint firstAttribute="trailing" secondItem="JEL-KH-6So" secondAttribute="trailing" id="BES-ar-F79"/>
-                            <constraint firstItem="8qI-dB-hf4" firstAttribute="centerX" secondItem="26F-Th-kdL" secondAttribute="centerX" id="C4M-lh-eam"/>
                             <constraint firstAttribute="trailing" secondItem="BZA-Kc-bbK" secondAttribute="trailing" id="Gbg-gQ-N5I"/>
-                            <constraint firstItem="8qI-dB-hf4" firstAttribute="leading" secondItem="26F-Th-kdL" secondAttribute="leading" constant="62" id="QEB-Iz-tl3"/>
-                            <constraint firstItem="wJO-U7-cUo" firstAttribute="top" secondItem="8qI-dB-hf4" secondAttribute="bottom" constant="44" id="Ywd-Sf-gsE"/>
-                            <constraint firstAttribute="trailing" secondItem="8qI-dB-hf4" secondAttribute="trailing" constant="62" id="ZDR-fd-y62"/>
-                            <constraint firstItem="wJO-U7-cUo" firstAttribute="trailing" secondItem="8qI-dB-hf4" secondAttribute="trailing" id="ez2-Yo-16G"/>
+                            <constraint firstAttribute="trailing" secondItem="wJO-U7-cUo" secondAttribute="trailing" constant="30" id="H00-1b-fSq"/>
+                            <constraint firstItem="8qI-dB-hf4" firstAttribute="leading" secondItem="26F-Th-kdL" secondAttribute="leading" constant="30" id="Jvm-jl-tmE"/>
+                            <constraint firstItem="wJO-U7-cUo" firstAttribute="leading" secondItem="8qI-dB-hf4" secondAttribute="trailing" constant="20" id="LWa-k5-g1E"/>
+                            <constraint firstAttribute="bottom" secondItem="wJO-U7-cUo" secondAttribute="bottom" constant="50" id="UsV-el-KXd"/>
+                            <constraint firstItem="8qI-dB-hf4" firstAttribute="width" secondItem="wJO-U7-cUo" secondAttribute="width" id="ZRV-H6-zIW"/>
                             <constraint firstItem="BZA-Kc-bbK" firstAttribute="leading" secondItem="26F-Th-kdL" secondAttribute="leading" id="na2-a3-3KF"/>
+                            <constraint firstItem="8qI-dB-hf4" firstAttribute="bottom" secondItem="wJO-U7-cUo" secondAttribute="bottom" id="pVu-7V-Mmg"/>
+                            <constraint firstItem="wJO-U7-cUo" firstAttribute="leading" secondItem="8qI-dB-hf4" secondAttribute="trailing" constant="20" id="s0g-gT-Vye"/>
                             <constraint firstItem="JEL-KH-6So" firstAttribute="leading" secondItem="26F-Th-kdL" secondAttribute="leading" id="ug0-kX-DuV"/>
                             <constraint firstAttribute="bottom" secondItem="JEL-KH-6So" secondAttribute="bottom" id="x3c-pz-1QL"/>
+                            <constraint firstItem="JEL-KH-6So" firstAttribute="top" secondItem="wJO-U7-cUo" secondAttribute="bottom" constant="50" id="zQu-uo-Arq"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zQu-uo-Arq"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="dcH-XY-DNY"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -534,6 +546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9FE2A128-09EC-4DEA-B31D-58E41E3BEDC2" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>

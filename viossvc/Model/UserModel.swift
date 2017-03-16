@@ -245,6 +245,14 @@ class GetRelationStatusModel: BaseModel{
     dynamic var wx_num: String?
     dynamic var service_price = 0
 }
+//活动列表返回参数
+class GetActivityListStatusModel: BaseModel{
+    dynamic var campaign_id = 0
+    dynamic var campaign_title: String?
+    dynamic var campaign_url: String?
+    dynamic var campaign_time: String?
+}
+
 
 class ServantDynamicListModel: BaseModel {
     var dynamic_list:[servantDynamicModel] = []
@@ -285,3 +293,8 @@ class GetRelationRequestModel: BaseModel {
     dynamic var uid_form = 0
     dynamic var uid_to = 0
 }
+//请求活动列表
+class GetActivityListRequestModel: BaseModel{
+    
+}
+
