@@ -26,4 +26,5 @@ struct SocketPacketHead {
 #import <AMapSearchKit/AMapSearchKit.h>
 // 从相册选择图片
 #import "ZLPhoto.h"
+#import "PhotoBroswerVC.h"
 

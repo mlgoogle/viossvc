@@ -31,7 +31,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+//        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func viewDidLoad() {
@@ -243,8 +243,25 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             actionSheet.showInView(self.view)
         }else {
             // 显示图片
+            PhotoBroswerVC.show(self, type:PhotoBroswerVCTypePush , index: UInt(indexPath.row), photoModelBlock: { [weak self]() -> [AnyObject]! in
+                
+                let photoArray:NSMutableArray = NSMutableArray()
+                let count:Int = (self!.imageArray?.count)!
+               
+                for i  in 0..<count {
+                    
+                    let model:PhotoModel = PhotoModel.init()
+                    model.mid = UInt(i) + 1
+                    let asset = self!.imageArray![i] as! ZLPhotoAssets
+                    model.image = asset.originImage()
+                    photoArray.addObject(model)
+                }
+                
+                return photoArray as [AnyObject]
+            })
         }
     }
+    
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
