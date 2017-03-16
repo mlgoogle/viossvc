@@ -82,5 +82,9 @@ protocol UserAPI {
     func orderList(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
     //获取微信联系方式
     func getRelation(model:GetRelationRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
+    //请求活动列表
+    func getActivityList(complete:CompleteBlock?,error:ErrorBlock?)
+    
+    
     
 }

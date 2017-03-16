@@ -53,6 +53,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         personalInfo = CurrentUserHelper.shared.userInfo
         
         initViews()
+        
     }
     // 加载页面
     func initViews(){

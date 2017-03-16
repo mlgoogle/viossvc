@@ -21,6 +21,20 @@ class MyInformationCell: UITableViewCell {
         setupUI()
         
     }
+    func activityList(info: GetActivityListStatusModel){
+        //时间戳的转换
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(info.campaign_time!)
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let dateString = dateFormatter.stringFromDate(date!)
+        timeLabel.text =  dateString
+        clientName.text = info.campaign_title
+        weiXinNumber.text = "点击查看详情"
+        weiXinNumber.textColor = UIColor.init(red: 252/255.0, green: 163/255.0, blue: 17/255.0, alpha: 1)
+    }
+    
+    
     func updeat(info: OrderListCellModel){
         //时间戳的转换
         let dateFormatter = NSDateFormatter()

@@ -221,4 +221,11 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
         startModelRequest(packet, modelClass: GetRelationStatusModel.classForCoder(), complete: complete, error: error)
     }
+    //请求活动列表
+    func getActivityList(complete:CompleteBlock?,error:ErrorBlock?){
+        
+        startModelsRequest(SocketDataPacket(opcode: .getActivityList), listName:"campaign_msg_list_",  modelClass: GetActivityListStatusModel.classForCoder(), complete: complete, error: error)
+        
+    }
+    
 }

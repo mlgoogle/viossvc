@@ -158,9 +158,6 @@ class UserHomeViewController: BaseTableViewController {
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-        
 
     }
     

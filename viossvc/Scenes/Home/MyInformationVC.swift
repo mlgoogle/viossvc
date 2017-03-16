@@ -26,6 +26,10 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     var allDataDict:[String : Array<OrderListCellModel>] = Dictionary()
     var dateArray:[String] = Array()
     
+    var activityList = [GetActivityListStatusModel]()
+    var activityListDict:[String : Array<GetActivityListStatusModel>] = Dictionary()
+    var activityListArray:[String] = Array()
+    
     let header:MJRefreshStateHeader = MJRefreshStateHeader()
     let footer:MJRefreshAutoStateFooter = MJRefreshAutoStateFooter()
     
@@ -33,7 +37,44 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(hexString: "#ffffff")
         initTableView()
+        
+        AppAPIHelper.userAPI().getActivityList({ [weak self](response) in
+            if let models = response as? [GetActivityListStatusModel]{
+                self!.setupActivityListWithModels(models)
+                self?.activityList = models
+            }
+        }) { (error) in
+            
+      }
+        
+        cellCount()
     }
+    
+    func cellCount() {
+        let dict:[String : AnyObject] = [String : AnyObject]()
+        
+        for item1 in dateArray {
+            
+            for item2 in activityListArray {
+                
+                if item1 == item2 {
+                    
+                    for item3 in allDataDict[item1]! {
+                        
+                        for item4 in activityListDict[item1]! {
+                            
+                            
+                            
+                        }
+                    }
+                    
+                }
+            }
+            
+        }
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if isRefresh {
@@ -98,6 +139,40 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
     }
     
+    //活动列表
+    func setupActivityListWithModels(models:[GetActivityListStatusModel]){
+        let dateFormatter = NSDateFormatter()
+        var dateString: String?
+        for model in models{
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = dateFormatter.dateFromString(model.campaign_time!)
+            if date == nil {
+                continue
+            }
+            else{
+                dateFormatter.dateFormat = "MM"
+                dateString = dateFormatter.stringFromDate(date!)
+            }
+            
+            /*
+             - 判断 model 对应的分组 是否已经有当天数据信息
+             - 如果已经有信息则直接将model 插入当天信息array
+             - 反之，创建当天分组array 插入数据
+             */
+            if activityListArray.contains(dateString!){
+                activityListDict[dateString!]?.append(model)
+            }
+            else{
+                var list:[GetActivityListStatusModel] = Array()
+                list.append(model)
+                activityListArray.append(dateString!)
+                activityListDict[dateString!] = list
+            }
+        }
+
+    }
+    
+    
     //下拉刷新
     func footerRefresh() {
         pageCount += 1
@@ -141,7 +216,7 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     }
     
     
-    //数据分组处理
+    //订单列表数据分组处理
     func setupDataWithModels(models:[OrderListCellModel]){
         let dateFormatter = NSDateFormatter()
         var dateString: String?
@@ -189,9 +264,43 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MyInformationCell", forIndexPath: indexPath) as! MyInformationCell
         let array = allDataDict[dateArray[indexPath.section]]
-        cell.updeat(array![indexPath.row])
+//        var acArray = activityListDict[activityListArray[indexPath.section]]
+//        if dateArray[indexPath.section] == activityListArray[indexPath.section]  {
+//            
+//            let dateFormatter = NSDateFormatter()
+//            var acDateString: String?
+//            var dateString: String
+//            let date = dateFormatter.dateFromString(array![indexPath.row].order_time!)
+//                dateFormatter.dateFormat = "dd"
+//                dateString = dateFormatter.stringFromDate(date!)
+//            let dateInt = Int(dateString)
+//            for ele in acArray! {
+//                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//                let acDate = dateFormatter.dateFromString(ele.campaign_time!)
+//                
+//                if acDate == nil {
+//                    continue
+//                }
+//                else{
+//                    dateFormatter.dateFormat = "dd"
+//                    acDateString = dateFormatter.stringFromDate(acDate!)
+//                }
+//              let acDateInt = Int(acDateString!)
+//                if acDateInt > dateInt {
+//                    
+//                    cell.activityList(ele)
+//                    acArray?.removeFirst()
+//                    return cell
+//                }
+//                else{
+                    cell.updeat(array![indexPath.row])
+                    return cell
+//                }
+//            }
+//        }
+//        
+//        return cell
         
-        return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
