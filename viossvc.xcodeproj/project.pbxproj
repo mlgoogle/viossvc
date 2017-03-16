@@ -97,12 +97,12 @@
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
 		BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
-		E957B2DC1E793EAC004321D8 /* PhotoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */; };
 		D0F5064A1E7797D5001BDE98 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F506491E7797D5001BDE98 /* LoginVC.swift */; };
 		D0F5064C1E779818001BDE98 /* LoginWithMSGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */; };
 		D0FA0E3B1E79050A00609214 /* MyClientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3A1E79050A00609214 /* MyClientVC.swift */; };
 		D0FA0E3D1E79052C00609214 /* MyClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3C1E79052C00609214 /* MyClientCell.swift */; };
 		D0FA0E3F1E793B7300609214 /* ClientWeiXinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */; };
+		E957B2DC1E793EAC004321D8 /* PhotoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */; };
 		E959F5561E77A1390039E880 /* ServantFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5531E77A1390039E880 /* ServantFooterView.swift */; };
 		E959F5571E77A1390039E880 /* ServantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5541E77A1390039E880 /* ServantHeaderView.swift */; };
 		E959F5581E77A1390039E880 /* ServantPersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5551E77A1390039E880 /* ServantPersonalCell.swift */; };
@@ -262,13 +262,13 @@
 		BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5/UMMobClick.framework"; sourceTree = "<group>"; };
 		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E957B2DA1E793EAC004321D8 /* PhotoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoNavigationController.h; sourceTree = "<group>"; };
-		E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoNavigationController.m; sourceTree = "<group>"; };
 		D0F506491E7797D5001BDE98 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D0F5064B1E779818001BDE98 /* LoginWithMSGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithMSGVC.swift; sourceTree = "<group>"; };
 		D0FA0E3A1E79050A00609214 /* MyClientVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClientVC.swift; sourceTree = "<group>"; };
 		D0FA0E3C1E79052C00609214 /* MyClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClientCell.swift; sourceTree = "<group>"; };
 		D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientWeiXinVC.swift; sourceTree = "<group>"; };
+		E957B2DA1E793EAC004321D8 /* PhotoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoNavigationController.h; sourceTree = "<group>"; };
+		E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoNavigationController.m; sourceTree = "<group>"; };
 		E959F5531E77A1390039E880 /* ServantFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantFooterView.swift; sourceTree = "<group>"; };
 		E959F5541E77A1390039E880 /* ServantHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantHeaderView.swift; sourceTree = "<group>"; };
 		E959F5551E77A1390039E880 /* ServantPersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPersonalCell.swift; sourceTree = "<group>"; };
@@ -1187,7 +1187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
@@ -1465,6 +1465,7 @@
 			baseConfigurationReference = FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1518,6 +1519,7 @@
 			baseConfigurationReference = 99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

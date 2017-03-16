@@ -209,7 +209,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         let cell:SendMsgPickPhotoCell = collection?.dequeueReusableCellWithReuseIdentifier("SendMsgPickPhotoCell", forIndexPath: indexPath) as! SendMsgPickPhotoCell
         
         if indexPath.row == imageArray?.count {
-            cell.contentView.backgroundColor = UIColor.cyanColor()
+            cell.imageView?.image = UIImage.init(named: "AddPic")
         }else {
             let asset = imageArray![indexPath.row]
             cell.imageView?.image = asset.originImage()
@@ -238,7 +238,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == imageArray?.count && imageArray?.count != 9 {
-            let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "从相册选择图片")
+            let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册选择图片")
+            
             actionSheet.showInView(self.view)
         }else {
             // 显示图片
@@ -247,7 +248,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
-        if buttonIndex == 0 {
+        if buttonIndex == 1 {
             
             let pickerVC:ZLPhotoPickerViewController = ZLPhotoPickerViewController.init()
             pickerVC.minCount = 9 - (imageArray?.count)!
