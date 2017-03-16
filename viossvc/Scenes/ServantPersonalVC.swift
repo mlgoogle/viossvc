@@ -115,7 +115,10 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     }
     
     func backAction() {
-        navigationController?.popViewControllerAnimated(true)
+        let vc =  MyInformationVC()
+        vc.title = "我的消息"
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func reportAction() {

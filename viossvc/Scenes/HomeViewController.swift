@@ -60,9 +60,11 @@ class HomeViewController: BaseRefreshTableViewController {
     
     // 消息列表
     func messageList() {
+        
     }
     // 添加动态
     func addDymicList() {
+        
     }
     
     // MARK:---tableView

@@ -11,7 +11,7 @@ import XCGLogger
 import SVProgressHUD
 import MJRefresh
 
-class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var table:UITableView?
     var timer:NSTimer?
@@ -22,7 +22,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var pageCount = 0
     //视图是否刷新
     var isRefresh:Bool = false
-    
+
     var allDataDict:[String : Array<OrderListCellModel>] = Dictionary()
     var dateArray:[String] = Array()
     
@@ -53,7 +53,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         table?.estimatedRowHeight = 80
         table?.rowHeight = UITableViewAutomaticDimension
         table?.separatorStyle = .SingleLine
-        table?.registerClass(MyClientCell.self, forCellReuseIdentifier: "MyClientCell")
+        table?.registerClass(MyInformationCell.self, forCellReuseIdentifier: "MyInformationCell")
         view.addSubview(table!)
         table?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(view)
@@ -74,7 +74,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         footer.state = .Idle
         pageCount = 0
         let req = OrderListRequestModel()
-//        req.uid_ = CurrentUser.uid_
+        //        req.uid_ = CurrentUser.uid_
         AppAPIHelper.userAPI().orderList(req, complete: { [weak self](response) in
             if response != nil {
                 self!.footer.hidden = false
@@ -88,11 +88,11 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 self?.endRefresh()
             }
             if self?.orders.count < 10{
-                 self?.noMoreData()
+                self?.noMoreData()
             }
             
-            }) { [weak self](error) in
-                self?.endRefresh()
+        }) { [weak self](error) in
+            self?.endRefresh()
         }
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(endRefresh), userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
@@ -112,8 +112,8 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             else{
                 self?.noMoreData()
             }
-            }) { [weak self](error) in
-                self?.endRefresh()
+        }) { [weak self](error) in
+            self?.endRefresh()
         }
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(endRefresh), userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
@@ -139,7 +139,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         footer.state = .NoMoreData
         footer.setTitle("没有更多信息", forState: .NoMoreData)
     }
-
+    
     
     //数据分组处理
     func setupDataWithModels(models:[OrderListCellModel]){
@@ -172,7 +172,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
-
+    
     
     
     //tableViewDelegate
@@ -187,7 +187,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MyClientCell", forIndexPath: indexPath) as! MyClientCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MyInformationCell", forIndexPath: indexPath) as! MyInformationCell
         let array = allDataDict[dateArray[indexPath.section]]
         cell.updeat(array![indexPath.row])
         
@@ -233,45 +233,9 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         return 0.01
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-            let array = allDataDict[dateArray[indexPath.section]]
-            let req = GetRelationRequestModel()
-            req.order_id = array![indexPath.row].order_id
-            req.uid_form = array![indexPath.row].to_uid
-            req.uid_to = array![indexPath.row].to_uid
-            AppAPIHelper.userAPI().getRelation(req, complete: { [weak self](response) in
-                let model = response as? GetRelationStatusModel
-                if model?.result == 4{
-                    let clientWeiXinVC = ClientWeiXinVC()
-                    clientWeiXinVC.weiXinNumber = model?.wx_num
-                    clientWeiXinVC.weiXinName = array![indexPath.row].to_uid_nickename
-                    clientWeiXinVC.isRefresh = { ()->() in
-                        self!.isRefresh = true
-                    }
-                    self!.navigationController?.pushViewController(clientWeiXinVC, animated: true)
-                }
-            }) { (error) in
-            }
- 
-//        APIHelper.consumeAPI().getRelation(getModel, complete: { [weak self](response) in
-//            
-//            if let model = response as? GetRelationStatusModel{
-//                let aidWeiXin = AidWenXinVC()
-//                aidWeiXin.getRelation = model
-//                aidWeiXin.nickname = array![indexPath.row].to_uid_nickename_
-//                aidWeiXin.toUid = array![indexPath.row].to_uid_
-//                aidWeiXin.orderId = array![indexPath.row].order_id_
-//                aidWeiXin.isEvaluate = array![indexPath.row].is_evaluate_ == 0 ? false : true
-//                aidWeiXin.bool = false
-//                aidWeiXin.toUidUrl =  array![indexPath.row].to_uid_url_
-//                aidWeiXin.isRefresh = { ()->() in
-//                    self!.isRefresh = true
-//                }
-//                self!.navigationController?.pushViewController(aidWeiXin, animated: true)
-//            }
-        
+                
     }
-
+    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
