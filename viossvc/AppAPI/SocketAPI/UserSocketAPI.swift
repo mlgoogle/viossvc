@@ -221,4 +221,16 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
         startModelRequest(packet, modelClass: GetRelationStatusModel.classForCoder(), complete: complete, error: error)
     }
+    //请求活动列表
+    func getActivityList(complete:CompleteBlock?,error:ErrorBlock?){
+        
+        startModelsRequest(SocketDataPacket(opcode: .getActivityList), listName:"campaign_msg_list_",  modelClass: MyMessageListStatusModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //我的消息列表
+    func orderListSum(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?){
+        let packet = SocketDataPacket(opcode: .ClientOrderList, model: model)
+        startModelsRequest(packet, listName: "order_msg_list_", modelClass: MyMessageListStatusModel.classForCoder(), complete: complete, error: error)
+    }
+    
 }

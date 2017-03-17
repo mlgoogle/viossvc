@@ -8,12 +8,12 @@
 
 import Foundation
 
-class MyClientCell: UITableViewCell {
+class MyInformationCell: UITableViewCell {
     
     let clientName = UILabel()
     var weiXinNumber = UILabel()
     let timeLabel = UILabel()
-    var pointImage = UIImageView()
+    var paymentSucceed = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,7 +22,22 @@ class MyClientCell: UITableViewCell {
         setupUI()
         
     }
-    func updeat(info: OrderListCellModel){
+    func activityList(info: MyMessageListStatusModel){
+        //时间戳的转换
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(info.campaign_time!)
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let dateString = dateFormatter.stringFromDate(date!)
+        timeLabel.text =  dateString
+        clientName.text = info.campaign_title
+        weiXinNumber.text = "点击查看详情"
+        weiXinNumber.textColor = UIColor.init(red: 252/255.0, green: 163/255.0, blue: 17/255.0, alpha: 1)
+        paymentSucceed.hidden = true
+    }
+    
+    
+    func updeat(info: MyMessageListStatusModel){
         //时间戳的转换
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -31,7 +46,8 @@ class MyClientCell: UITableViewCell {
         let dateString = dateFormatter.stringFromDate(date!)
         timeLabel.text =  dateString
         clientName.text = "客户 " + "'" + "'" + info.to_uid_nickename! + "'" + "'"
-        
+        weiXinNumber.textColor = UIColor.init(red: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
+        paymentSucceed.hidden = false
         let req = GetRelationRequestModel()
         req.order_id = info.order_id
         req.uid_form = info.to_uid
@@ -41,19 +57,18 @@ class MyClientCell: UITableViewCell {
             if model?.result == 4{
                 self!.weiXinNumber.text = model?.wx_num
             }
-            }) { (error) in
+        }) { (error) in
         }
     }
-     
+    
     func setupUI() {
-
         
-        let paymentSucceed = UILabel()
+        
+        
         
         
         contentView.addSubview(clientName)
         contentView.addSubview(weiXinNumber)
-        contentView.addSubview(pointImage)
         contentView.addSubview(timeLabel)
         contentView.addSubview(paymentSucceed)
         
@@ -68,21 +83,13 @@ class MyClientCell: UITableViewCell {
             make.height.equalTo(16)
         }
         
-//        weiXinNumber.text = "微信号widjk-156841355423"
-        weiXinNumber.textColor = UIColor.init(red: 252/255.0, green: 163/255.0, blue: 17/255.0, alpha: 1)
+        //        weiXinNumber.text = "微信号widjk-156841355423"
+        weiXinNumber.textColor = UIColor.init(red: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
         weiXinNumber.font = UIFont.systemFontOfSize(14)
         weiXinNumber.textAlignment = .Center
         weiXinNumber.snp_makeConstraints { (make) in
             make.left.equalTo(clientName)
             make.top.equalTo(clientName.snp_bottom).offset(8)
-        }
-        
-        pointImage.image = UIImage.init(named: "arror")
-        pointImage.snp_makeConstraints { (make) in
-            make.right.equalTo(contentView).offset(-15)
-            make.top.equalTo(contentView).offset(25)
-            make.width.equalTo(8)
-            make.height.equalTo(15)
         }
         
         
@@ -91,7 +98,7 @@ class MyClientCell: UITableViewCell {
         timeLabel.font = UIFont.systemFontOfSize(10)
         timeLabel.textAlignment = .Center
         timeLabel.snp_makeConstraints { (make) in
-            make.right.equalTo(pointImage).offset(-20)
+            make.right.equalTo(contentView).offset(-15)
             make.top.equalTo(contentView).offset(14)
             make.height.equalTo(9)
         }

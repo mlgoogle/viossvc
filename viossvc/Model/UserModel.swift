@@ -245,6 +245,27 @@ class GetRelationStatusModel: BaseModel{
     dynamic var wx_num: String?
     dynamic var service_price = 0
 }
+//活动列表返回参数
+class GetActivityListStatusModel: BaseModel{
+    dynamic var campaign_id = 0
+    dynamic var campaign_title: String?
+    dynamic var campaign_url: String?
+    dynamic var campaign_time: String?
+}
+//订单消息列表和活动列表返回的一个大模型
+class MyMessageListStatusModel: BaseModel{
+    dynamic var order_id = 0
+    dynamic var to_uid = 0
+    dynamic var to_uid_nickename:String?
+    dynamic var order_time: String?
+    dynamic var is_evaluate = -1
+    dynamic var to_uid_url: String?
+    dynamic var campaign_id = 0
+    dynamic var campaign_title: String?
+    dynamic var campaign_url: String?
+    dynamic var campaign_time: String?
+    dynamic var timestamp: String?
+}
 
 class ServantDynamicListModel: BaseModel {
     var dynamic_list:[servantDynamicModel] = []
@@ -285,3 +306,8 @@ class GetRelationRequestModel: BaseModel {
     dynamic var uid_form = 0
     dynamic var uid_to = 0
 }
+//请求活动列表
+class GetActivityListRequestModel: BaseModel{
+    
+}
+

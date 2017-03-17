@@ -11,20 +11,26 @@ import XCGLogger
 import SVProgressHUD
 import MJRefresh
 
-class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var table:UITableView?
     var timer:NSTimer?
     //订单消息列表单个消息
-    var orders = [OrderListCellModel]()
+    var orders = [MyMessageListStatusModel]()
     var isFirstTime = true
     //请求行数
     var pageCount = 0
     //视图是否刷新
     var isRefresh:Bool = false
     
-    var allDataDict:[String : Array<OrderListCellModel>] = Dictionary()
+    var allDataDict:[String : Array<MyMessageListStatusModel>] = Dictionary()
     var dateArray:[String] = Array()
+    
+    var activityList = [MyMessageListStatusModel]()
+    var activityListDict:[String : Array<MyMessageListStatusModel>] = Dictionary()
+    var activityListArray:[String] = Array()
+    
+    var deleArray = [MyMessageListStatusModel]()
     
     let header:MJRefreshStateHeader = MJRefreshStateHeader()
     let footer:MJRefreshAutoStateFooter = MJRefreshAutoStateFooter()
@@ -33,7 +39,20 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(hexString: "#ffffff")
         initTableView()
+        AppAPIHelper.userAPI().getActivityList({ [weak self](response) in
+            if let models = response as? [MyMessageListStatusModel]{
+                
+                for ele in models{
+                    ele.timestamp = ele.campaign_time
+                }
+                self?.orders += models
+            }
+        }) { (error) in
+        }
+        
+        
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if isRefresh {
@@ -53,7 +72,7 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         table?.estimatedRowHeight = 80
         table?.rowHeight = UITableViewAutomaticDimension
         table?.separatorStyle = .SingleLine
-        table?.registerClass(MyClientCell.self, forCellReuseIdentifier: "MyClientCell")
+        table?.registerClass(MyInformationCell.self, forCellReuseIdentifier: "MyInformationCell")
         view.addSubview(table!)
         table?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(view)
@@ -69,51 +88,70 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         table?.mj_footer = footer
     }
     
-    //上拉刷新
+    //下拉刷新
     func headerRefresh() {
         footer.state = .Idle
         pageCount = 0
         let req = OrderListRequestModel()
-//        req.uid_ = CurrentUser.uid_
-        AppAPIHelper.userAPI().orderList(req, complete: { [weak self](response) in
+        //        req.uid_ = CurrentUser.uid_
+        AppAPIHelper.userAPI().orderListSum(req, complete: { [weak self](response) in
             if response != nil {
                 self!.footer.hidden = false
             }
-            if let models = response as? [OrderListCellModel]{
-                self!.allDataDict.removeAll()
-                self!.dateArray.removeAll()
-                self!.setupDataWithModels(models)
+            if let models = response as? [MyMessageListStatusModel]{
+                self?.orders.removeAll()
                 
-                self?.orders = models
+                AppAPIHelper.userAPI().getActivityList({ [weak self](response) in
+                    if let models = response as? [MyMessageListStatusModel]{
+                        
+                        for ele in models{
+                            ele.timestamp = ele.campaign_time
+                        }
+                        self?.orders += models
+                    }
+                }) { (error) in
+                }
+                
+                for ele in models{
+                    ele.timestamp = ele.order_time
+                }
+                self?.orders += models
+                
+                //进行排序
+                self!.setupDataWithModels((self?.orders)!)
+                
                 self?.endRefresh()
             }
             if self?.orders.count < 10{
-                 self?.noMoreData()
+                self?.noMoreData()
             }
             
-            }) { [weak self](error) in
-                self?.endRefresh()
+        }) { [weak self](error) in
+            self?.endRefresh()
         }
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(endRefresh), userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
     }
     
-    //下拉刷新
+    //上拉刷新
     func footerRefresh() {
         pageCount += 1
         let req = OrderListRequestModel()
         req.page_num = pageCount
-        AppAPIHelper.userAPI().orderList(req, complete: { [weak self](response) in
-            if let models = response as? [OrderListCellModel]{
-                self!.setupDataWithModels(models)
+        AppAPIHelper.userAPI().orderListSum(req, complete: { [weak self](response) in
+            if let models = response as? [MyMessageListStatusModel]{
+                for ele in models{
+                    ele.timestamp = ele.order_time
+                }
                 self?.orders += models
+                self!.setupDataWithModels((self?.orders)!)
                 self?.endRefresh()
             }
             else{
                 self?.noMoreData()
             }
-            }) { [weak self](error) in
-                self?.endRefresh()
+        }) { [weak self](error) in
+            self?.endRefresh()
         }
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(endRefresh), userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
@@ -139,15 +177,35 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         footer.state = .NoMoreData
         footer.setTitle("没有更多信息", forState: .NoMoreData)
     }
-
     
     //数据分组处理
-    func setupDataWithModels(models:[OrderListCellModel]){
+    func setupDataWithModels(models:[MyMessageListStatusModel]){
+        self.allDataDict.removeAll()
+        self.dateArray.removeAll()
+        //将传入的模型根据timestamp进行降序
+        for i in 0...(self.orders.count - 2) {
+            for j in 0...(self.orders.count - i - 2){
+                //                let str1 = models[j].timestamp! as NSString
+                //                let str2 = self.orders[j + 1].timestamp! as NSString
+                //                let result = str1.compare(str2 as String, options: NSStringCompareOptions.NumericSearch)
+                if self.orders[j].timestamp < self.orders[j + 1].timestamp {
+                    //交换位置
+                    let temp = self.orders[j]
+                    
+                    self.orders[j] = self.orders[j + 1]
+                    
+                    self.orders[j + 1] = temp
+                    
+                }
+            }
+            
+        }
+        
         let dateFormatter = NSDateFormatter()
         var dateString: String?
-        for model in models{
+        for model in self.orders{
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let date = dateFormatter.dateFromString(model.order_time!)
+            let date = dateFormatter.dateFromString(model.timestamp!)
             if date == nil {
                 continue
             }
@@ -165,14 +223,14 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 allDataDict[dateString!]?.append(model)
             }
             else{
-                var list:[OrderListCellModel] = Array()
+                var list:[MyMessageListStatusModel] = Array()
                 list.append(model)
                 dateArray.append(dateString!)
                 allDataDict[dateString!] = list
             }
         }
     }
-
+    
     
     
     //tableViewDelegate
@@ -187,11 +245,19 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MyClientCell", forIndexPath: indexPath) as! MyClientCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MyInformationCell", forIndexPath: indexPath) as! MyInformationCell
         let array = allDataDict[dateArray[indexPath.section]]
-        cell.updeat(array![indexPath.row])
+        if array![indexPath.row].campaign_time != nil {
+            cell.activityList(array![indexPath.row])
+            return cell
+        }
+        else{
+            cell.updeat(array![indexPath.row])
+            return cell
+        }
         
         return cell
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -234,27 +300,17 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-            let array = allDataDict[dateArray[indexPath.section]]
-            let req = GetRelationRequestModel()
-            req.order_id = array![indexPath.row].order_id
-            req.uid_form = array![indexPath.row].to_uid
-            req.uid_to = array![indexPath.row].to_uid
-            AppAPIHelper.userAPI().getRelation(req, complete: { [weak self](response) in
-                let model = response as? GetRelationStatusModel
-                if model?.result == 4{
-                    let clientWeiXinVC = ClientWeiXinVC()
-                    clientWeiXinVC.weiXinNumber = model?.wx_num
-                    clientWeiXinVC.weiXinName = array![indexPath.row].to_uid_nickename
-                    clientWeiXinVC.isRefresh = { ()->() in
-                        self!.isRefresh = true
-                    }
-                    self!.navigationController?.pushViewController(clientWeiXinVC, animated: true)
-                }
-            }) { (error) in
+        let array = allDataDict[dateArray[indexPath.section]]
+        if array![indexPath.row].campaign_time != nil {
+            let vc = ActivityVC()
+            vc.isRefresh = { ()->() in
+                self.isRefresh = true
             }
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
-
+    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
