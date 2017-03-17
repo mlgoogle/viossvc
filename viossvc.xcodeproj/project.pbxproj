@@ -103,6 +103,12 @@
 		D0FA0E3F1E793B7300609214 /* ClientWeiXinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */; };
 		E9250B361E7BB1FC00F937A7 /* PersionalIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9250B351E7BB1FC00F937A7 /* PersionalIntroductionController.swift */; };
 		E9250B381E7BB73700F937A7 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */; };
+		E9568BAB1E7BFA8500B60BDE /* 助理端新手引导2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */; };
+		E9568BAC1E7BFA8500B60BDE /* 助理端新手引导2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BA91E7BFA8500B60BDE /* 助理端新手引导2@2x.png */; };
+		E9568BAD1E7BFA8500B60BDE /* 助理端新手引导2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BAA1E7BFA8500B60BDE /* 助理端新手引导2@3x.png */; };
+		E9568BB11E7BFC7F00B60BDE /* 助理端新手引导1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BAE1E7BFC7F00B60BDE /* 助理端新手引导1@3x.png */; };
+		E9568BB21E7BFC7F00B60BDE /* 助理端新手引导1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BAF1E7BFC7F00B60BDE /* 助理端新手引导1@2x.png */; };
+		E9568BB31E7BFC7F00B60BDE /* 助理端新手引导1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BB01E7BFC7F00B60BDE /* 助理端新手引导1.png */; };
 		E957B2DC1E793EAC004321D8 /* PhotoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */; };
 		E959F5561E77A1390039E880 /* ServantFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5531E77A1390039E880 /* ServantFooterView.swift */; };
 		E959F5571E77A1390039E880 /* ServantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F5541E77A1390039E880 /* ServantHeaderView.swift */; };
@@ -310,6 +316,12 @@
 		D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientWeiXinVC.swift; sourceTree = "<group>"; };
 		E9250B351E7BB1FC00F937A7 /* PersionalIntroductionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersionalIntroductionController.swift; sourceTree = "<group>"; };
 		E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
+		E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导2.png"; sourceTree = "<group>"; };
+		E9568BA91E7BFA8500B60BDE /* 助理端新手引导2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导2@2x.png"; sourceTree = "<group>"; };
+		E9568BAA1E7BFA8500B60BDE /* 助理端新手引导2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导2@3x.png"; sourceTree = "<group>"; };
+		E9568BAE1E7BFC7F00B60BDE /* 助理端新手引导1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导1@3x.png"; sourceTree = "<group>"; };
+		E9568BAF1E7BFC7F00B60BDE /* 助理端新手引导1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导1@2x.png"; sourceTree = "<group>"; };
+		E9568BB01E7BFC7F00B60BDE /* 助理端新手引导1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导1.png"; sourceTree = "<group>"; };
 		E957B2DA1E793EAC004321D8 /* PhotoNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoNavigationController.h; sourceTree = "<group>"; };
 		E957B2DB1E793EAC004321D8 /* PhotoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoNavigationController.m; sourceTree = "<group>"; };
 		E959F5531E77A1390039E880 /* ServantFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantFooterView.swift; sourceTree = "<group>"; };
@@ -662,6 +674,12 @@
 		B03B11C11DE5BFDD00B00D2E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E9568BAE1E7BFC7F00B60BDE /* 助理端新手引导1@3x.png */,
+				E9568BAF1E7BFC7F00B60BDE /* 助理端新手引导1@2x.png */,
+				E9568BB01E7BFC7F00B60BDE /* 助理端新手引导1.png */,
+				E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */,
+				E9568BA91E7BFA8500B60BDE /* 助理端新手引导2@2x.png */,
+				E9568BAA1E7BFA8500B60BDE /* 助理端新手引导2@3x.png */,
 				B03B11C21DE5BFDD00B00D2E /* Assets.xcassets */,
 				B03B11C31DE5BFDD00B00D2E /* LaunchScreen.storyboard */,
 				B03B11C51DE5BFDD00B00D2E /* Main.storyboard */,
@@ -1593,11 +1611,14 @@
 				E9ADF2971E792D0400FEEB9A /* ZLPhotoPickerGroupTableViewCell.xib in Resources */,
 				E9ADF27D1E792D0400FEEB9A /* shanguangdeng2@2x.png in Resources */,
 				E9ADF2781E792D0400FEEB9A /* paizhao.png in Resources */,
+				E9568BAB1E7BFA8500B60BDE /* 助理端新手引导2.png in Resources */,
 				B03B121B1DE5BFDE00B00D2E /* Main.storyboard in Resources */,
 				E9858B631E7A7D28003F68ED /* PhotoItemView.xib in Resources */,
 				B03B12471DE5BFDE00B00D2E /* PageViewImageCell.xib in Resources */,
+				E9568BB21E7BFC7F00B60BDE /* 助理端新手引导1@2x.png in Resources */,
 				B03B12491DE5BFDE00B00D2E /* TableViewHeaderView.xib in Resources */,
 				E9ADF2791E792D0400FEEB9A /* paizhao@2x.png in Resources */,
+				E9568BAC1E7BFA8500B60BDE /* 助理端新手引导2@2x.png in Resources */,
 				E9ADF27C1E792D0400FEEB9A /* shanguangdeng2.png in Resources */,
 				E9858B521E7A7D28003F68ED /* CoreSDWebImage.bundle in Resources */,
 				E9ADF27E1E792D0400FEEB9A /* xiang.png in Resources */,
@@ -1605,6 +1626,8 @@
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				E9ADF2771E792D0400FEEB9A /* AssetsPickerChecked@3x.png in Resources */,
 				E9ADF2751E792D0400FEEB9A /* AssetsPickerChecked.png in Resources */,
+				E9568BB11E7BFC7F00B60BDE /* 助理端新手引导1@3x.png in Resources */,
+				E9568BB31E7BFC7F00B60BDE /* 助理端新手引导1.png in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				E9858B651E7A7D28003F68ED /* PhotoBroswerVC.xib in Resources */,
 				E9ADF27F1E792D0400FEEB9A /* xiang@2x.png in Resources */,
@@ -1617,6 +1640,7 @@
 				E9858B5C1E7A7D28003F68ED /* PB.bundle in Resources */,
 				E9ADF27A1E792D0400FEEB9A /* shanguangdeng.png in Resources */,
 				7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */,
+				E9568BAD1E7BFA8500B60BDE /* 助理端新手引导2@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

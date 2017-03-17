@@ -53,7 +53,36 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         
         initViews()
         header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
+        
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let key = "isShownFiestTime1"
+        let isshownfirsttime = userDefaults.valueForKey(key)
+        
+        if isshownfirsttime == nil {
+            
+            let imageView:UIImageView = UIImageView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
+            imageView.image = UIImage.init(named: "助理端新手引导1")
+            imageView.alpha = 0.5
+            UIApplication.sharedApplication().keyWindow?.addSubview(imageView)
+            
+            imageView.userInteractionEnabled = true
+            let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageTapAction(_:)))
+            imageView.addGestureRecognizer(tap)
+        }
     }
+    
+    
+    func imageTapAction(tap:UITapGestureRecognizer) {
+        
+        let imageView:UIImageView = tap.view as! UIImageView
+        imageView.removeFromSuperview()
+        
+    }
+    
+    
+    
+    
     // 加载页面
     func initViews(){
         tableView = UITableView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - 44), style: .Grouped)
