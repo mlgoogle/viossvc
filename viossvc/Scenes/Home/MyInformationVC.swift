@@ -16,19 +16,21 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     var table:UITableView?
     var timer:NSTimer?
     //订单消息列表单个消息
-    var orders = [OrderListCellModel]()
+    var orders = [MyMessageListStatusModel]()
     var isFirstTime = true
     //请求行数
     var pageCount = 0
     //视图是否刷新
     var isRefresh:Bool = false
-
-    var allDataDict:[String : Array<OrderListCellModel>] = Dictionary()
+    
+    var allDataDict:[String : Array<MyMessageListStatusModel>] = Dictionary()
     var dateArray:[String] = Array()
     
-    var activityList = [GetActivityListStatusModel]()
-    var activityListDict:[String : Array<GetActivityListStatusModel>] = Dictionary()
+    var activityList = [MyMessageListStatusModel]()
+    var activityListDict:[String : Array<MyMessageListStatusModel>] = Dictionary()
     var activityListArray:[String] = Array()
+    
+    var deleArray = [MyMessageListStatusModel]()
     
     let header:MJRefreshStateHeader = MJRefreshStateHeader()
     let footer:MJRefreshAutoStateFooter = MJRefreshAutoStateFooter()
@@ -37,41 +39,17 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(hexString: "#ffffff")
         initTableView()
-        
         AppAPIHelper.userAPI().getActivityList({ [weak self](response) in
-            if let models = response as? [GetActivityListStatusModel]{
-                self!.setupActivityListWithModels(models)
-                self?.activityList = models
+            if let models = response as? [MyMessageListStatusModel]{
+                
+                for ele in models{
+                    ele.timestamp = ele.campaign_time
+                }
+                self?.orders += models
             }
         }) { (error) in
-            
-      }
-        
-        cellCount()
-    }
-    
-    func cellCount() {
-        let dict:[String : AnyObject] = [String : AnyObject]()
-        
-        for item1 in dateArray {
-            
-            for item2 in activityListArray {
-                
-                if item1 == item2 {
-                    
-                    for item3 in allDataDict[item1]! {
-                        
-                        for item4 in activityListDict[item1]! {
-                            
-                            
-                            
-                        }
-                    }
-                    
-                }
-            }
-            
         }
+        
         
     }
     
@@ -110,22 +88,38 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         table?.mj_footer = footer
     }
     
-    //上拉刷新
+    //下拉刷新
     func headerRefresh() {
         footer.state = .Idle
         pageCount = 0
         let req = OrderListRequestModel()
         //        req.uid_ = CurrentUser.uid_
-        AppAPIHelper.userAPI().orderList(req, complete: { [weak self](response) in
+        AppAPIHelper.userAPI().orderListSum(req, complete: { [weak self](response) in
             if response != nil {
                 self!.footer.hidden = false
             }
-            if let models = response as? [OrderListCellModel]{
-                self!.allDataDict.removeAll()
-                self!.dateArray.removeAll()
-                self!.setupDataWithModels(models)
+            if let models = response as? [MyMessageListStatusModel]{
+                self?.orders.removeAll()
                 
-                self?.orders = models
+                AppAPIHelper.userAPI().getActivityList({ [weak self](response) in
+                    if let models = response as? [MyMessageListStatusModel]{
+                        
+                        for ele in models{
+                            ele.timestamp = ele.campaign_time
+                        }
+                        self?.orders += models
+                    }
+                }) { (error) in
+                }
+                
+                for ele in models{
+                    ele.timestamp = ele.order_time
+                }
+                self?.orders += models
+                
+                //进行排序
+                self!.setupDataWithModels((self?.orders)!)
+                
                 self?.endRefresh()
             }
             if self?.orders.count < 10{
@@ -139,49 +133,18 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
     }
     
-    //活动列表
-    func setupActivityListWithModels(models:[GetActivityListStatusModel]){
-        let dateFormatter = NSDateFormatter()
-        var dateString: String?
-        for model in models{
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let date = dateFormatter.dateFromString(model.campaign_time!)
-            if date == nil {
-                continue
-            }
-            else{
-                dateFormatter.dateFormat = "MM"
-                dateString = dateFormatter.stringFromDate(date!)
-            }
-            
-            /*
-             - 判断 model 对应的分组 是否已经有当天数据信息
-             - 如果已经有信息则直接将model 插入当天信息array
-             - 反之，创建当天分组array 插入数据
-             */
-            if activityListArray.contains(dateString!){
-                activityListDict[dateString!]?.append(model)
-            }
-            else{
-                var list:[GetActivityListStatusModel] = Array()
-                list.append(model)
-                activityListArray.append(dateString!)
-                activityListDict[dateString!] = list
-            }
-        }
-
-    }
-    
-    
-    //下拉刷新
+    //上拉刷新
     func footerRefresh() {
         pageCount += 1
         let req = OrderListRequestModel()
         req.page_num = pageCount
-        AppAPIHelper.userAPI().orderList(req, complete: { [weak self](response) in
-            if let models = response as? [OrderListCellModel]{
-                self!.setupDataWithModels(models)
+        AppAPIHelper.userAPI().orderListSum(req, complete: { [weak self](response) in
+            if let models = response as? [MyMessageListStatusModel]{
+                for ele in models{
+                    ele.timestamp = ele.order_time
+                }
                 self?.orders += models
+                self!.setupDataWithModels((self?.orders)!)
                 self?.endRefresh()
             }
             else{
@@ -215,14 +178,34 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         footer.setTitle("没有更多信息", forState: .NoMoreData)
     }
     
-    
-    //订单列表数据分组处理
-    func setupDataWithModels(models:[OrderListCellModel]){
+    //数据分组处理
+    func setupDataWithModels(models:[MyMessageListStatusModel]){
+        self.allDataDict.removeAll()
+        self.dateArray.removeAll()
+        //将传入的模型根据timestamp进行降序
+        for i in 0...(self.orders.count - 2) {
+            for j in 0...(self.orders.count - i - 2){
+                //                let str1 = models[j].timestamp! as NSString
+                //                let str2 = self.orders[j + 1].timestamp! as NSString
+                //                let result = str1.compare(str2 as String, options: NSStringCompareOptions.NumericSearch)
+                if self.orders[j].timestamp < self.orders[j + 1].timestamp {
+                    //交换位置
+                    let temp = self.orders[j]
+                    
+                    self.orders[j] = self.orders[j + 1]
+                    
+                    self.orders[j + 1] = temp
+                    
+                }
+            }
+            
+        }
+        
         let dateFormatter = NSDateFormatter()
         var dateString: String?
-        for model in models{
+        for model in self.orders{
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let date = dateFormatter.dateFromString(model.order_time!)
+            let date = dateFormatter.dateFromString(model.timestamp!)
             if date == nil {
                 continue
             }
@@ -240,7 +223,7 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 allDataDict[dateString!]?.append(model)
             }
             else{
-                var list:[OrderListCellModel] = Array()
+                var list:[MyMessageListStatusModel] = Array()
                 list.append(model)
                 dateArray.append(dateString!)
                 allDataDict[dateString!] = list
@@ -264,42 +247,16 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MyInformationCell", forIndexPath: indexPath) as! MyInformationCell
         let array = allDataDict[dateArray[indexPath.section]]
-//        var acArray = activityListDict[activityListArray[indexPath.section]]
-//        if dateArray[indexPath.section] == activityListArray[indexPath.section]  {
-//            
-//            let dateFormatter = NSDateFormatter()
-//            var acDateString: String?
-//            var dateString: String
-//            let date = dateFormatter.dateFromString(array![indexPath.row].order_time!)
-//                dateFormatter.dateFormat = "dd"
-//                dateString = dateFormatter.stringFromDate(date!)
-//            let dateInt = Int(dateString)
-//            for ele in acArray! {
-//                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//                let acDate = dateFormatter.dateFromString(ele.campaign_time!)
-//                
-//                if acDate == nil {
-//                    continue
-//                }
-//                else{
-//                    dateFormatter.dateFormat = "dd"
-//                    acDateString = dateFormatter.stringFromDate(acDate!)
-//                }
-//              let acDateInt = Int(acDateString!)
-//                if acDateInt > dateInt {
-//                    
-//                    cell.activityList(ele)
-//                    acArray?.removeFirst()
-//                    return cell
-//                }
-//                else{
-                    cell.updeat(array![indexPath.row])
-                    return cell
-//                }
-//            }
-//        }
-//        
-//        return cell
+        if array![indexPath.row].campaign_time != nil {
+            cell.activityList(array![indexPath.row])
+            return cell
+        }
+        else{
+            cell.updeat(array![indexPath.row])
+            return cell
+        }
+        
+        return cell
         
     }
     
@@ -342,7 +299,16 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         return 0.01
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                
+        
+        let array = allDataDict[dateArray[indexPath.section]]
+        if array![indexPath.row].campaign_time != nil {
+            let vc = ActivityVC()
+            vc.isRefresh = { ()->() in
+                self.isRefresh = true
+            }
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
     
