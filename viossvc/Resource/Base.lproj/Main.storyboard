@@ -375,7 +375,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Xyu-Tz-buf">
             <objects>
-                <navigationController id="QS8-Ty-Guq" userLabel="Navigation Controller" sceneMemberID="viewController">
+                <navigationController id="QS8-Ty-Guq" userLabel="Navigation Controller" customClass="BaseNavigationViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="个人中心" image="user_item_normal" selectedImage="user_item_selected" id="3oE-b3-qL6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hrk-dy-i9A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -534,7 +534,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9FE2A128-09EC-4DEA-B31D-58E41E3BEDC2" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="055C64E5-435E-4795-BFB9-6C0E7CF56218" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -2454,8 +2454,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="1G3-U3-OLm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="2Cq-ED-vRy">
                                         <rect key="frame" x="0.0" y="325" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Cq-ED-vRy" id="uge-31-j8S">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="个人简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYd-TX-nak">
+                                                    <rect key="frame" x="21" y="8" width="548" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vYd-TX-nak" firstAttribute="trailing" secondItem="uge-31-j8S" secondAttribute="trailingMargin" constant="10" id="6O2-PM-yz9"/>
+                                                <constraint firstItem="vYd-TX-nak" firstAttribute="bottom" secondItem="uge-31-j8S" secondAttribute="bottomMargin" id="iqm-H3-tfm"/>
+                                                <constraint firstItem="vYd-TX-nak" firstAttribute="leading" secondItem="uge-31-j8S" secondAttribute="leadingMargin" constant="13" id="jtk-uo-BjX"/>
+                                                <constraint firstItem="vYd-TX-nak" firstAttribute="top" secondItem="uge-31-j8S" secondAttribute="topMargin" id="sdp-Bp-02u"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="1G3-U3-OLm">
+                                        <rect key="frame" x="0.0" y="369" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1G3-U3-OLm" id="0gw-5p-9wL">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -2497,7 +2519,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BqB-6m-IJg" kind="show" identifier="CitysSelectViewController" id="3m9-ji-nFs"/>
+                                            <segue destination="BqB-6m-IJg" kind="show" id="mjf-Pr-DFM"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -5798,7 +5820,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="9FE2A128-09EC-4DEA-B31D-58E41E3BEDC2" width="125" height="125">
+        <image name="055C64E5-435E-4795-BFB9-6C0E7CF56218" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

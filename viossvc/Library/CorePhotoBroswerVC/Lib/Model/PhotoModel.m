@@ -20,7 +20,7 @@
  */
 +(NSString *)check:(NSArray *)photoModels type:(PhotoBroswerVCType)type{
     
-    if(photoModels==nil || photoModels.count==0) return NO;
+    if(photoModels==nil || photoModels.count==0) return @"";
     
     __block NSString *result =nil;
     

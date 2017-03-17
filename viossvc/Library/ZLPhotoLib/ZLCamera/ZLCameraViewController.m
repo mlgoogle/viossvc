@@ -550,7 +550,7 @@ static CGFloat BOTTOM_HEIGHT = 60;
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 
