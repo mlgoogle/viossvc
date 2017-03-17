@@ -71,4 +71,20 @@ protocol UserAPI {
     func followCount(model: FollowCountRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
     // 获取联系方式金额
     func contactAndPrice(model: ContactAndPriceRequestModel, complete: CompleteBlock?, error: ErrorBlock?)
+    // 发布动态
+    func sendDynamicMessage(model:SendDynamicMessageModel,complete:CompleteBlock?, error:ErrorBlock?)
+    
+    // 获取动态列表
+    func requestDynamicList(model:ServantInfoModel, complete: CompleteBlock?, error: ErrorBlock?)
+    // 给动态点赞
+    func servantThumbup(model:ServantThumbUpModel,complete:CompleteBlock?,error:ErrorBlock?)
+    //订单消息列表
+    func orderList(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
+    //获取微信联系方式
+    func getRelation(model:GetRelationRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
+    //请求活动列表
+    func getActivityList(complete:CompleteBlock?,error:ErrorBlock?)
+    
+    
+    
 }

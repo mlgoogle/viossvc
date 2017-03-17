@@ -19,21 +19,24 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func logout(uid:Int) {
         SocketRequestManage.shared.stop()
     }
-
+    //请求手机短信验证码
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .SMSVerify, model: SMSVerifyModel(phone:phone,type:type))
         startModelRequest(packet, modelClass: SMSVerifyRetModel.classForCoder(), complete: complete, error: error)
     }
+    //检查邀请码是否正确
     func checkInviteCode(phoneNumber:String,inviteCode:String,complete:CompleteBlock,error:ErrorBlock)
     {
         let dict = [SocketConst.Key.phoneNum:phoneNumber, SocketConst.Key.invitationCode:inviteCode]
         let packet = SocketDataPacket(opcode: .CheckInviteCode,dict: dict)
         startResultIntRequest(packet, complete: complete, error: error)
     }
+    //验证手机短信是否正确
     func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock) {
         startRequest(SocketDataPacket(opcode: .VerifyCode,dict: paramDic), complete: complete, error: error)
     }
     
+    //注册
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .Register, model: model)
         startResultIntRequest(packet, complete: complete, error: error)
@@ -190,4 +193,39 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
         startModelRequest(packet, modelClass: ContactAndPriceModel.classForCoder(), complete: complete, error: error)
     }
+    
+    // 发布动态
+    func sendDynamicMessage(model:SendDynamicMessageModel,complete:CompleteBlock?, error:ErrorBlock?) {
+        let packet  = SocketDataPacket(opcode: .SendDynamic,model: model)
+        startModelRequest(packet, modelClass: SendDynamicResultModel.classForCoder(), complete: complete, error: error)
+    }
+    // 获取动态列表
+    func requestDynamicList(model:ServantInfoModel, complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .DynamicList,model: model)
+        startModelsRequest(packet, listName: "dynamic_list_", modelClass: servantDynamicModel.classForCoder(), complete: complete, error: error)
+    }
+    // 点赞
+    func servantThumbup(model:ServantThumbUpModel,complete:CompleteBlock?,error:ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .ThumbUp, model: model)
+        startModelRequest(packet, modelClass: ServantThumbUpResultModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //订单消息列表
+    func orderList(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?){
+        let packet = SocketDataPacket(opcode: .ClientOrderList, model: model)
+        startModelsRequest(packet, listName: "order_msg_list_", modelClass: OrderListCellModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //获取微信联系方式
+    func getRelation(model:GetRelationRequestModel,complete:CompleteBlock?,error:ErrorBlock?){
+        let packet = SocketDataPacket(opcode: .ContactAndPrice, model: model)
+        startModelRequest(packet, modelClass: GetRelationStatusModel.classForCoder(), complete: complete, error: error)
+    }
+    //请求活动列表
+    func getActivityList(complete:CompleteBlock?,error:ErrorBlock?){
+        
+        startModelsRequest(SocketDataPacket(opcode: .getActivityList), listName:"campaign_msg_list_",  modelClass: GetActivityListStatusModel.classForCoder(), complete: complete, error: error)
+        
+    }
+    
 }

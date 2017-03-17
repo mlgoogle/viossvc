@@ -10,6 +10,12 @@ import UIKit
 import XCGLogger
 class SocketDataPacket {
     
+    enum PacketType: Int8 {
+        case Error = 0
+        case User = 1
+        case Chat = 2
+    }
+    
     var packetHead:SocketPacketHead = SocketPacketHead();
     var data: NSData?
     private static var packet_id:UInt32 = 10000;

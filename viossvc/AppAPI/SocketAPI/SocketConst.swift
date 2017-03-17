@@ -14,7 +14,7 @@ class SocketConst: NSObject {
         case Heart = 1000
         // 请求登录
         case Login = 1001
-        //验证手机短信
+        //请求手机短信
         case SMSVerify = 1019
         //验证手机验证码
         case VerifyCode = 1101
@@ -116,6 +116,17 @@ class SocketConst: NSObject {
         case PriceSetting = 1131
         
         case ContactAndPrice = 1133
+        // 发布动态
+        case SendDynamic = 1135
+        // 动态列表
+        case DynamicList = 1139
+        // 动态点赞
+        case ThumbUp = 1137
+        // 订单列表
+        case ClientOrderList = 1141
+        //请求活动列表
+        case getActivityList = 1143
+        
     }
     enum type:UInt8 {
         case Error = 0

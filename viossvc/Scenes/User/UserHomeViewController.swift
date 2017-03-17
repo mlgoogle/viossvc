@@ -38,6 +38,8 @@ class UserHomeViewController: BaseTableViewController {
         }
     }
     @IBOutlet weak var priceSettingCell: UITableViewCell!
+    @IBOutlet weak var myClientCell: UITableViewCell!
+    
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
@@ -147,6 +149,14 @@ class UserHomeViewController: BaseTableViewController {
 //            priceList()
 //            priceSetting()
             return
+        }
+        
+        if cell == myClientCell{
+            NSLog("我的客户")
+            let vc =  MyClientVC()
+            vc.title = "我的客户"
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         }
 
     }

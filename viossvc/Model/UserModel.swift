@@ -128,16 +128,16 @@ class DrawCashPasswordModel: BaseModel {
     var change_type: Int = 0
 }
 
-class PhotoModel: BaseModel {
+class PhModel: BaseModel {
     var photo_url: String?
     var thumbnail_url: String?
     var upload_time: String?
 }
 
 class PhotoWallModel: BaseModel {
-    var photo_list:[PhotoModel] = []
+    var photo_list:[PhModel] = []
     class func photo_listModleClass() -> AnyClass {
-        return PhotoModel.classForCoder()
+        return PhModel.classForCoder()
     }
 }
 
@@ -211,5 +211,90 @@ class ContactAndPriceModel: BaseModel {
     var wx_num:String?
     
     var service_price = 0
+}
+
+// 助理model，用于获取助理动态
+class ServantInfoModel:BaseModel {
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var view_uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var page_num = 0
+    dynamic var page_count = 10
+}
+
+class servantDynamicModel: BaseModel {
+    dynamic var dynamic_id = 0
+    dynamic var dynamic_text:String?
+    dynamic var dynamic_url:String?
+    dynamic var dynamic_like_count = 0
+    dynamic var is_liked = 0
+    
+}
+//订单消息列表
+class OrderListCellModel: BaseModel{
+    dynamic var order_id = 0
+    dynamic var to_uid = 0
+    dynamic var to_uid_nickename:String?
+    dynamic var order_time: String?
+    dynamic var is_evaluate = -1
+    dynamic var to_uid_url: String?
+}
+//获取微信联系方式
+class GetRelationStatusModel: BaseModel{
+    dynamic var result = -1
+    dynamic var wx_url: String?
+    dynamic var wx_num: String?
+    dynamic var service_price = 0
+}
+//活动列表返回参数
+class GetActivityListStatusModel: BaseModel{
+    dynamic var campaign_id = 0
+    dynamic var campaign_title: String?
+    dynamic var campaign_url: String?
+    dynamic var campaign_time: String?
+}
+
+
+class ServantDynamicListModel: BaseModel {
+    var dynamic_list:[servantDynamicModel] = []
+}
+
+// 添加动态的 model
+class SendDynamicMessageModel: BaseModel {
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var dynamic_text:String?
+    dynamic var dynamic_url:String?
+}
+// 添加动态返回结果
+class SendDynamicResultModel:BaseModel {
+    dynamic var result = 0
+    dynamic var dynamic_id = 0
+}
+// 点赞model
+class ServantThumbUpModel:BaseModel {
+    dynamic var dynamic_id = 0
+    dynamic var like_uid = CurrentUserHelper.shared.uid
+}
+
+class ServantThumbUpResultModel: BaseModel {
+    dynamic var result = -1
+    dynamic var dynamic_like_count = 0
+}
+
+//订单列表
+class OrderListRequestModel: BaseModel{
+    dynamic var uid = CurrentUserHelper.shared.userInfo.uid
+    dynamic var uid_type = 1
+    dynamic var page_num = 0
+    dynamic var page_count = 10
+}
+//获取微信联系方式
+class GetRelationRequestModel: BaseModel {
+    dynamic var order_id = 0
+    dynamic var uid_form = 0
+    dynamic var uid_to = 0
+}
+//请求活动列表
+class GetActivityListRequestModel: BaseModel{
+    
 }
 
