@@ -111,7 +111,15 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     }
     //MARK: --TABLEVIEW
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 1 || indexPath.row == 3 {
+       
+        if indexPath.row == 1 || indexPath.row == 4 {
+            return
+        }
+        
+        if indexPath.row == 3  {
+            
+            let push:PersionalIntroductionController = PersionalIntroductionController.init()
+            navigationController?.pushViewController(push, animated: true)
             return
         }
         if indexPath.row == 0 {
@@ -194,9 +202,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             }
             
             })
-        let cancelAction = UIAlertAction.init(title: "取消", style: .Default, handler: { [weak self](sender) in
-            alertController.dismissController()
-            self?.navigationController?.popViewControllerAnimated(true)
+        let cancelAction = UIAlertAction.init(title: "取消", style: .Default, handler: { (sender) in
+//            alertController.dismissController()
+//            self?.navigationController?.popViewControllerAnimated(true)
             })
         alertController.addAction(cancelAction)
         alertController.addAction(setAction)
