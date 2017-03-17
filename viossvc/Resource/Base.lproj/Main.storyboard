@@ -546,8 +546,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3100BAC4-F28F-4F2D-B4D2-0B5610C5B81A" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
-                                                    <rect key="frame" x="238" y="85" width="125" height="125"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3E92C44C-1458-4A00-94EA-332EBC4233BE" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3100BAC4-F28F-4F2D-B4D2-0B5610C5B81A" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">                                                    <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
                                                         <constraint firstAttribute="width" constant="125" id="fED-1u-jLn"/>
@@ -5832,6 +5832,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="3E92C44C-1458-4A00-94EA-332EBC4233BE" width="125" height="125">
         <image name="3100BAC4-F28F-4F2D-B4D2-0B5610C5B81A" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU

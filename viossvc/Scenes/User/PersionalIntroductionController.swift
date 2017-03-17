@@ -54,7 +54,7 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         })
         
         placeholder = UILabel.init(frame: CGRectMake(5, 7, 200, 20))
-        placeholder?.text = "个人简介说明.."
+        placeholder?.text = "个人简介说明..."
         placeholder?.textColor = UIColor.init(decR: 153, decG: 153, decB: 153, a: 1)
         textView?.addSubview(placeholder!)
         

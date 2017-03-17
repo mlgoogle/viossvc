@@ -14,6 +14,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad();
         //友盟的帐号统计
         MobClick.profileSignInWithPUID("\(CurrentUserHelper.shared.userInfo.uid)")
+        
     }
 
 }
