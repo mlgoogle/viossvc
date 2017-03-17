@@ -13,6 +13,7 @@ class MyInformationCell: UITableViewCell {
     let clientName = UILabel()
     var weiXinNumber = UILabel()
     let timeLabel = UILabel()
+    var paymentSucceed = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,7 +22,7 @@ class MyInformationCell: UITableViewCell {
         setupUI()
         
     }
-    func activityList(info: GetActivityListStatusModel){
+    func activityList(info: MyMessageListStatusModel){
         //时间戳的转换
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -32,10 +33,11 @@ class MyInformationCell: UITableViewCell {
         clientName.text = info.campaign_title
         weiXinNumber.text = "点击查看详情"
         weiXinNumber.textColor = UIColor.init(red: 252/255.0, green: 163/255.0, blue: 17/255.0, alpha: 1)
+        paymentSucceed.hidden = true
     }
     
     
-    func updeat(info: OrderListCellModel){
+    func updeat(info: MyMessageListStatusModel){
         //时间戳的转换
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -44,7 +46,8 @@ class MyInformationCell: UITableViewCell {
         let dateString = dateFormatter.stringFromDate(date!)
         timeLabel.text =  dateString
         clientName.text = "客户 " + "'" + "'" + info.to_uid_nickename! + "'" + "'"
-        
+        weiXinNumber.textColor = UIColor.init(red: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
+        paymentSucceed.hidden = false
         let req = GetRelationRequestModel()
         req.order_id = info.order_id
         req.uid_form = info.to_uid
@@ -57,11 +60,11 @@ class MyInformationCell: UITableViewCell {
         }) { (error) in
         }
     }
-
+    
     func setupUI() {
         
         
-        let paymentSucceed = UILabel()
+        
         
         
         contentView.addSubview(clientName)

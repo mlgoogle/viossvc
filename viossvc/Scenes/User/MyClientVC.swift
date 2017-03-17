@@ -252,23 +252,6 @@ class MyClientVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 }
             }) { (error) in
             }
- 
-//        APIHelper.consumeAPI().getRelation(getModel, complete: { [weak self](response) in
-//            
-//            if let model = response as? GetRelationStatusModel{
-//                let aidWeiXin = AidWenXinVC()
-//                aidWeiXin.getRelation = model
-//                aidWeiXin.nickname = array![indexPath.row].to_uid_nickename_
-//                aidWeiXin.toUid = array![indexPath.row].to_uid_
-//                aidWeiXin.orderId = array![indexPath.row].order_id_
-//                aidWeiXin.isEvaluate = array![indexPath.row].is_evaluate_ == 0 ? false : true
-//                aidWeiXin.bool = false
-//                aidWeiXin.toUidUrl =  array![indexPath.row].to_uid_url_
-//                aidWeiXin.isRefresh = { ()->() in
-//                    self!.isRefresh = true
-//                }
-//                self!.navigationController?.pushViewController(aidWeiXin, animated: true)
-//            }
         
     }
 

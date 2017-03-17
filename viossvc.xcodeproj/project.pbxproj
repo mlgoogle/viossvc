@@ -97,6 +97,7 @@
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
 		BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
+		D0ADC4B21E7BDA900059E424 /* ActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADC4B11E7BDA900059E424 /* ActivityVC.swift */; };
 		D0B769841E7A257C0047ADAB /* MyInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B769831E7A257C0047ADAB /* MyInformationVC.swift */; };
 		D0B769861E7A25A40047ADAB /* MyInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B769851E7A25A40047ADAB /* MyInformationCell.swift */; };
 		D0F5064A1E7797D5001BDE98 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F506491E7797D5001BDE98 /* LoginVC.swift */; };
@@ -305,6 +306,7 @@
 		BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5/UMMobClick.framework"; sourceTree = "<group>"; };
 		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0ADC4B11E7BDA900059E424 /* ActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityVC.swift; sourceTree = "<group>"; };
 		D0B769831E7A257C0047ADAB /* MyInformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInformationVC.swift; sourceTree = "<group>"; };
 		D0B769851E7A25A40047ADAB /* MyInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInformationCell.swift; sourceTree = "<group>"; };
 		D0F506491E7797D5001BDE98 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 				E959F5551E77A1390039E880 /* ServantPersonalCell.swift */,
 				D0B769831E7A257C0047ADAB /* MyInformationVC.swift */,
 				D0B769851E7A25A40047ADAB /* MyInformationCell.swift */,
+				D0ADC4B11E7BDA900059E424 /* ActivityVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1784,6 +1787,7 @@
 				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,
 				B03B12361DE5BFDE00B00D2E /* UserViewController.swift in Sources */,
 				E9858B541E7A7D28003F68ED /* UIImageView+SD.m in Sources */,
+				D0ADC4B21E7BDA900059E424 /* ActivityVC.swift in Sources */,
 				E959F5561E77A1390039E880 /* ServantFooterView.swift in Sources */,
 				E9858B641E7A7D28003F68ED /* PhotoBroswerVC.m in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,

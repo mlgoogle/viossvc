@@ -84,7 +84,8 @@ protocol UserAPI {
     func getRelation(model:GetRelationRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
     //请求活动列表
     func getActivityList(complete:CompleteBlock?,error:ErrorBlock?)
-    
+    //订单消息和请求活动合集
+    func orderListSum(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
     
     
 }
