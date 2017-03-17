@@ -138,41 +138,27 @@ class UserHomeViewController: BaseTableViewController {
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
             return
-//        } else if cell == priceSettingCell && authStatus == "认证通过" {
         } else if cell == priceSettingCell {
-            NSLog("金额设置")
-            let vc = PriceAndContactSettingVC()
-            vc.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(vc, animated: true)
-            
-//            updateFollowCount()
-//            priceList()
-//            priceSetting()
+            if authStatus == "认证通过" {
+                let vc = PriceAndContactSettingVC()
+                vc.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(vc, animated: true)
+            } else if authStatus == "认证中" {
+                SVProgressHUD.showWainningMessage(WainningMessage: "认证中，请等待认证成功后再试", ForDuration: 1.5, completion: nil)
+            } else {
+                SVProgressHUD.showWainningMessage(WainningMessage: "未认证或认证未通过，请先进行个人认证", ForDuration: 1.5, completion: nil)
+            }
             return
         }
         
         if cell == myClientCell{
             NSLog("我的客户")
             let vc =  MyClientVC()
+            vc.title = "我的客户"
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-        
 
     }
-    
-    func updateFollowCount() {
-        let req = FollowCountRequestModel()
-        req.uid = CurrentUserHelper.shared.uid
-        req.type = 2
-        AppAPIHelper.userAPI().followCount(req, complete: { (response) in
-            if let model = response as? FollowCountModel {
-                NSLog("\(model.follow_count)")
-            }
-            }, error: nil)
-    }
-    
     
 }
