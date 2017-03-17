@@ -1558,7 +1558,7 @@
 				TargetAttributes = {
 					B0CF59DC1DE5BEC300C40C9C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = V6UZGER6DK;
+						DevelopmentTeam = 96YGS7NXK5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2016,7 +2016,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4be1c88-b019-4d8b-97b9-46f935b0d4d9";
+				PROVISIONING_PROFILE = "32fc85a9-2bb7-492a-b262-03fd7bec1bca";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
@@ -2070,7 +2070,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4be1c88-b019-4d8b-97b9-46f935b0d4d9";
+				PROVISIONING_PROFILE = "32fc85a9-2bb7-492a-b262-03fd7bec1bca";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
