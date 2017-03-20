@@ -11,7 +11,7 @@ import UIKit
 import MJRefresh
 import SVProgressHUD
 
-public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableViewDataSource,ServantPersonalCellDelegate {
+public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableViewDataSource,ServantPersonalCellDelegate,SendMsgViewDelegate {
     // MARK: - 属性
     var personalInfo:UserInfoModel?
     
@@ -79,6 +79,9 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         let imageView:UIImageView = tap.view as! UIImageView
         imageView.removeFromSuperview()
         
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let key = "isShownFiestTime1"
+        userDefaults.setValue(true, forKey: key)
     }
     
     
@@ -157,6 +160,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         print("-----右上角举报实现~")
         let sendMsgView:SendMsgViewController = SendMsgViewController()
         sendMsgView.hidesBottomBarWhenPushed = true
+        sendMsgView.delegate = self
         navigationController?.pushViewController(sendMsgView, animated: true)
     }
     
@@ -415,6 +419,12 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
             return photoArray as [AnyObject]
         }
         
+    }
+    
+    // 刷新界面
+    func sendMsgViewDidSendMessage() {
+        
+        header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
     }
     
 }

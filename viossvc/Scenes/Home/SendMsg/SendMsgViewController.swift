@@ -9,6 +9,10 @@
 import UIKit
 import SVProgressHUD
 
+protocol SendMsgViewDelegate {
+    func sendMsgViewDidSendMessage()
+}
+
 class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UIActionSheetDelegate,ZLPhotoPickerViewControllerDelegate {
     
     var topView:UIView?
@@ -22,6 +26,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     var imgUrlArray:NSMutableArray = NSMutableArray()
     
     var headerView:SendDynamicHeaderView?
+    
+    var delegate:SendMsgViewDelegate?
     
     
     override func viewWillAppear(animated: Bool) {
@@ -114,13 +120,13 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             return
         }
         
+        SVProgressHUD.show()
+        
         if imageArray?.count > 0 {
-            
             imgIndex = 0
             self.uploadImages()
           
         }else {
-            SVProgressHUD.show()
             finallSendDymicMessage()
         }
         
@@ -134,6 +140,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
             
             if imageUrl == nil {
+                SVProgressHUD.dismiss()
                 SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
                 return
             }
@@ -182,6 +189,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
                 SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 1.5, completion: {
                     self.navigationController?.popViewControllerAnimated(true)
                 })
+                
+                self.delegate?.sendMsgViewDidSendMessage()
             }
             }, error: nil )
     }
