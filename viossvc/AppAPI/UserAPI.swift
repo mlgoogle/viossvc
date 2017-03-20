@@ -86,6 +86,7 @@ protocol UserAPI {
     func getActivityList(complete:CompleteBlock?,error:ErrorBlock?)
     //订单消息和请求活动合集
     func orderListSum(model:OrderListRequestModel,complete:CompleteBlock?,error:ErrorBlock?)
-    
+    // 个人简介
+    func persionalIntroduct(model:PersionalIntroductionMode, complete:CompleteBlock?,error:ErrorBlock?)
     
 }

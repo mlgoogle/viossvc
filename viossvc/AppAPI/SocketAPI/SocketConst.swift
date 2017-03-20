@@ -126,6 +126,8 @@ class SocketConst: NSObject {
         case ClientOrderList = 1141
         //请求活动列表
         case getActivityList = 1143
+        // 个人简介
+        case persionalIntroduct = 1145
         
     }
     enum type:UInt8 {

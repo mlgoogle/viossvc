@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PersionalIntroductionController: UIViewController,UITextViewDelegate {
     
@@ -23,15 +24,14 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         
         addNavBtn()
         addViews()
+        addData()
     }
     
     func addNavBtn() {
-        let rightBtn:UIButton = UIButton.init(type: .Custom)
-        rightBtn.setTitle("完成", forState: .Normal)
-        rightBtn.backgroundColor = UIColor.whiteColor()
+        let rightBtn:UIButton = UIButton.init(frame: CGRectMake(ScreenWidth - 65, 27, 50, 30))
         rightBtn.titleLabel?.font = UIFont.systemFontOfSize(16)
-        rightBtn.titleLabel?.textColor = UIColor.init(decR: 51, decG: 51, decB: 51, a: 1)
-        rightBtn.sizeToFit()
+        rightBtn.setTitleColor(UIColor.init(decR: 51, decG: 51, decB: 51, a: 1), forState: .Normal)
+        rightBtn.setTitle("完成", forState: .Normal)
         rightBtn.addTarget(self, action: #selector(self.didEndAction), forControlEvents: .TouchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
     }
@@ -74,6 +74,47 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
     
     // 完成
     func didEndAction() {
+        
+        let req:PersionalIntroductionMode = PersionalIntroductionMode()
+        req.uid = CurrentUserHelper.shared.uid
+        req.introduce = textView?.text
+        req.type = 2
+        
+        AppAPIHelper.userAPI().persionalIntroduct(req, complete: { [weak self](response) in
+            
+            let model = response as! PersionalIntroductResultModel
+            if model.result == "success"{
+                
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "简介更新成功", ForDuration: 1.5 , completion: {
+                    self?.navigationController?.popViewControllerAnimated(true)
+                })
+            }else {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "简介更新失败，请稍后再试", ForDuration: 1.5, completion: {
+                })
+                
+            }
+            
+        }) { (error) in
+        }
+    }
+    
+    func addData() {
+        let req:PersionalIntroductionMode = PersionalIntroductionMode()
+        req.uid = CurrentUserHelper.shared.uid
+        req.introduce = ""
+        req.type = 1
+        
+        AppAPIHelper.userAPI().persionalIntroduct(req, complete: { [weak self](response) in
+            
+            let model = response as! PersionalIntroductResultModel
+            if model.result?.length() != 0 {
+                
+                self!.textView?.text = model.result
+                self!.placeholder?.removeFromSuperview()
+            }
+            
+        }) { (error) in
+        }
     }
     
     //MARK: delegate
@@ -86,7 +127,7 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
             textView.addSubview(placeholder!)
         }
         
-        if textView.text.length() > 10 {
+        if textView.text.length() > 200 {
             
             let text:String = textView.text
             let index = text.startIndex.advancedBy(10)

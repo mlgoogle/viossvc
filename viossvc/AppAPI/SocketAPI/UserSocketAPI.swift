@@ -232,5 +232,15 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .ClientOrderList, model: model)
         startModelsRequest(packet, listName: "order_msg_list_", modelClass: MyMessageListStatusModel.classForCoder(), complete: complete, error: error)
     }
-    
+    // 个人简介
+    func persionalIntroduct(model:PersionalIntroductionMode, complete:CompleteBlock?,error:ErrorBlock?){
+        let packet = SocketDataPacket(opcode:.persionalIntroduct,model: model)
+        startModelRequest(packet, modelClass: PersionalIntroductResultModel.classForCoder(), complete: complete, error: error)
+//        startModelRequest(packet, modelClass: PersionalIntroductResultModel.classForCoder(), complete: { (response) in
+//            
+//            print(response)
+//            
+//            }) { (error) in
+//        }
+    }
 }
