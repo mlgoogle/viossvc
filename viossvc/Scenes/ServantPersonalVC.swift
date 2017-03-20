@@ -68,6 +68,8 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
             imageView.userInteractionEnabled = true
             let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageTapAction(_:)))
             imageView.addGestureRecognizer(tap)
+            
+            userDefaults.setValue(true, forKey: key)
         }
     }
     

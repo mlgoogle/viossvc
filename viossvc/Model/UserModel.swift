@@ -292,6 +292,16 @@ class ServantThumbUpResultModel: BaseModel {
     dynamic var result = -1
     dynamic var dynamic_like_count = 0
 }
+// 请求个人简介
+class PersionalIntroductionMode:BaseModel {
+    dynamic var uid = 0
+    dynamic var introduce:String?
+    dynamic var type = 0
+}
+// 个人简介结果
+class PersionalIntroductResultModel:BaseModel {
+    dynamic var result:String?
+}
 
 //订单列表
 class OrderListRequestModel: BaseModel{
