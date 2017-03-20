@@ -104,6 +104,10 @@
 		D0FA0E3B1E79050A00609214 /* MyClientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3A1E79050A00609214 /* MyClientVC.swift */; };
 		D0FA0E3D1E79052C00609214 /* MyClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3C1E79052C00609214 /* MyClientCell.swift */; };
 		D0FA0E3F1E793B7300609214 /* ClientWeiXinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */; };
+		E92223971E7FE19800D46E07 /* GuidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92223961E7FE19800D46E07 /* GuidView.swift */; };
+		E922239B1E7FE3CE00D46E07 /* guideView0.png in Resources */ = {isa = PBXBuildFile; fileRef = E92223981E7FE3CE00D46E07 /* guideView0.png */; };
+		E922239C1E7FE3CE00D46E07 /* guideView1.png in Resources */ = {isa = PBXBuildFile; fileRef = E92223991E7FE3CE00D46E07 /* guideView1.png */; };
+		E922239D1E7FE3CE00D46E07 /* guideViewBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = E922239A1E7FE3CE00D46E07 /* guideViewBottom.png */; };
 		E9250B361E7BB1FC00F937A7 /* PersionalIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9250B351E7BB1FC00F937A7 /* PersionalIntroductionController.swift */; };
 		E9250B381E7BB73700F937A7 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */; };
 		E9568BAB1E7BFA8500B60BDE /* 助理端新手引导2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */; };
@@ -320,6 +324,10 @@
 		D0FA0E3A1E79050A00609214 /* MyClientVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClientVC.swift; sourceTree = "<group>"; };
 		D0FA0E3C1E79052C00609214 /* MyClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClientCell.swift; sourceTree = "<group>"; };
 		D0FA0E3E1E793B7300609214 /* ClientWeiXinVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientWeiXinVC.swift; sourceTree = "<group>"; };
+		E92223961E7FE19800D46E07 /* GuidView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidView.swift; sourceTree = "<group>"; };
+		E92223981E7FE3CE00D46E07 /* guideView0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideView0.png; sourceTree = "<group>"; };
+		E92223991E7FE3CE00D46E07 /* guideView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideView1.png; sourceTree = "<group>"; };
+		E922239A1E7FE3CE00D46E07 /* guideViewBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideViewBottom.png; sourceTree = "<group>"; };
 		E9250B351E7BB1FC00F937A7 /* PersionalIntroductionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersionalIntroductionController.swift; sourceTree = "<group>"; };
 		E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导2.png"; sourceTree = "<group>"; };
@@ -683,6 +691,9 @@
 		B03B11C11DE5BFDD00B00D2E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E92223981E7FE3CE00D46E07 /* guideView0.png */,
+				E92223991E7FE3CE00D46E07 /* guideView1.png */,
+				E922239A1E7FE3CE00D46E07 /* guideViewBottom.png */,
 				E9568BAE1E7BFC7F00B60BDE /* 助理端新手引导1@3x.png */,
 				E9568BAF1E7BFC7F00B60BDE /* 助理端新手引导1@2x.png */,
 				E9568BB01E7BFC7F00B60BDE /* 助理端新手引导1.png */,
@@ -714,6 +725,7 @@
 		B03B11ED1DE5BFDD00B00D2E /* General */ = {
 			isa = PBXGroup;
 			children = (
+				E9DE067D1E7FE119003E3F9D /* GuidView */,
 				2FECFBD91E1F4C760065AF60 /* Update */,
 				B011C2C31DE7260800CB897A /* Protocol */,
 				B03B11F91DE5BFDE00B00D2E /* Base */,
@@ -1543,6 +1555,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E9DE067D1E7FE119003E3F9D /* GuidView */ = {
+			isa = PBXGroup;
+			children = (
+				E92223961E7FE19800D46E07 /* GuidView.swift */,
+			);
+			path = GuidView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1629,6 +1649,7 @@
 				E9ADF2791E792D0400FEEB9A /* paizhao@2x.png in Resources */,
 				E9568BAC1E7BFA8500B60BDE /* 助理端新手引导2@2x.png in Resources */,
 				E9ADF27C1E792D0400FEEB9A /* shanguangdeng2.png in Resources */,
+				E922239C1E7FE3CE00D46E07 /* guideView1.png in Resources */,
 				E9858B521E7A7D28003F68ED /* CoreSDWebImage.bundle in Resources */,
 				E9ADF27E1E792D0400FEEB9A /* xiang.png in Resources */,
 				B03B12191DE5BFDE00B00D2E /* Assets.xcassets in Resources */,
@@ -1637,6 +1658,7 @@
 				E9ADF2751E792D0400FEEB9A /* AssetsPickerChecked.png in Resources */,
 				E9568BB11E7BFC7F00B60BDE /* 助理端新手引导1@3x.png in Resources */,
 				E9568BB31E7BFC7F00B60BDE /* 助理端新手引导1.png in Resources */,
+				E922239B1E7FE3CE00D46E07 /* guideView0.png in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				E9858B651E7A7D28003F68ED /* PhotoBroswerVC.xib in Resources */,
 				E9ADF27F1E792D0400FEEB9A /* xiang@2x.png in Resources */,
@@ -1647,6 +1669,7 @@
 				E9ADF27B1E792D0400FEEB9A /* shanguangdeng@2x.png in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 				E9858B5C1E7A7D28003F68ED /* PB.bundle in Resources */,
+				E922239D1E7FE3CE00D46E07 /* guideViewBottom.png in Resources */,
 				E9ADF27A1E792D0400FEEB9A /* shanguangdeng.png in Resources */,
 				7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */,
 				E9568BAD1E7BFA8500B60BDE /* 助理端新手引导2@3x.png in Resources */,
@@ -1810,6 +1833,7 @@
 				2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */,
 				E9ADF2951E792D0400FEEB9A /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */,
 				E9ADF2721E792D0400FEEB9A /* UIImageView+WebCache.m in Sources */,
+				E92223971E7FE19800D46E07 /* GuidView.swift in Sources */,
 				E9ADF2621E792D0400FEEB9A /* UIView+Extension.m in Sources */,
 				E9858B471E7A7D28003F68ED /* UIDevice+Extend.m in Sources */,
 				E957B2DC1E793EAC004321D8 /* PhotoNavigationController.m in Sources */,

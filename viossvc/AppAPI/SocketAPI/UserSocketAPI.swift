@@ -239,8 +239,8 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
 //        startModelRequest(packet, modelClass: PersionalIntroductResultModel.classForCoder(), complete: { (response) in
 //            
 //            print(response)
-//            
 //            }) { (error) in
+//                print(error)
 //        }
     }
 }

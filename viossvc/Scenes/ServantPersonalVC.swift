@@ -11,7 +11,7 @@ import UIKit
 import MJRefresh
 import SVProgressHUD
 
-public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableViewDataSource,ServantPersonalCellDelegate,SendMsgViewDelegate {
+public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableViewDataSource,ServantPersonalCellDelegate,SendMsgViewDelegate ,GuideViewDelegate {
     // MARK: - 属性
     var personalInfo:UserInfoModel?
     
@@ -41,17 +41,32 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override public func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if userDefaults.floatForKey("guideVersion") < 1.2 {
+            loadGuide()
+        }else{
+            initViews()
+        }
+        
+//        loadGuide()
+    }
+    
+    func loadGuide() {
+        
+        let guidView:GuidView = GuidView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
+        guidView.delegate = self
+        UIApplication.sharedApplication().keyWindow?.addSubview(guidView)
+    }
+    
+    func initViews() {
+        
         personalInfo = CurrentUserHelper.shared.userInfo
         
-        initViews()
+        addViews()
         header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -73,22 +88,8 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         }
     }
     
-    
-    func imageTapAction(tap:UITapGestureRecognizer) {
-        
-        let imageView:UIImageView = tap.view as! UIImageView
-        imageView.removeFromSuperview()
-        
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let key = "isShownFiestTime1"
-        userDefaults.setValue(true, forKey: key)
-    }
-    
-    
-    
-    
     // 加载页面
-    func initViews(){
+    func addViews(){
         tableView = UITableView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - 44), style: .Grouped)
         tableView?.backgroundColor = UIColor.init(decR: 242, decG: 242, decB: 242, a: 1)
         tableView?.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
@@ -427,4 +428,19 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         header.performSelector(#selector(MJRefreshHeader.beginRefreshing), withObject: nil, afterDelay: 0.5)
     }
     
+    // 新手引导图片点击
+    func imageTapAction(tap:UITapGestureRecognizer) {
+        
+        let imageView:UIImageView = tap.view as! UIImageView
+        imageView.removeFromSuperview()
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let key = "isShownFiestTime1"
+        userDefaults.setValue(true, forKey: key)
+    }
+    
+    // 启动页消失
+    func guideDidDismissed() {
+        initViews()
+    }
 }
