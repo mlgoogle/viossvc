@@ -26,6 +26,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         picker.allowsEditing = true
         return picker
     }()
+    
+    var username:String?
+    var currentTextField:UITextField?
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         
         sexLabel.text = CurrentUserHelper.shared.userInfo.gender == 1 ? "男" : "女"
+        nameText.delegate = self
+        nameText!.clearButtonMode = .WhileEditing
+        
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -224,4 +230,43 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         CurrentUserHelper.shared.userInfo.latitude = newLocation.coordinate.latitude
         CurrentUserHelper.shared.userInfo.longitude = newLocation.coordinate.longitude
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        nameText.resignFirstResponder()
+    }
+    
 }
+
+extension NodifyUserInfoViewController:UITextFieldDelegate{
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        nameText.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        currentTextField = textField
+        if range.location > 10 {
+            return false
+        }
+        if textField.tag == 1001 {
+            username = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+         }
+        return true
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 1001:
+            username = textField.text
+            break
+        default:
+            break
+        }
+        return true
+    }
+
+}
+
+

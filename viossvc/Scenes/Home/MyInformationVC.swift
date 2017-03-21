@@ -183,6 +183,10 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         self.allDataDict.removeAll()
         self.dateArray.removeAll()
         //将传入的模型根据timestamp进行降序
+        if self.orders.count == 0 ||  self.orders.count == 1 || self.orders.count == 2{
+            
+        }
+        else{
         for i in 0...(self.orders.count - 2) {
             for j in 0...(self.orders.count - i - 2){
                 //                let str1 = models[j].timestamp! as NSString
@@ -199,6 +203,7 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 }
             }
             
+        }
         }
         
         let dateFormatter = NSDateFormatter()
