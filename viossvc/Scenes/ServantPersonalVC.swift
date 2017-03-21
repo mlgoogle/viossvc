@@ -45,13 +45,12 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-//        let userDefaults = NSUserDefaults.standardUserDefaults()
-//        if userDefaults.floatForKey("guideVersion") < 1.2 {
-//            loadGuide()
-//        }else{
-//            initViews()
-//        }
-        loadGuide()
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if userDefaults.floatForKey("guideVersion") < 1.2 {
+            loadGuide()
+        }else{
+            initViews()
+        }
     }
     
     func loadGuide() {

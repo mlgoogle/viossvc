@@ -107,7 +107,6 @@
 		E92223971E7FE19800D46E07 /* GuidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92223961E7FE19800D46E07 /* GuidView.swift */; };
 		E922239B1E7FE3CE00D46E07 /* guideView0.png in Resources */ = {isa = PBXBuildFile; fileRef = E92223981E7FE3CE00D46E07 /* guideView0.png */; };
 		E922239C1E7FE3CE00D46E07 /* guideView1.png in Resources */ = {isa = PBXBuildFile; fileRef = E92223991E7FE3CE00D46E07 /* guideView1.png */; };
-		E922239D1E7FE3CE00D46E07 /* guideViewBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = E922239A1E7FE3CE00D46E07 /* guideViewBottom.png */; };
 		E9250B361E7BB1FC00F937A7 /* PersionalIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9250B351E7BB1FC00F937A7 /* PersionalIntroductionController.swift */; };
 		E9250B381E7BB73700F937A7 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */; };
 		E9568BAB1E7BFA8500B60BDE /* 助理端新手引导2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */; };
@@ -219,6 +218,7 @@
 		E9ADF2961E792D0400FEEB9A /* ZLPhotoPickerGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9ADF25D1E792D0400FEEB9A /* ZLPhotoPickerGroupTableViewCell.m */; };
 		E9ADF2971E792D0400FEEB9A /* ZLPhotoPickerGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9ADF25E1E792D0400FEEB9A /* ZLPhotoPickerGroupTableViewCell.xib */; };
 		E9ADF2981E792D0400FEEB9A /* ZLPhotoPickerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9ADF2601E792D0400FEEB9A /* ZLPhotoPickerImageView.m */; };
+		E9DE0BB41E80F9FA0092BD2E /* guideViewBottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9DE0BB31E80F9FA0092BD2E /* guideViewBottom.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -327,7 +327,6 @@
 		E92223961E7FE19800D46E07 /* GuidView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidView.swift; sourceTree = "<group>"; };
 		E92223981E7FE3CE00D46E07 /* guideView0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideView0.png; sourceTree = "<group>"; };
 		E92223991E7FE3CE00D46E07 /* guideView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideView1.png; sourceTree = "<group>"; };
-		E922239A1E7FE3CE00D46E07 /* guideViewBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideViewBottom.png; sourceTree = "<group>"; };
 		E9250B351E7BB1FC00F937A7 /* PersionalIntroductionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersionalIntroductionController.swift; sourceTree = "<group>"; };
 		E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		E9568BA81E7BFA8500B60BDE /* 助理端新手引导2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "助理端新手引导2.png"; sourceTree = "<group>"; };
@@ -524,6 +523,7 @@
 		E9ADF25F1E792D0400FEEB9A /* ZLPhotoPickerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerImageView.h; sourceTree = "<group>"; };
 		E9ADF2601E792D0400FEEB9A /* ZLPhotoPickerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoPickerImageView.m; sourceTree = "<group>"; };
 		E9ADF2611E792D0400FEEB9A /* ZLPhotoPickerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerCommon.h; sourceTree = "<group>"; };
+		E9DE0BB31E80F9FA0092BD2E /* guideViewBottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guideViewBottom.jpg; sourceTree = "<group>"; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -691,9 +691,9 @@
 		B03B11C11DE5BFDD00B00D2E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E9DE0BB31E80F9FA0092BD2E /* guideViewBottom.jpg */,
 				E92223981E7FE3CE00D46E07 /* guideView0.png */,
 				E92223991E7FE3CE00D46E07 /* guideView1.png */,
-				E922239A1E7FE3CE00D46E07 /* guideViewBottom.png */,
 				E9568BAE1E7BFC7F00B60BDE /* 助理端新手引导1@3x.png */,
 				E9568BAF1E7BFC7F00B60BDE /* 助理端新手引导1@2x.png */,
 				E9568BB01E7BFC7F00B60BDE /* 助理端新手引导1.png */,
@@ -1645,6 +1645,7 @@
 				E9858B631E7A7D28003F68ED /* PhotoItemView.xib in Resources */,
 				B03B12471DE5BFDE00B00D2E /* PageViewImageCell.xib in Resources */,
 				E9568BB21E7BFC7F00B60BDE /* 助理端新手引导1@2x.png in Resources */,
+				E9DE0BB41E80F9FA0092BD2E /* guideViewBottom.jpg in Resources */,
 				B03B12491DE5BFDE00B00D2E /* TableViewHeaderView.xib in Resources */,
 				E9ADF2791E792D0400FEEB9A /* paizhao@2x.png in Resources */,
 				E9568BAC1E7BFA8500B60BDE /* 助理端新手引导2@2x.png in Resources */,
@@ -1669,7 +1670,6 @@
 				E9ADF27B1E792D0400FEEB9A /* shanguangdeng@2x.png in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 				E9858B5C1E7A7D28003F68ED /* PB.bundle in Resources */,
-				E922239D1E7FE3CE00D46E07 /* guideViewBottom.png in Resources */,
 				E9ADF27A1E792D0400FEEB9A /* shanguangdeng.png in Resources */,
 				7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */,
 				E9568BAD1E7BFA8500B60BDE /* 助理端新手引导2@3x.png in Resources */,

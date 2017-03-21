@@ -33,7 +33,7 @@ class GuidView: UIView {
     func addViews() {
         
         bgImageView = UIImageView.init(frame: self.bounds)
-        bgImageView?.image = UIImage.init(named: "guideViewBottom")
+        bgImageView?.image = UIImage.init(named: "guideViewBottom.jpg")
         self.addSubview(bgImageView!)
         
         scrollView = UIScrollView.init(frame: self.bounds)

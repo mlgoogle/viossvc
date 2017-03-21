@@ -293,7 +293,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         collection?.reloadData()
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
