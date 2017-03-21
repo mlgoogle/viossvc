@@ -110,7 +110,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     // 先上传图片
     func sendMessage() {
         
-      view.endEditing(true)
+        textView?.resignFirstResponder()
         
         let message:String = (headerView?.textView?.text)!
         let count:Int = (imageArray?.count)!
@@ -246,6 +246,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        textView?.resignFirstResponder()
+        view.endEditing(true)
         if indexPath.row == imageArray?.count && imageArray?.count != 9 {
             let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册选择图片")
             
@@ -291,9 +293,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         collection?.reloadData()
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }

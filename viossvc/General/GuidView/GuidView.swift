@@ -16,6 +16,7 @@ class GuidView: UIView {
     var bgImageView:UIImageView?
     var scrollView:UIScrollView?
     var delegate:GuideViewDelegate?
+    var enterBtn:UIButton?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -32,7 +33,7 @@ class GuidView: UIView {
     func addViews() {
         
         bgImageView = UIImageView.init(frame: self.bounds)
-        bgImageView?.image = UIImage.init(named: "guideViewBottom")
+        bgImageView?.image = UIImage.init(named: "guideViewBottom.jpg")
         self.addSubview(bgImageView!)
         
         scrollView = UIScrollView.init(frame: self.bounds)
@@ -54,6 +55,24 @@ class GuidView: UIView {
                 imgV.addGestureRecognizer(tap)
             }
         }
+        
+        enterBtn = UIButton.init(type: .Custom)
+        enterBtn?.layer.masksToBounds = true
+        enterBtn?.layer.cornerRadius = 12
+        enterBtn?.layer.borderWidth = 1
+        enterBtn?.layer.borderColor = UIColor.init(decR: 252, decG: 163, decB: 17, a: 1).CGColor
+        enterBtn?.backgroundColor = UIColor.clearColor()
+        enterBtn!.titleLabel?.font = UIFont.systemFontOfSize(15)
+        enterBtn!.setTitleColor(UIColor.init(decR: 252, decG: 163, decB: 17, a: 1), forState: .Normal)
+        enterBtn?.setTitle("进入", forState: .Normal)
+        self.addSubview(enterBtn!)
+        enterBtn?.snp_makeConstraints(closure: { (make) in
+            make.top.equalTo(self.snp_top).offset(36)
+            make.right.equalTo(self.snp_right).offset(-16)
+            make.width.equalTo(44)
+            make.height.equalTo(24)
+        })
+        enterBtn?.addTarget(self, action: #selector(self.imageViewAction), forControlEvents: .TouchUpInside)
     }
     
     func imageViewAction() {

@@ -51,8 +51,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         }else{
             initViews()
         }
-        
-//        loadGuide()
     }
     
     func loadGuide() {
@@ -60,6 +58,9 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         let guidView:GuidView = GuidView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
         guidView.delegate = self
         UIApplication.sharedApplication().keyWindow?.addSubview(guidView)
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setValue(1.2, forKey: "guideVersion ")
     }
     
     func initViews() {
@@ -419,7 +420,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
             
             return photoArray as [AnyObject]
         }
-        
     }
     
     // 刷新界面
