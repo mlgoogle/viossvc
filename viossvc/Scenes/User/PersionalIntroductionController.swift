@@ -91,7 +91,6 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
             }else {
                 SVProgressHUD.showErrorMessage(ErrorMessage: "简介更新失败，请稍后再试", ForDuration: 1.5, completion: {
                 })
-                
             }
             
         }) { (error) in
