@@ -183,7 +183,7 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         self.allDataDict.removeAll()
         self.dateArray.removeAll()
         //将传入的模型根据timestamp进行降序
-        if self.orders.count == 0 ||  self.orders.count == 1{
+        if self.orders.count == 0 ||  self.orders.count == 1 || self.orders.count == 2{
             
         }
         else{
