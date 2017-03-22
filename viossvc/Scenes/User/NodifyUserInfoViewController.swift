@@ -94,8 +94,13 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             CurrentUserHelper.shared.userInfo.address = self?.cityLabel.text
             CurrentUserHelper.shared.userInfo.nickname = self?.nameText.text
             CurrentUserHelper.shared.userInfo.gender = self?.sexLabel.text == "男" ? 1 : 0
+            //发送通知
+            if self?.imageUrl != nil {
+                CurrentUserHelper.shared.userInfo.head_url = self?.imageUrl
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName("updateImageAndName", object: nil, userInfo: nil)
             if self?.haveChangeImage == true {
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "头像图片成功，请静待人工审核", ForDuration: 1, completion:{
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 1, completion:{
                     self?.navigationController?.popViewControllerAnimated(true)
                 })
             }else{
@@ -177,7 +182,15 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
                 return
             }
             self?.imageUrl = imageUrl as? String
+            
+            //上传头像图片
             AppAPIHelper.userAPI().authHeaderUrl(CurrentUserHelper.shared.userInfo.uid, head_url_: (self?.imageUrl)! , complete: { (result) in
+                
+                if result == nil {
+               
+                    
+                    
+                }
                 
                 }, error: self!.errorBlockFunc())
         })
