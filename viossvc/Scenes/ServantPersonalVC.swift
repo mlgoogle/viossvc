@@ -71,7 +71,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         UIApplication.sharedApplication().keyWindow?.addSubview(guidView)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setValue(1.2, forKey: "guideVersion ")
+        userDefaults.setFloat(1.2, forKey: "guideVersion")
     }
     
     func initViews() {
@@ -198,10 +198,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
                 let cell = tableView.dequeueReusableCellWithIdentifier("ServantOneLabelCell", forIndexPath: indexPath) as! ServantOneLabelCell
                 cell.delegate = self
                 cell.selectionStyle = .None
-                
-                cell.headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
-                cell.nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
-                
                 cell.updateLabelText(model)
                 
                 return cell
@@ -212,9 +208,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
                 cell.delegate = self
                 cell.selectionStyle = .None
                 
-                cell.headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
-                cell.nameLabel?.text = personalInfo?.nickname
-                
                 cell.updateImage(model)
                 return cell
                 
@@ -223,9 +216,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
                 let cell = tableView.dequeueReusableCellWithIdentifier("ServantPicAndLabelCell", forIndexPath: indexPath) as! ServantPicAndLabelCell
                 cell.delegate = self
                 cell.selectionStyle = .None
-                
-                cell.headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
-                cell.nameLabel?.text = personalInfo?.nickname
                 
                 cell.updateUI(model)
                 

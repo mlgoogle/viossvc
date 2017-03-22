@@ -21,7 +21,7 @@ class ServantPersonalCell: UITableViewCell {
     var thumbUpBtn:UIButton?
     var delegate:ServantPersonalCellDelegate?
     var personModel:servantDynamicModel?
-    
+    var timeLabel:UILabel?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -77,6 +77,19 @@ class ServantPersonalCell: UITableViewCell {
             make.height.equalTo(18)
         })
         
+        timeLabel = UILabel.init()
+        timeLabel?.font = UIFont.systemFontOfSize(11)
+        timeLabel?.textColor = UIColor.init(decR: 153, decG: 153, decB: 153, a: 1)
+        timeLabel?.backgroundColor = UIColor.whiteColor()
+        timeLabel?.textAlignment = .Right
+        self.addSubview(timeLabel!)
+        timeLabel?.snp_makeConstraints(closure: { (make) in
+            make.top.equalTo((nameLabel?.snp_top)!)
+            make.height.equalTo((nameLabel?.snp_height)!)
+            make.width.equalTo(100)
+            make.right.equalTo(self).offset(-25)
+        })
+        
         let lineView:UIView = UIView.init()
         lineView.backgroundColor = UIColor.init(decR: 235, decG: 235, decB: 235, a: 1)
         self.addSubview(lineView)
@@ -90,6 +103,36 @@ class ServantPersonalCell: UITableViewCell {
     
     func islikeAction(sender:UIButton) {
         delegate?.servantIsLikedAction(sender, model: personModel!)
+    }
+    
+    func dealTimeWithString(timeString:String) -> String {
+        
+        let formatter:NSDateFormatter = NSDateFormatter.init()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .ShortStyle
+        formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+        let zone:NSTimeZone = NSTimeZone.init(name: "Asia/Shanghai")!
+        formatter.timeZone = zone
+        
+        let date:NSDate = formatter.dateFromString(timeString)!
+        
+        let time = abs(date.timeIntervalSinceNow)
+        
+        var timeLabelString:String = ""
+        if time < 60 {
+            timeLabelString = "1分钟内"
+        }else if time >= 60 && time < 3600 {
+            let min:Int = (Int(time) / 60)
+            timeLabelString = String(min) + "分钟"
+        }else if time >= 3600 && time < 86400 {
+            let day:Int64 = Int64(time) / 3600
+            timeLabelString = String(day) + "小时"
+        }else if time >= 86400 && time < 604800 {
+            let day:Int64 = Int64(time) / 86400
+            timeLabelString = String(day) + "天"
+        }
+        
+        return timeLabelString
     }
 }
 
@@ -130,6 +173,12 @@ class ServantOnePicCell: ServantPersonalCell {
     func updateImage(model:servantDynamicModel) {
         
         personModel = model
+        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
+        nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
+        
+        // 计算时间
+        let time = self.dealTimeWithString(model.dynamic_time!)
+        timeLabel?.text = time
         
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count
@@ -140,8 +189,6 @@ class ServantOnePicCell: ServantPersonalCell {
             thumbUpBtn?.selected = true
             thumbUpBtn?.setTitle(String(likeCount), forState: .Selected)
         }
-        
-        
         
         let imageUrls = model.dynamic_url
         imgView?.kf_setImageWithURL(NSURL.init(string: imageUrls!))
@@ -178,6 +225,12 @@ class ServantOneLabelCell: ServantPersonalCell {
         
         personModel = model
         
+        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
+        nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
+        // 计算时间
+        let time = self.dealTimeWithString(model.dynamic_time!)
+        timeLabel?.text = time
+        
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count
         if isliked == 0 {
@@ -190,6 +243,7 @@ class ServantOneLabelCell: ServantPersonalCell {
         
         let textString = model.dynamic_text
         detailLabel?.text = textString
+        
     }
 }
 
@@ -229,7 +283,6 @@ class ServantPicAndLabelCell: ServantPersonalCell {
         self.addSubview(imageContianer!)
         
         imageContianer?.snp_makeConstraints(closure: { (make) in
-            
             make.left.equalTo((headerView?.snp_right)!).offset(5)
             make.top.equalTo((detailLabel?.snp_bottom)!).offset(10)
             make.right.equalTo(-15)
@@ -241,6 +294,12 @@ class ServantPicAndLabelCell: ServantPersonalCell {
     func updateUI(model:servantDynamicModel) {
         
         personModel = model
+        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
+        nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
+        
+        // 计算时间
+        let time = self.dealTimeWithString(model.dynamic_time!)
+        timeLabel?.text = time
         
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count
