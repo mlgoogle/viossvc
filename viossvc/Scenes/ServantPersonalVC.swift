@@ -51,7 +51,18 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         }else{
             initViews()
         }
+        //接收通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateImageAndName), name: "updateImageAndName", object: nil)
     }
+    //移除通知
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    //通知实现
+    func updateImageAndName(notification: NSNotification?){
+        headerView?.didUpdateUI(CurrentUserHelper.shared.userInfo.head_url!, name: CurrentUserHelper.shared.userInfo.nickname!, star: CurrentUserHelper.shared.userInfo.praise_lv)
+    }
+
     
     func loadGuide() {
         
