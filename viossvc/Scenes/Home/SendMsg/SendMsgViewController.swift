@@ -111,6 +111,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     func sendMessage() {
         
         textView?.resignFirstResponder()
+        self.view.endEditing(true)
         
         let message:String = (headerView?.textView?.text)!
         let count:Int = (imageArray?.count)!

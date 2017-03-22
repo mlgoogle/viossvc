@@ -225,6 +225,7 @@ class servantDynamicModel: BaseModel {
     dynamic var dynamic_id = 0
     dynamic var dynamic_text:String?
     dynamic var dynamic_url:String?
+    dynamic var dynamic_time:String?
     dynamic var dynamic_like_count = 0
     dynamic var is_liked = 0
     
