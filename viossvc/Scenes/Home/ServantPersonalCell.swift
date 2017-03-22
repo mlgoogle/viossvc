@@ -227,6 +227,9 @@ class ServantOneLabelCell: ServantPersonalCell {
         
         headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
+        // 计算时间
+        let time = self.dealTimeWithString(model.dynamic_time!)
+        timeLabel?.text = time
         
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count
@@ -241,9 +244,6 @@ class ServantOneLabelCell: ServantPersonalCell {
         let textString = model.dynamic_text
         detailLabel?.text = textString
         
-        // 计算时间
-        let time = self.dealTimeWithString(model.dynamic_time!)
-        timeLabel?.text = time
     }
 }
 
