@@ -296,6 +296,17 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func submit(sender: UIButton) {
+        
+        if wxAccount?.characters.count == 0  && wxQRCodeUrl?.characters.count == 0{
+            SVProgressHUD.showErrorMessage(ErrorMessage: "请输入微信号或者上传微信二维码", ForDuration: 1, completion: {
+            })
+            return
+        }
+        if selectedPrice < 0 {
+            SVProgressHUD.showErrorMessage(ErrorMessage: "请选择价格", ForDuration: 1, completion: {
+            })
+        }
+        
         if qrCodeImage != nil {
             let imageName = "qrcode"
             qiniuUploadImage(qrCodeImage!, imageName: imageName, complete: { [weak self](imageUrl) in

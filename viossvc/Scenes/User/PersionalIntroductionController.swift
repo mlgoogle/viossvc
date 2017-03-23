@@ -104,6 +104,8 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         req.type = 1
         
         AppAPIHelper.userAPI().persionalIntroduct(req, complete: { [weak self](response) in
+            
+            print(response)
             if response == nil {
                 
             }
@@ -134,7 +136,7 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         if textView.text.length() > 200 {
             
             let text:String = textView.text
-            let index = text.startIndex.advancedBy(10)
+            let index = text.startIndex.advancedBy(200)
             textView.text = text.substringToIndex(index)
         }
     }
