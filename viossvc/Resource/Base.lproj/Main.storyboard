@@ -546,7 +546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="D3341242-F7F4-45F0-861B-DC4934F34F73" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="591FC5E2-2211-4E68-A707-0CBE6BAC3000" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -2531,7 +2531,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="BqB-6m-IJg" kind="show" id="mjf-Pr-DFM"/>
+                                            <segue destination="BqB-6m-IJg" kind="show" identifier="CitysSelectViewController" id="mjf-Pr-DFM"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -5832,7 +5832,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="D3341242-F7F4-45F0-861B-DC4934F34F73" width="125" height="125">
+        <image name="591FC5E2-2211-4E68-A707-0CBE6BAC3000" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
