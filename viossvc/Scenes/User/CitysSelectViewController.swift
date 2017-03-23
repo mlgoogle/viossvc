@@ -76,7 +76,7 @@ class CitysSelectViewController: BaseTableViewController {
         if selectCity != nil {
             selectCity!(cityName: cityName!)
         }
-        
+    
         navigationController?.popViewControllerAnimated(true)
     }
     //Mark: --table's delegate
