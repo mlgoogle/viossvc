@@ -65,6 +65,23 @@ class UserHomeViewController: BaseTableViewController {
             userDefaults.setValue(true, forKey: key)
         }
         
+        //接收通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateImageAndName), name: "updateImageAndName", object: nil)
+        
+    }
+    //移除通知
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    //通知实现
+    func updateImageAndName(notification: NSNotification?){
+        if CurrentUserHelper.shared.userInfo.nickname != nil {
+            userNameLabel.text = CurrentUserHelper.shared.userInfo.nickname
+        }
+        if (CurrentUserHelper.shared.userInfo.head_url != nil){
+            let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
+            userHeaderImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        }
         
     }
     

@@ -26,6 +26,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         picker.allowsEditing = true
         return picker
     }()
+    
+    var username:String?
+    var currentTextField:UITextField?
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         
         sexLabel.text = CurrentUserHelper.shared.userInfo.gender == 1 ? "男" : "女"
+        nameText.delegate = self
+        nameText!.clearButtonMode = .WhileEditing
+        
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -88,8 +94,13 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             CurrentUserHelper.shared.userInfo.address = self?.cityLabel.text
             CurrentUserHelper.shared.userInfo.nickname = self?.nameText.text
             CurrentUserHelper.shared.userInfo.gender = self?.sexLabel.text == "男" ? 1 : 0
+            //发送通知
+            if self?.imageUrl != nil {
+                CurrentUserHelper.shared.userInfo.head_url = self?.imageUrl
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName("updateImageAndName", object: nil, userInfo: nil)
             if self?.haveChangeImage == true {
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "头像图片成功，请静待人工审核", ForDuration: 1, completion:{
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 1, completion:{
                     self?.navigationController?.popViewControllerAnimated(true)
                 })
             }else{
@@ -171,7 +182,15 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
                 return
             }
             self?.imageUrl = imageUrl as? String
+            
+            //上传头像图片
             AppAPIHelper.userAPI().authHeaderUrl(CurrentUserHelper.shared.userInfo.uid, head_url_: (self?.imageUrl)! , complete: { (result) in
+                
+                if result == nil {
+               
+                    
+                    
+                }
                 
                 }, error: self!.errorBlockFunc())
         })
@@ -224,4 +243,43 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         CurrentUserHelper.shared.userInfo.latitude = newLocation.coordinate.latitude
         CurrentUserHelper.shared.userInfo.longitude = newLocation.coordinate.longitude
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        nameText.resignFirstResponder()
+    }
+    
 }
+
+extension NodifyUserInfoViewController:UITextFieldDelegate{
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        nameText.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        currentTextField = textField
+        if range.location > 10 {
+            return false
+        }
+        if textField.tag == 1001 {
+            username = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+         }
+        return true
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 1001:
+            username = textField.text
+            break
+        default:
+            break
+        }
+        return true
+    }
+
+}
+
+
