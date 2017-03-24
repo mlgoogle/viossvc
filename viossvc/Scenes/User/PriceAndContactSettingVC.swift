@@ -28,6 +28,7 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         button.layer.cornerRadius = 22
         button.backgroundColor = UIColor.init(hexString: "#eeeeee")
         button.setTitle("完成", forState: .Normal)
+        button.enabled = false
         button.setTitleColor(UIColor.init(hexString: "#cccccc"), forState: .Normal)
         button.setTitleColor(UIColor.init(hexString: "#ffffff"), forState: .Normal)
         button.addTarget(self, action: #selector(submit(_:)), forControlEvents: .TouchUpInside)
@@ -187,6 +188,7 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
                 cell?.accessoryType = .None
                 cell?.selectionStyle = .None
                 cell?.contentView.addSubview(submit)
+                submitCheck()
                 submit.snp_makeConstraints(closure: { (make) in
                     make.left.equalTo(15)
                     make.right.equalTo(-15)
@@ -297,7 +299,7 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     
     func submit(sender: UIButton) {
         
-        if wxAccount?.characters.count == 0  && wxQRCodeUrl?.characters.count == 0{
+        if wxAccount?.characters.count == 0  && wxQRCodeUrl?.characters.count == 0 && qrCodeImage == nil {
             SVProgressHUD.showErrorMessage(ErrorMessage: "请输入微信号或者上传微信二维码", ForDuration: 1, completion: {
             })
             return
@@ -312,8 +314,8 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
             qiniuUploadImage(qrCodeImage!, imageName: imageName, complete: { [weak self](imageUrl) in
                 if let url = imageUrl as? String {
                     self?.wxQRCodeUrl = url
-                    self?.changeContactAndPrice()
                 }
+                self?.changeContactAndPrice()
             })
         } else {
             changeContactAndPrice()
@@ -326,16 +328,21 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         req.wx_num = wxAccount
         req.wx_url = wxQRCodeUrl
         req.service_price = selectedPrice
-        AppAPIHelper.userAPI().priceSetting(req, complete: { (response) in
-            if let model = response as? PriceSettingModel {
-                let msg = model.result == 0 ? "设置成功" : "设置失败"
-                SVProgressHUD.showWithStatus(msg)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64 (1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                    SVProgressHUD.dismiss()
+        
+        AppAPIHelper.userAPI().priceSetting(req, complete: { [weak self](response) in
+            print(response)
+            let model:PriceSettingModel = response as! PriceSettingModel
+            if model.result == 0 {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 1.5, completion: {
+                    self!.navigationController?.popViewControllerAnimated(true)
+                })
+            }else {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "设置失败", ForDuration: 1.5, completion: {
+                    self!.navigationController?.popViewControllerAnimated(true)
                 })
             }
-            }, error: { (err) in
-                
-        })
+            }) { (error) in
+                print(error)
+        }
     }
 }
