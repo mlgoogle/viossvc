@@ -191,7 +191,7 @@ class ServantOnePicCell: ServantPersonalCell {
         }
         
         let imageUrls = model.dynamic_url
-        imgView?.kf_setImageWithURL(NSURL.init(string: imageUrls!))
+        imgView?.kf_setImageWithURL(NSURL.init(string: imageUrls!),placeholderImage: UIImage.init(named: "image_placeholder"))
     }
 }
 
@@ -338,7 +338,7 @@ class ServantPicAndLabelCell: ServantPersonalCell {
             imageContianer?.addSubview(imgV)
             imgV.tag = 30000 + i
             // 加图片链接
-            imgV.kf_setImageWithURL(NSURL.init(string: imageUrl))
+            imgV.kf_setImageWithURL(NSURL.init(string: imageUrl),placeholderImage: UIImage.init(named: "image_placeholder"))
             // 加点击方法
             imgV.userInteractionEnabled = true
             let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageAction(_:)))
