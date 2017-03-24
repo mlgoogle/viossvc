@@ -333,8 +333,6 @@ class ServantPicAndLabelCell: ServantPersonalCell {
             let row = i / 3 // 行
             let col = i % 3 // 列
             
-            print(row, col)
-            
             let imgV:UIImageView = UIImageView.init()
             imgV.backgroundColor = UIColor.init(decR: 153, decG: 153, decB: 153, a: 1)
             imageContianer?.addSubview(imgV)
