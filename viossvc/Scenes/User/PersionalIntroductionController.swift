@@ -134,7 +134,7 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         if textView.text.length() > 200 {
             
             let text:String = textView.text
-            let index = text.startIndex.advancedBy(10)
+            let index = text.startIndex.advancedBy(200)
             textView.text = text.substringToIndex(index)
         }
     }

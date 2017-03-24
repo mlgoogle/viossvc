@@ -40,6 +40,7 @@ class GuidView: UIView {
         self.addSubview(scrollView!)
         scrollView?.showsVerticalScrollIndicator = false
         scrollView?.showsHorizontalScrollIndicator = false
+        scrollView?.pagingEnabled = true
         scrollView?.contentSize = CGSizeMake(ScreenWidth * 2, ScreenHeight)
         for i in 0..<2 {
             
