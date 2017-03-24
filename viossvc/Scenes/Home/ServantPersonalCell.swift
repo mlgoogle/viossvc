@@ -340,8 +340,7 @@ class ServantPicAndLabelCell: ServantPersonalCell {
             imgV.tag = 30000 + i
             // 加图片链接
             imgV.kf_setImageWithURL(NSURL.init(string: imageUrl))
-            imgV.contentMode = .ScaleToFill
-            
+            // 加点击方法
             imgV.userInteractionEnabled = true
             let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageAction(_:)))
             imgV.addGestureRecognizer(tap)
