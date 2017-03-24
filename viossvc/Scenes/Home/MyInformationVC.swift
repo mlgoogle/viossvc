@@ -39,6 +39,7 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(hexString: "#ffffff")
         initTableView()
+        //加载页面请求活动页面
         AppAPIHelper.userAPI().getActivityList({ [weak self](response) in
             if let models = response as? [MyMessageListStatusModel]{
                 
@@ -50,7 +51,21 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }) { (error) in
         }
         
+        let btn : UIButton = UIButton.init(type: .Custom)
         
+        btn.setTitle("", forState: .Normal)
+        
+        btn.setBackgroundImage(UIImage.init(named: "return"), forState: .Normal)
+        
+        btn.addTarget(self, action: #selector(popself), forControlEvents: .TouchUpInside)
+        
+        btn.frame = CGRect.init(x: 0, y: 0, width: 12, height: 20)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btn)
+    }
+  
+    func popself() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func viewWillAppear(animated: Bool) {

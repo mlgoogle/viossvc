@@ -50,7 +50,14 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func initNav()  {
         title = "身份验证"
         if navigationItem.rightBarButtonItem == nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "提交", style: .Plain, target: self, action: #selector(rightItemTapped(_:)))
+            let btn = UIButton(type: .Custom)
+            btn.setTitle("提交", forState: UIControlState.Normal)
+            btn.setTitleColor(UIColor(RGBHex: 0x333333), forState: UIControlState.Normal)
+            btn.addTarget(self, action: #selector(rightItemTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            btn.frame = CGRect(x: 5, y: 0, width: 40, height: 20)
+            btn.titleLabel?.font = UIFont.systemFontOfSize(16)
+            btn.titleLabel?.textAlignment = .Right
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btn)
         }
         
     }

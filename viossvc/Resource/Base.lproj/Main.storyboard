@@ -375,7 +375,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Xyu-Tz-buf">
             <objects>
-                <navigationController id="QS8-Ty-Guq" userLabel="Navigation Controller" sceneMemberID="viewController">
+                <navigationController id="QS8-Ty-Guq" userLabel="Navigation Controller" customClass="BaseNavigationController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="个人中心" image="persnal-center-select" selectedImage="persnal-center-select" id="3oE-b3-qL6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hrk-dy-i9A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -392,7 +392,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ulV-Sz-3f2">
             <objects>
-                <navigationController title="分享旅游" id="48r-gZ-QWw" userLabel="Navigation Controller" sceneMemberID="viewController">
+                <navigationController title="分享旅游" id="48r-gZ-QWw" userLabel="Navigation Controller" customClass="BaseNavigationController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="分享旅游" image="tour_item_normal" selectedImage="tour_item_selected" id="A5D-0G-fuw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wxa-ri-jGX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -546,7 +546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="7FDBB0D5-A6A4-4553-A04D-3C637E142775" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CD1CDD70-6A3D-4E1E-ACCD-58D9B1A5B639" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -692,7 +692,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ZZz-az-aiD">
             <objects>
-                <navigationController title="首页" id="lA1-fC-xlQ" userLabel="Navigation Controller" sceneMemberID="viewController">
+                <navigationController title="首页" id="lA1-fC-xlQ" userLabel="Navigation Controller" customClass="BaseNavigationViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" image="home-select" selectedImage="home-select" id="vNr-dX-fFi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="geb-Yq-gOY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -5832,7 +5832,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7FDBB0D5-A6A4-4553-A04D-3C637E142775" width="125" height="125">
+        <image name="CD1CDD70-6A3D-4E1E-ACCD-58D9B1A5B639" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
