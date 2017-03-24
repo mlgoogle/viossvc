@@ -156,7 +156,7 @@ class ServantHeaderView: UIView {
     // 更新UI数据
     func didUpdateUI(headerUrl:String, name:String, star:Int) {
         
-        headerView?.kf_setImageWithURL(NSURL.init(string: headerUrl))
+        headerView?.kf_setImageWithURL(NSURL.init(string: headerUrl), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         nameLabel?.text = name
         
         let count:Int = star
