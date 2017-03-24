@@ -294,6 +294,10 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         collection?.reloadData()
     }
     
+    func btnsDisable() {
+        topView?.userInteractionEnabled = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

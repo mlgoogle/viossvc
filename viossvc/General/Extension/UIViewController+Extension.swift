@@ -102,16 +102,15 @@ extension UIViewController {
      */
     func qiniuUploadImage(image: UIImage, imageName: String, complete:CompleteBlock) {
         
-        //0,将图片存到沙盒中
-        let filePath = cacheImage(image, imageName: imageName)
         //1,请求token
         AppAPIHelper.commenAPI().imageToken({ (result) in
             let token = result?.valueForKey("img_token_") as! String
             //2,上传图片
             let timestamp = NSDate().timeIntervalSince1970
             let key = "\(imageName)\(timestamp).png"
-            let qiniuManager = QNUploadManager()
-            qiniuManager.putFile(filePath, key: key, token: token, complete: { (info, key, resp) in
+            let qiniuManager:QNUploadManager = QNUploadManager()
+            qiniuManager.putData(UIImagePNGRepresentation(image), key: key, token: token, complete: { (info, key, resp) in
+                
                 if resp == nil{
                     complete(nil)
                     return
@@ -121,7 +120,8 @@ extension UIViewController {
                 let value:String? = respDic!.valueForKey("key") as? String
                 let imageUrl = AppConst.Network.qiniuHost+value!
                 complete(imageUrl)
-            }, option: nil)
+                
+                }, option: nil)
         }, error: errorBlockFunc())
     }
     

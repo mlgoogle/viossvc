@@ -149,6 +149,7 @@ class ServantOnePicCell: ServantPersonalCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         imgView = UIImageView.init()
+        imgView?.backgroundColor = UIColor.init(decR: 153, decG: 153, decB: 153, a: 1)
         self.addSubview(imgView!)
         imgView?.snp_makeConstraints(closure: { (make) in
             make.left.equalTo((headerView?.snp_right)!).offset(5)
@@ -161,7 +162,6 @@ class ServantOnePicCell: ServantPersonalCell {
         imgView?.userInteractionEnabled = true
         let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageAction(_:)))
         imgView?.addGestureRecognizer(tap)
-        
     }
     
     // 图片点击了
@@ -336,6 +336,7 @@ class ServantPicAndLabelCell: ServantPersonalCell {
             print(row, col)
             
             let imgV:UIImageView = UIImageView.init()
+            imgV.backgroundColor = UIColor.init(decR: 153, decG: 153, decB: 153, a: 1)
             imageContianer?.addSubview(imgV)
             imgV.tag = 30000 + i
             // 加图片链接
