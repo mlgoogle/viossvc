@@ -61,13 +61,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>访问相机</string>
-	<key>NSContactsUsageDescription</key>
-	<string>访问通讯录</string>
+	<string>请点击“好”以允许访问</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>获取您的服务位置方便游客查看到您的服务</string>
+	<string>请点击“允许”以允许访问。若不允许，游客降无法查看到您的服务</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>访问相册</string>
+	<string>请点击“好”以允许访问</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
