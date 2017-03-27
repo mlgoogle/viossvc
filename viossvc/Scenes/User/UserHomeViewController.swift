@@ -29,7 +29,7 @@ class UserHomeViewController: BaseTableViewController {
             case 0:
                 return "认证通过"
             case 1:
-                return "认证认证中"
+                return "认证中"
             case 2:
                 return "认证失败"
             default:
