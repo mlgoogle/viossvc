@@ -246,7 +246,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardWillShow(notification: NSNotification?) {
-        let frame = notification!.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
+//        let frame = notification!.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
         //        var vFrame = view.frame
         //        if vFrame.origin.y == 0 {
         //            vFrame.origin.y -= frame.size.height
