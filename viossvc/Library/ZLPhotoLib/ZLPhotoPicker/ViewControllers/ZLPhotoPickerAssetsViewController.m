@@ -31,7 +31,6 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
 // 标记View
 @property (nonatomic , weak) UILabel *makeView;
 @property (nonatomic , strong) UIButton *doneBtn;
-@property (nonatomic , weak) UIToolbar *toolBar;
 // 数据源
 @property (nonatomic , strong) NSMutableArray *assets;
 // 记录选中的assets
@@ -111,7 +110,6 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
         makeView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:makeView];
         self.makeView = makeView;
-        
     }
     return _makeView;
 }
@@ -121,25 +119,28 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
     
     // 初始化按钮 和 导航条
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
-    self.title = @"所有照片" ;
     
-    // 初始化底部ToorBar
-    UIToolbar *toorBar = [[UIToolbar alloc] init];
-    toorBar.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:toorBar];
-    self.toolBar = toorBar;
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn setTitleColor:[UIColor colorWithRed:0/255.0 green:91/255.0 blue:255/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightBtn.enabled = YES;
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    rightBtn.frame = CGRectMake(15, self.view.frame.size.height - 54 - 64, [UIScreen mainScreen].bounds.size.width - 30, 44);
+    rightBtn.layer.masksToBounds = YES ;
+    rightBtn.layer.cornerRadius = 22 ;
+    rightBtn.backgroundColor = [UIColor colorWithRed:252/255.0 green:163/255.0 blue:17/255.0 alpha:1];
+    [rightBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:rightBtn];
+    self.doneBtn = rightBtn ;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(toorBar);
-    NSString *widthVfl =  @"H:|-0-[toorBar]-0-|";
-    NSString *heightVfl = @"V:[toorBar(44)]-20-|";
+    NSDictionary *views = NSDictionaryOfVariableBindings(rightBtn);
+    NSString *widthVfl =  @"H:|-15-[rightBtn]-15-|";
+    NSString *heightVfl = @"V:[rightBtn(44)]-10-|";
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:widthVfl options:0 metrics:0 views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:heightVfl options:0 metrics:0 views:views]];
-    
-    // 左视图 中间距 右视图
-    UIBarButtonItem *fiexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.doneBtn];
-    
-    toorBar.items = @[fiexItem,rightItem];
     
     self.view.bounds = [UIScreen mainScreen].bounds;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -161,7 +162,7 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
     
     collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10) ;
     collectionView.collectionViewDelegate = self;
-    [self.view insertSubview:collectionView belowSubview:self.toolBar];
+    [self.view insertSubview:collectionView belowSubview:self.doneBtn];
     self.collectionView = collectionView;
     
     NSDictionary *views2 = NSDictionaryOfVariableBindings(collectionView);

@@ -108,7 +108,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         usernameField.backgroundColor = UIColor.clearColor()
         usernameField.textAlignment = .Left
         usernameField.keyboardType = .NumberPad
-        var style = usernameField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
+        let style = usernameField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
         let font = UIFont.systemFontOfSize(14)
         style.minimumLineHeight = (usernameField.font?.lineHeight)! - ((usernameField.font?.lineHeight)! - font.lineHeight) / 2
         usernameField.attributedPlaceholder = NSAttributedString.init(string: "请输入手机号", attributes: [NSForegroundColorAttributeName: UIColor.grayColor(),NSParagraphStyleAttributeName:style,NSFontAttributeName:UIFont.systemFontOfSize(14)])
@@ -159,7 +159,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         passwdField.textAlignment = .Left
         
         
-        var stylePass = passwdField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
+        let stylePass = passwdField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
         let fontstylePass = UIFont.systemFontOfSize(14)
         stylePass.minimumLineHeight = (passwdField.font?.lineHeight)! - ((passwdField.font?.lineHeight)! - fontstylePass.lineHeight) / 2
         passwdField.attributedPlaceholder = NSAttributedString.init(string: "请输入登录密码", attributes: [NSForegroundColorAttributeName: UIColor.grayColor(),NSParagraphStyleAttributeName:stylePass,NSFontAttributeName:UIFont.systemFontOfSize(14)])
