@@ -265,7 +265,7 @@
 		B03B11BC1DE5BFDD00B00D2E /* viossvc_prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viossvc_prefix.pch; sourceTree = "<group>"; };
 		B03B11BE1DE5BFDD00B00D2E /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		B03B11BF1DE5BFDD00B00D2E /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		B03B11C01DE5BFDD00B00D2E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = viossvc/AppDelegate.swift; sourceTree = "<group>"; };
+		B03B11C01DE5BFDD00B00D2E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B03B11C21DE5BFDD00B00D2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B03B11C41DE5BFDD00B00D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B03B11C61DE5BFDD00B00D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -626,9 +626,9 @@
 			isa = PBXGroup;
 			children = (
 				ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */,
-				ACABD263DDE47D65D5803EA5 /* SocketAPI */,
-				ACABDD099EF194E2061031F1 /* UserAPI.swift */,
 				BF455B7F1DE841D5007D97B0 /* CommenAPI.swift */,
+				ACABDD099EF194E2061031F1 /* UserAPI.swift */,
+				ACABD263DDE47D65D5803EA5 /* SocketAPI */,
 			);
 			path = AppAPI;
 			sourceTree = "<group>";
@@ -636,20 +636,13 @@
 		ACABD263DDE47D65D5803EA5 /* SocketAPI */ = {
 			isa = PBXGroup;
 			children = (
-				B024A1821DE7DAC40095A691 /* SocketConst.swift */,
 				B024A16F1DE7CDCC0095A691 /* SocketReqeust */,
 				ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */,
-				ACABD31D158C3ACBE2AE15BD /* UserSocketAPI.swift */,
 				BF455B7D1DE84178007D97B0 /* CommenSocketAPI.swift */,
+				B024A1821DE7DAC40095A691 /* SocketConst.swift */,
+				ACABD31D158C3ACBE2AE15BD /* UserSocketAPI.swift */,
 			);
 			path = SocketAPI;
-			sourceTree = "<group>";
-		};
-		B011C2C31DE7260800CB897A /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		B024A16F1DE7CDCC0095A691 /* SocketReqeust */ = {
@@ -662,13 +655,6 @@
 				B024A1751DE7CDCC0095A691 /* SocketResponse.swift */,
 			);
 			path = SocketReqeust;
-			sourceTree = "<group>";
-		};
-		B037D0901DF53DE500B8CE1A /* DataBase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataBase;
 			sourceTree = "<group>";
 		};
 		B03B11B91DE5BFDD00B00D2E /* Marco */ = {
@@ -730,9 +716,7 @@
 			children = (
 				E9DE067D1E7FE119003E3F9D /* GuidView */,
 				2FECFBD91E1F4C760065AF60 /* Update */,
-				B011C2C31DE7260800CB897A /* Protocol */,
 				B03B11F91DE5BFDE00B00D2E /* Base */,
-				B03B12001DE5BFDE00B00D2E /* Custom */,
 				6E3C93C41E1E3D3D0002EEB4 /* CommenClass */,
 				B03B12011DE5BFDE00B00D2E /* CustomView */,
 				B03B12071DE5BFDE00B00D2E /* Extension */,
@@ -750,13 +734,6 @@
 				E9250B371E7BB73700F937A7 /* BaseNavigationViewController.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		B03B12001DE5BFDE00B00D2E /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Custom;
 			sourceTree = "<group>";
 		};
 		B03B12011DE5BFDE00B00D2E /* CustomView */ = {
@@ -795,7 +772,6 @@
 			isa = PBXGroup;
 			children = (
 				B0C12C851DF6E4D5001629B3 /* EmojiFaceHelper.swift */,
-				B037D0901DF53DE500B8CE1A /* DataBase */,
 				B03B120C1DE5BFDE00B00D2E /* TableViewHelper.swift */,
 				B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */,
 			);
@@ -822,13 +798,6 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
-		B03B12111DE5BFDE00B00D2E /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base.lproj;
-			sourceTree = "<group>";
-		};
 		B08673471DE5C62B008DD8A1 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -848,7 +817,6 @@
 				B0CF59DE1DE5BEC300C40C9C /* Products */,
 				568B61F3BC4BD4BB15E8999D /* Pods */,
 				10CEA088AA8041FD84B55B62 /* Frameworks */,
-				B03B11C01DE5BFDD00B00D2E /* AppDelegate.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -863,12 +831,12 @@
 		B0CF59DF1DE5BEC300C40C9C /* viossvc */ = {
 			isa = PBXGroup;
 			children = (
+				B03B11C01DE5BFDD00B00D2E /* AppDelegate.swift */,
 				B03B11ED1DE5BFDD00B00D2E /* General */,
 				B03B120D1DE5BFDE00B00D2E /* Library */,
 				ACABD20ADDD97D06081BBE05 /* AppAPI */,
 				B03B11B91DE5BFDD00B00D2E /* Marco */,
 				B03B11BD1DE5BFDD00B00D2E /* Model */,
-				B03B12111DE5BFDE00B00D2E /* Base.lproj */,
 				B03B11C11DE5BFDD00B00D2E /* Resource */,
 				B03B11C91DE5BFDD00B00D2E /* Scenes */,
 			);
@@ -1709,7 +1677,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
