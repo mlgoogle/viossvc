@@ -184,7 +184,6 @@ class UserHomeViewController: BaseTableViewController {
         }
         
         if cell == myClientCell{
-            NSLog("我的客户")
             let vc =  MyClientVC()
             vc.title = "我的客户"
             vc.hidesBottomBarWhenPushed = true

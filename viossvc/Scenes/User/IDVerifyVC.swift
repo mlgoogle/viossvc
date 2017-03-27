@@ -80,7 +80,7 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         req.idcard_name = name
         req.idcard_num = id
         AppAPIHelper.userAPI().IDVerify(req, complete: { [weak self](response) in
-            CurrentUserHelper.shared.userInfo.auth_status_ = 0
+            CurrentUserHelper.shared.userInfo.auth_status_ = 1
             SVProgressHUD.showWainningMessage(WainningMessage: "提交验证信息成功", ForDuration: 1.5, completion: { () in
                 self?.navigationController?.popViewControllerAnimated(true)
             })
