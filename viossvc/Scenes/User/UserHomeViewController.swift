@@ -33,7 +33,7 @@ class UserHomeViewController: BaseTableViewController {
             case 2:
                 return "认证失败"
             default:
-                return ""
+                return "" 
             }
         }
     }
