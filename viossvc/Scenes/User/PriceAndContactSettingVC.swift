@@ -11,7 +11,7 @@ import XCGLogger
 import SVProgressHUD
 
 
-class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ContactCellDelegate, PriceSelectionCellDelegate {
+class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ContactCellDelegate, PriceSelectionCellDelegate{
     
     lazy var tips:UILabel = {
         let label = UILabel()
@@ -210,6 +210,7 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         return cell!
     }
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
@@ -262,7 +263,9 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     
     func selectedPrice(price: Int) {
         selectedPrice = price
-        table?.reloadSections(NSIndexSet.init(index: 2), withRowAnimation: .None)
+//        table?.reloadSections(NSIndexSet.init(index: 2), withRowAnimation: .None)
+        table?.reloadData()
+        table?.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
         submitCheck()
     }
     
@@ -298,7 +301,6 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func submit(sender: UIButton) {
-        
         if wxAccount?.characters.count == 0  && wxQRCodeUrl?.characters.count == 0 && qrCodeImage == nil {
             SVProgressHUD.showErrorMessage(ErrorMessage: "请输入微信号或者上传微信二维码", ForDuration: 1, completion: {
             })
@@ -328,12 +330,11 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         req.wx_num = wxAccount
         req.wx_url = wxQRCodeUrl
         req.service_price = selectedPrice
-        
         AppAPIHelper.userAPI().priceSetting(req, complete: { [weak self](response) in
-            print(response)
             let model:PriceSettingModel = response as! PriceSettingModel
             if model.result == 0 {
                 SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 1.5, completion: {
+                      SVProgressHUD.setDefaultMaskType(.Clear)
                     self!.navigationController?.popViewControllerAnimated(true)
                 })
             }else {

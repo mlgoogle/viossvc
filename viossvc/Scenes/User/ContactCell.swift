@@ -40,7 +40,7 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
         })
         
         let vLine = UIView()
-        vLine.backgroundColor = UIColor.init(hexString: "#e5e5e5")
+//        vLine.backgroundColor = UIColor.init(hexString: "#e5e5e5")
         bg.addSubview(vLine)
         vLine.snp_makeConstraints(closure: { (make) in
             make.centerY.equalTo(bg)
