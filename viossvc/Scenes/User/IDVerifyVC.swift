@@ -20,7 +20,7 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     var id:String?
     var name:String?
-    
+    var subimitFinished: (()->())?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(hexString: "#f2f2f2")
@@ -80,7 +80,9 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         req.idcard_name = name
         req.idcard_num = id
         AppAPIHelper.userAPI().IDVerify(req, complete: { [weak self](response) in
-            CurrentUserHelper.shared.userInfo.auth_status_ = 0
+            CurrentUserHelper.shared.userInfo.auth_status_ = 1
+            NSUserDefaults.standardUserDefaults().setObject(CurrentUserHelper.shared.userInfo.auth_status_, forKey: "auth_status")
+            self!.subimitFinished!()
             SVProgressHUD.showWainningMessage(WainningMessage: "提交验证信息成功", ForDuration: 1.5, completion: { () in
                 self?.navigationController?.popViewControllerAnimated(true)
             })
