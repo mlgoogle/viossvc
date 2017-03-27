@@ -39,7 +39,7 @@ class MyClientCell: UITableViewCell {
         AppAPIHelper.userAPI().getRelation(req, complete: { [weak self](response) in
             let model = response as? GetRelationStatusModel
             if model?.result == 4{
-                self!.weiXinNumber.text = model?.wx_num
+                self!.weiXinNumber.text = "微信号" + (model?.wx_num)!
             }
             }) { (error) in
         }

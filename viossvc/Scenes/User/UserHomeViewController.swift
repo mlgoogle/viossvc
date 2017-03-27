@@ -27,9 +27,9 @@ class UserHomeViewController: BaseTableViewController {
             case -1:
                 return "未认证"
             case 0:
-                return "认证中"
-            case 1:
                 return "认证通过"
+            case 1:
+                return "认证中"
             case 2:
                 return "认证失败"
             default:
@@ -171,14 +171,21 @@ class UserHomeViewController: BaseTableViewController {
         alert.addAction(ensure)
         alert.addAction(cancel)
         presentViewController(alert, animated: true, completion: nil)
+        
 //        UIApplication.sharedApplication().openURL(NSURL.init(string: "telprompt:0571-87611687")!)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if cell == authCell && (authStatus == "未认证" || authStatus == "认证失败"){
+        if cell == authCell && (authStatus == "认证中" || authStatus == "认证失败"){
             let vc = IDVerifyVC()
             vc.hidesBottomBarWhenPushed = true
+           
+            vc.subimitFinished = { ()->() in
+               self.checkAuthStatus()
+               tableView.reloadData()
+            }
+            
             navigationController?.pushViewController(vc, animated: true)
             return
         } else if cell == priceSettingCell {
@@ -195,7 +202,6 @@ class UserHomeViewController: BaseTableViewController {
         }
         
         if cell == myClientCell{
-            NSLog("我的客户")
             let vc =  MyClientVC()
             vc.title = "我的客户"
             vc.hidesBottomBarWhenPushed = true
