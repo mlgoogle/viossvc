@@ -13,10 +13,6 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
     @IBOutlet weak var nameTextfiled: UITextField!
     @IBOutlet weak var bankNameTextfield: UITextField!
     @IBOutlet weak var phoneNumberTextfield: UITextField!
-    
-    
-    
-    
     @IBAction func bindBankCard(sender: AnyObject) {
         
         if checkTextFieldEmpty([cardNumberTextfield,nameTextfiled,bankNameTextfield,phoneNumberTextfield]) {

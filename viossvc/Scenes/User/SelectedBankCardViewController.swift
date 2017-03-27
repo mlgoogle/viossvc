@@ -11,7 +11,6 @@ import SVProgressHUD
 class BankCardCell: OEZTableViewCell {
     @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var bankSelectBtn: UIButton!
-    
 
     override func update(data: AnyObject!) {
         let bankCardModel = data as! BankCardModel
