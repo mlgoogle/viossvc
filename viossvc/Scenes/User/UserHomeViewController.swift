@@ -40,6 +40,9 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var priceSettingCell: UITableViewCell!
     @IBOutlet weak var myClientCell: UITableViewCell!
     
+    var bankCardNum = 0 // 记录一共有几张卡
+    
+    
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
@@ -68,6 +71,8 @@ class UserHomeViewController: BaseTableViewController {
         //接收通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateImageAndName), name: "updateImageAndName", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateBankCards), name: "updateBankCards", object: nil)
+        
     }
     //移除通知
     deinit{
@@ -83,6 +88,11 @@ class UserHomeViewController: BaseTableViewController {
             userHeaderImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         }
         
+    }
+    // 更新银行卡数量
+    func updateBankCards(notification: NSNotification?) {
+        let cardCount:Int = bankCardNum + 1
+        bankCardNumLabel.text = "\(cardCount)张"
     }
     
     func imageTapAction(tap:UITapGestureRecognizer) {
@@ -117,6 +127,7 @@ class UserHomeViewController: BaseTableViewController {
                 }
             }
             weakSelf.bankCardNumLabel.text = "\(banksData.count)张"
+            weakSelf.bankCardNum = banksData.count
         }) { (error) in
         }
     }
@@ -198,5 +209,7 @@ class UserHomeViewController: BaseTableViewController {
         }
 
     }
+    
+    
     
 }

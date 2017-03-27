@@ -11,7 +11,6 @@ import SVProgressHUD
 class BankCardCell: OEZTableViewCell {
     @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var bankSelectBtn: UIButton!
-
     override func update(data: AnyObject!) {
         let bankCardModel = data as! BankCardModel
         let cardNum = bankCardModel.account! as NSString
@@ -30,6 +29,9 @@ class BankCardCell: OEZTableViewCell {
 
 class SelectedBankCardViewController: BaseListTableViewController{
     var model: BankCardModel?
+    
+    var selectIndex:Int = 0
+    
     //Data
     override func didRequest() {
         let model = BankCardModel()
@@ -63,12 +65,30 @@ class SelectedBankCardViewController: BaseListTableViewController{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MobClick.event(AppConst.Event.bank_select)
-        model = dataSource![indexPath.row] as? BankCardModel
-        SVProgressHUD.showProgressMessage(ProgressMessage:"切换中...")
-        AppAPIHelper.userAPI().defaultBanKCard(model!.account!, complete: { [weak self](result) in
-            self?.didRequest()
-        }, error: errorBlockFunc())
+        if indexPath.row != selectIndex {
+            
+            MobClick.event(AppConst.Event.bank_select)
+            model = dataSource![indexPath.row] as? BankCardModel
+            SVProgressHUD.showProgressMessage(ProgressMessage:"切换中...")
+            AppAPIHelper.userAPI().defaultBanKCard(model!.account!, complete: { [weak self](result) in
+                self!.selectIndex = indexPath.row
+                self?.didRequest()
+                }, error: errorBlockFunc())
+        }
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print(dataSource)
+        
+        for i in 0..<(dataSource?.count)! {
+            
+            let bankModel:BankCardModel = dataSource![i] as! BankCardModel
+            if bankModel.is_default == 1 {
+                selectIndex = i
+            }
+            
+        }
+    }
 }
