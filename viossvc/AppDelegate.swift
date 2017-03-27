@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GeTuiSdkDelegate {
         
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
         SVProgressHUD.setMinimumDismissTimeInterval(2)
+//        SVProgressHUD.setBackgroundColor = UIColor.darkGrayColor
     }
     
     private func umappServiceRegister() {
