@@ -312,6 +312,9 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if qrCodeImage != nil {
+            //点击一次就禁用掉
+            self.submit.enabled = false
+            SVProgressHUD.showWithStatus("设置中...")
             let imageName = "qrcode"
             qiniuUploadImage(qrCodeImage!, imageName: imageName, complete: { [weak self](imageUrl) in
                 if let url = imageUrl as? String {
@@ -325,6 +328,7 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func changeContactAndPrice() {
+        SVProgressHUD.setDefaultMaskType(.Clear)
         let req = PriceSettingRequestModel()
         req.uid = CurrentUserHelper.shared.uid
         req.wx_num = wxAccount
@@ -333,12 +337,11 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         AppAPIHelper.userAPI().priceSetting(req, complete: { [weak self](response) in
             let model:PriceSettingModel = response as! PriceSettingModel
             if model.result == 0 {
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 1.5, completion: {
-                      SVProgressHUD.setDefaultMaskType(.Clear)
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 0, completion: {
                     self!.navigationController?.popViewControllerAnimated(true)
                 })
-            }else {
-                SVProgressHUD.showErrorMessage(ErrorMessage: "设置失败", ForDuration: 1.5, completion: {
+            } else {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "设置失败", ForDuration: 0, completion: {
                     self!.navigationController?.popViewControllerAnimated(true)
                 })
             }
