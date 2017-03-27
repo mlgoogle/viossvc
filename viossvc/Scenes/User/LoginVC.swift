@@ -159,7 +159,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         passwdField.textAlignment = .Left
         
         
-        var stylePass = passwdField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
+        let stylePass = passwdField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
         let fontstylePass = UIFont.systemFontOfSize(14)
         stylePass.minimumLineHeight = (passwdField.font?.lineHeight)! - ((passwdField.font?.lineHeight)! - fontstylePass.lineHeight) / 2
         passwdField.attributedPlaceholder = NSAttributedString.init(string: "请输入登录密码", attributes: [NSForegroundColorAttributeName: UIColor.grayColor(),NSParagraphStyleAttributeName:stylePass,NSFontAttributeName:UIFont.systemFontOfSize(14)])
@@ -246,7 +246,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardWillShow(notification: NSNotification?) {
-        let frame = notification!.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
+//        let frame = notification!.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
         //        var vFrame = view.frame
         //        if vFrame.origin.y == 0 {
         //            vFrame.origin.y -= frame.size.height

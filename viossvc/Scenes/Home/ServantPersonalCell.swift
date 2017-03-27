@@ -190,11 +190,10 @@ class ServantOnePicCell: ServantPersonalCell {
             thumbUpBtn?.setTitle(String(likeCount), forState: .Selected)
         }
         
-        let imageUrls = model.dynamic_url
-        imgView?.kf_setImageWithURL(NSURL.init(string: imageUrls!))
+        let imageUrls = model.dynamic_url! + "?imageMogr2/gravity/Center/crop/1000x1000"
+        imgView?.kf_setImageWithURL(NSURL.init(string: imageUrls),placeholderImage: UIImage.init(named: "image_placeholder"))
     }
 }
-
 class ServantOneLabelCell: ServantPersonalCell {
     
     var detailLabel:UILabel?
@@ -338,12 +337,12 @@ class ServantPicAndLabelCell: ServantPersonalCell {
             imageContianer?.addSubview(imgV)
             imgV.tag = 30000 + i
             // 加图片链接
-            imgV.kf_setImageWithURL(NSURL.init(string: imageUrl))
+            let url:String = imageUrl + "?imageMogr2/gravity/Center/crop/900x900"
+            imgV.kf_setImageWithURL(NSURL.init(string: url),placeholderImage: UIImage.init(named: "image_placeholder"))
             // 加点击方法
             imgV.userInteractionEnabled = true
             let tap:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.imageAction(_:)))
             imgV.addGestureRecognizer(tap)
-            
             // 加约束
             imgV.snp_makeConstraints(closure: { (make) in
                 make.width.height.equalTo(imageWidth)

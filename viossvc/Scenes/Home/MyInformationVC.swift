@@ -269,10 +269,8 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         let array = allDataDict[dateArray[indexPath.section]]
         if array![indexPath.row].campaign_time != nil {
             cell.activityList(array![indexPath.row])
-            return cell
         } else {
             cell.updeat(array![indexPath.row])
-            return cell
         }
     }
     
