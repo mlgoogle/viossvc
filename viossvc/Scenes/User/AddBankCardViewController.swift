@@ -37,6 +37,7 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
                     if response == nil{
                         SVProgressHUD.showSuccessMessage(SuccessMessage: "绑定成功", ForDuration: 1, completion: {
                             self?.navigationController?.popViewControllerAnimated(true)
+                            NSNotificationCenter.defaultCenter().postNotificationName("updateBankCards", object: nil, userInfo: nil)
                         })
                         return
                     }
@@ -45,9 +46,7 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
                         SVProgressHUD.showErrorMessage(ErrorMessage: "银行不匹配", ForDuration: 1, completion: nil)
                         return
                     }
-                    SVProgressHUD.showSuccessMessage(SuccessMessage: "绑定成功", ForDuration: 1, completion: { 
-                        self?.navigationController?.popViewControllerAnimated(true)
-                    })
+                    
             }) { (error) in
                 SVProgressHUD.showErrorMessage(ErrorMessage: error.localizedDescription, ForDuration: 1, completion: nil)
             }
