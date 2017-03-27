@@ -272,6 +272,8 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         } else {
             cell.updeat(array![indexPath.row])
         }
+        
+        return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
