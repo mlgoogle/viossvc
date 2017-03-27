@@ -108,7 +108,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         usernameField.backgroundColor = UIColor.clearColor()
         usernameField.textAlignment = .Left
         usernameField.keyboardType = .NumberPad
-        var style = usernameField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
+        let style = usernameField.defaultTextAttributes[NSParagraphStyleAttributeName]?.mutableCopy() as! NSMutableParagraphStyle
         let font = UIFont.systemFontOfSize(14)
         style.minimumLineHeight = (usernameField.font?.lineHeight)! - ((usernameField.font?.lineHeight)! - font.lineHeight) / 2
         usernameField.attributedPlaceholder = NSAttributedString.init(string: "请输入手机号", attributes: [NSForegroundColorAttributeName: UIColor.grayColor(),NSParagraphStyleAttributeName:style,NSFontAttributeName:UIFont.systemFontOfSize(14)])
