@@ -514,8 +514,8 @@ class LoginWithMSGVC: UIViewController, UITextFieldDelegate {
                 
                 self!.registerModel.timestamp = model!.timestamp
                 self!.registerModel.token = model?.token
-                
-                }, error: { [weak self ] (error) in
+       
+                }, error: { (error) in
                     SVProgressHUD.showErrorMessage(ErrorMessage: "发送验证码失败，请稍后再试！", ForDuration: 1, completion: nil)
                 })
         

@@ -97,7 +97,7 @@ class AuthUserViewController: BaseTableViewController, UIImagePickerControllerDe
             self.imagePicker?.sourceType = .Camera
             self.presentViewController(self.imagePicker!, animated: true, completion: nil)
         }
-        let labAction:UIAlertAction! = UIAlertAction.init(title: "相册", style: .Default) { action in
+        let labAction:UIAlertAction! = UIAlertAction.init(title: "从系统相册中选择", style: .Default) { action in
             self.imagePicker?.sourceType = .PhotoLibrary
             self.presentViewController(self.imagePicker!, animated: true, completion: nil)
         }
