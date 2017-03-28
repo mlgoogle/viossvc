@@ -80,7 +80,6 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
                     XCGLogger.error("\(error) \(self)")
                     
                 }) {
-                SVProgressHUD.showWithStatus("登录中...")
             }
         }
     }

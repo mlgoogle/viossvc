@@ -38,7 +38,6 @@ class MainViewController: UIViewController {
     }
     
     func didAutoLoginComplete(userInfo:UserInfoModel?) {
-        
         SVProgressHUD.dismiss()
         UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
         
