@@ -178,8 +178,10 @@ class ServantOnePicCell: ServantPersonalCell {
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
         
         // 计算时间
-        let time = self.dealTimeWithString(model.dynamic_time!)
-        timeLabel?.text = time
+        if model.dynamic_time != nil {
+            let time = self.dealTimeWithString(model.dynamic_time!)
+            timeLabel?.text = time
+        }
         
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count
@@ -227,9 +229,12 @@ class ServantOneLabelCell: ServantPersonalCell {
         
         headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
+        
         // 计算时间
-        let time = self.dealTimeWithString(model.dynamic_time!)
-        timeLabel?.text = time
+        if model.dynamic_time != nil {
+            let time = self.dealTimeWithString(model.dynamic_time!)
+            timeLabel?.text = time
+        }
         
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count
@@ -298,8 +303,10 @@ class ServantPicAndLabelCell: ServantPersonalCell {
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
         
         // 计算时间
-        let time = self.dealTimeWithString(model.dynamic_time!)
-        timeLabel?.text = time
+        if model.dynamic_time != nil {
+            let time = self.dealTimeWithString(model.dynamic_time!)
+            timeLabel?.text = time
+        }
         
         let isliked = model.is_liked
         let likeCount = model.dynamic_like_count

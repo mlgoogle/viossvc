@@ -79,15 +79,15 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="0.074509803921568626" green="0.12156862745098039" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="qPz-Kg-csH">
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-emp" translatesAutoresizingMaskIntoConstraints="NO" id="qPz-Kg-csH">
                                                     <rect key="frame" x="115" y="55" width="17" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="ZKU-0t-nBh"/>
                                                         <constraint firstAttribute="width" constant="17" id="oUu-Pa-5fj"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-UT-4PX">
-                                                    <rect key="frame" x="138" y="55" width="17" height="17"/>
+                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star-emp" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-UT-4PX">
+                                                    <rect key="frame" x="136" y="55" width="17" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="J0f-g7-ELi"/>
                                                         <constraint firstAttribute="width" constant="17" id="fFd-ZS-R9b"/>
@@ -95,16 +95,7 @@
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="yII-4i-u2y"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-Da-eqj">
-                                                    <rect key="frame" x="161" y="55" width="17" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="Ute-qy-Zja"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="17" id="dCP-JJ-OWv"/>
-                                                        <constraint firstAttribute="width" constant="17" id="s6R-WN-z0O"/>
-                                                        <constraint firstAttribute="height" constant="17" id="xSX-CG-TGI"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="JpQ-9S-7bi">
+                                                <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-emp" translatesAutoresizingMaskIntoConstraints="NO" id="JpQ-9S-7bi">
                                                     <rect key="frame" x="184" y="55" width="17" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="17" id="2zq-fw-sy6"/>
@@ -113,13 +104,22 @@
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="17" id="rje-qG-3td"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="XKo-mw-Fzz">
-                                                    <rect key="frame" x="207" y="55" width="17" height="17"/>
+                                                <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star-emp" translatesAutoresizingMaskIntoConstraints="NO" id="XKo-mw-Fzz">
+                                                    <rect key="frame" x="205" y="55" width="17" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="X2w-JX-Twq"/>
                                                         <constraint firstAttribute="width" constant="17" id="cUh-pQ-Pzl"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="17" id="dVK-ve-zTP"/>
                                                         <constraint firstAttribute="height" constant="17" id="tpe-Sv-0dS"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-emp" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-Da-eqj">
+                                                    <rect key="frame" x="161" y="55" width="17" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="Ute-qy-Zja"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="17" id="dCP-JJ-OWv"/>
+                                                        <constraint firstAttribute="width" constant="17" id="s6R-WN-z0O"/>
+                                                        <constraint firstAttribute="height" constant="17" id="xSX-CG-TGI"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -546,7 +546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="79AF81AC-F624-4897-B0BF-11DC596C0A18" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B96711F7-10DF-44E8-9DEC-73ADC01AFE06" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -2543,7 +2543,14 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="资料" id="wYf-a5-M1p" userLabel="资料"/>
+                    <navigationItem key="navigationItem" title="资料" id="wYf-a5-M1p" userLabel="资料">
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="UIj-Tg-gns">
+                            <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="finishItemTapped:" destination="SKS-qC-yXl" id="3jm-g5-3ti"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cityLabel" destination="rKu-V6-Krp" id="aHy-g6-4QX"/>
@@ -5825,7 +5832,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="79AF81AC-F624-4897-B0BF-11DC596C0A18" width="125" height="125">
+        <image name="B96711F7-10DF-44E8-9DEC-73ADC01AFE06" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -6946,7 +6953,6 @@ AAAAQQAAAAAAAAAAAAAAAAAA/nI
         <image name="logoshiyi" width="125" height="125"/>
         <image name="main_background" width="640" height="1136"/>
         <image name="msg-bubble-another" width="48" height="35"/>
-        <image name="my_star_gray" width="17" height="17"/>
         <image name="orderDetailLocation" width="30" height="30"/>
         <image name="orderDetailLogo" width="66" height="66"/>
         <image name="pay-selected" width="20" height="20"/>
@@ -6959,6 +6965,7 @@ AAAAQQAAAAAAAAAAAAAAAAAA/nI
         <image name="sms" width="18" height="20"/>
         <image name="star-common-fill" width="25" height="25"/>
         <image name="star-common-hollow" width="25" height="25"/>
+        <image name="star-emp" width="20" height="20"/>
         <image name="test_111" width="9" height="7"/>
         <image name="tianjia" width="45" height="45"/>
         <image name="tixian" width="25" height="25"/>
