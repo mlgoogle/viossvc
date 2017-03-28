@@ -37,10 +37,21 @@ class SettingViewController: BaseTableViewController {
         
     }
     @IBAction func logoutBtnTapped(sender: AnyObject) {
-        MobClick.event(AppConst.Event.user_logout)
-        CurrentUserHelper.shared.logout()
-        let rootController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController")
-        UIApplication.sharedApplication().keyWindow!.rootViewController = rootController
+        
+        let sheetController = UIAlertController.init(title: "确定要退出?", message: nil, preferredStyle: .Alert)
+        let cancelAction:UIAlertAction = UIAlertAction.init(title: "取消", style: .Cancel, handler: nil)
+        let confirmAction:UIAlertAction! = UIAlertAction.init(title: "确定", style: .Default) { action in
+            UIView.animateWithDuration(1.5, animations: {
+                MobClick.event(AppConst.Event.user_logout)
+                CurrentUserHelper.shared.logout()
+                let rootController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController")
+                UIApplication.sharedApplication().keyWindow!.rootViewController = rootController
+            })
+        }
+        sheetController.addAction(cancelAction)
+        sheetController.addAction(confirmAction)
+        presentViewController(sheetController, animated: true, completion: nil)
+
     }
     
     // 计算缓存
