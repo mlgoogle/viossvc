@@ -21,7 +21,6 @@ class BankCardCell: OEZTableViewCell {
         }
         if cardName.length <= 0 {
             cardName = "未知银行"
-            return
         }
         bankCardNumLabel.text = "\(cardName.substringToIndex(4))(\(cardNum.substringFromIndex(cardNum.length-4)))"
     }
@@ -51,8 +50,8 @@ class SelectedBankCardViewController: BaseListTableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(BankCardCell.self)
-
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         didRequest()
@@ -79,16 +78,12 @@ class SelectedBankCardViewController: BaseListTableViewController{
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        print(dataSource)
-        
         for i in 0..<(dataSource?.count)! {
             
             let bankModel:BankCardModel = dataSource![i] as! BankCardModel
             if bankModel.is_default == 1 {
                 selectIndex = i
             }
-            
         }
     }
 }

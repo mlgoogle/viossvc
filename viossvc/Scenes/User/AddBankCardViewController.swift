@@ -19,7 +19,11 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
             let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", AppConst.Text.PhoneFormat)
             if predicate.evaluateWithObject(phoneNumberTextfield.text) == false {
                 showErrorWithStatus(AppConst.Text.PhoneFormatErr)
-                return;
+                return
+            }
+            if cardNumberTextfield.text?.length() < 16 {
+                SVProgressHUD.showErrorWithStatus("请输入正确的银行卡号")
+                return
             }
             
             SVProgressHUD.showProgressMessage(ProgressMessage: "绑定中...")
