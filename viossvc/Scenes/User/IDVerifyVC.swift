@@ -83,6 +83,9 @@ class IDVerifyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             CurrentUserHelper.shared.userInfo.auth_status_ = 1
             NSUserDefaults.standardUserDefaults().setObject(CurrentUserHelper.shared.userInfo.auth_status_, forKey: "auth_status")
             self!.subimitFinished!()
+            // 发通知 更改验证信息
+            NSNotificationCenter.defaultCenter().postNotificationName("IDVerifySuccess", object: nil)
+            
             SVProgressHUD.showWainningMessage(WainningMessage: "提交验证信息成功", ForDuration: 1.5, completion: { () in
                 self?.navigationController?.popViewControllerAnimated(true)
             })

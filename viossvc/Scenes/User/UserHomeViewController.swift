@@ -68,9 +68,8 @@ class UserHomeViewController: BaseTableViewController {
         
         //接收通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateImageAndName), name: "updateImageAndName", object: nil)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateBankCards), name: "updateBankCards", object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateIDVerify), name: "IDVerifySuccess", object: nil)
     }
     //移除通知
     deinit{
@@ -92,7 +91,10 @@ class UserHomeViewController: BaseTableViewController {
         let cardCount:Int = bankCardNum + 1
         bankCardNumLabel.text = "\(cardCount)张"
     }
-    
+    // 跟新认证状态
+    func updateIDVerify() {
+        authStatusLabel.text = "认证通过"
+    }
     func imageTapAction(tap:UITapGestureRecognizer) {
         
         let imageView:UIImageView = tap.view as! UIImageView
@@ -101,16 +103,22 @@ class UserHomeViewController: BaseTableViewController {
     
     //MARK: --DATA
     func initData() {
+        SVProgressHUD.showProgressMessage(ProgressMessage: "初始化用户数据")
         checkAuthStatus()
         requsetCommonBankCard()
-        SVProgressHUD.showProgressMessage(ProgressMessage: "初始化用户数据")
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         requestUserCash { [weak self](result) in
             SVProgressHUD.dismiss()
             let userCash =  result as! Int
             self?.userCashLabel.text = "\(Double(userCash)/100)元"
         }
-        
     }
+    
     func requsetCommonBankCard() {
         let model = BankCardModel()
         unowned let weakSelf = self
