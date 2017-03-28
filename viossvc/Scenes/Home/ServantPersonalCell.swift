@@ -174,7 +174,7 @@ class ServantOnePicCell: ServantPersonalCell {
     func updateImage(model:servantDynamicModel) {
         
         personModel = model
-        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
+        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
         
         // 计算时间
@@ -227,7 +227,7 @@ class ServantOneLabelCell: ServantPersonalCell {
         
         personModel = model
         
-        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
+        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
         
         // 计算时间
@@ -299,7 +299,7 @@ class ServantPicAndLabelCell: ServantPersonalCell {
     func updateUI(model:servantDynamicModel) {
         
         personModel = model
-        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!))
+        headerView?.kf_setImageWithURL(NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         nameLabel?.text = CurrentUserHelper.shared.userInfo.nickname
         
         // 计算时间
