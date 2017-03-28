@@ -90,6 +90,12 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
         button.layer.masksToBounds = true
         return button
     }()
+    lazy var bigQRCodeResetTips:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.clearColor()
+        button.addTarget(self, action: #selector(uploadQRCode), forControlEvents: .TouchUpInside)
+        return button
+    }()
     
     lazy var wxQRCodeView:UIImageView = {
         let imageView = UIImageView()
@@ -150,6 +156,10 @@ class ContactCell: UITableViewCell, UITextFieldDelegate {
             make.bottom.equalTo(wxQRCodeView).offset(-1)
             make.width.equalTo(46)
             make.height.equalTo(16)
+        })
+        contentView.addSubview(bigQRCodeResetTips)
+        bigQRCodeResetTips.snp_makeConstraints(closure: { (make) in
+            make.edges.equalTo(wxQRCodeView)
         })
     }
     

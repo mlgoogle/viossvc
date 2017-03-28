@@ -39,8 +39,10 @@ class SettingViewController: BaseTableViewController {
     @IBAction func logoutBtnTapped(sender: AnyObject) {
         MobClick.event(AppConst.Event.user_logout)
         CurrentUserHelper.shared.logout()
-        let rootController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController")
-        UIApplication.sharedApplication().keyWindow!.rootViewController = rootController
+        SVProgressHUD.showSuccessMessage(SuccessMessage: "退出账号成功", ForDuration: 1.5) {
+            let rootController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController")
+            UIApplication.sharedApplication().keyWindow!.rootViewController = rootController
+        }
     }
     
     // 计算缓存

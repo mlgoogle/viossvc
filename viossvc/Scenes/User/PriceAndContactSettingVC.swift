@@ -328,7 +328,6 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func changeContactAndPrice() {
-        SVProgressHUD.setDefaultMaskType(.Clear)
         let req = PriceSettingRequestModel()
         req.uid = CurrentUserHelper.shared.uid
         req.wx_num = wxAccount
@@ -337,11 +336,11 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
         AppAPIHelper.userAPI().priceSetting(req, complete: { [weak self](response) in
             let model:PriceSettingModel = response as! PriceSettingModel
             if model.result == 0 {
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 0, completion: {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "设置成功", ForDuration: 0.5, completion: {
                     self!.navigationController?.popViewControllerAnimated(true)
                 })
             } else {
-                SVProgressHUD.showErrorMessage(ErrorMessage: "设置失败", ForDuration: 0, completion: {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "设置失败", ForDuration: 0.5, completion: {
                     self!.navigationController?.popViewControllerAnimated(true)
                 })
             }
