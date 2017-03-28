@@ -607,10 +607,15 @@ class LoginWithMSGVC: UIViewController, UITextFieldDelegate {
         let sb  = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("MainTabBarController")
         UIApplication.sharedApplication().keyWindow!.rootViewController = vc
-        
     }
 
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        usernameField.resignFirstResponder()
+        passwdField.resignFirstResponder()
+        verifyCodeField.resignFirstResponder()
+        reInPasswdField.resignFirstResponder()
+        inviteCodeField.resignFirstResponder()
+    }
     
     //MARK: - UITextField
     func textFieldShouldClear(textField: UITextField) -> Bool {

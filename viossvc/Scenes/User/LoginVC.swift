@@ -69,7 +69,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func touchWhiteSpace() {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
     
@@ -309,7 +309,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     func didLoginComplete(userInfo:UserInfoModel?) {
-        
         SVProgressHUD.dismiss()
         let sb  = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("MainTabBarController")

@@ -69,7 +69,6 @@ class BaseLoginViewController: UITableViewController {
     }
     
     func didLoginComplete(userInfo:UserInfoModel?) {
-        
         SVProgressHUD.dismiss()
         UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
         
@@ -80,9 +79,7 @@ class BaseLoginViewController: UITableViewController {
             self?.didLoginComplete(model as? UserInfoModel)
             }, error: errorBlockFunc())
     }
-    
 }
-
 
 class LoginViewController: BaseLoginViewController {
     
