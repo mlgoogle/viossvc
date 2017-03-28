@@ -25,15 +25,13 @@ class CitysSelectViewController: BaseTableViewController {
     var cityName: String?
     var selectCity = selectCityBlock?()
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         initData()
         initNav()
         initIndexView()
     }
+    
     //MARK: --Data
     func initData() {
         keys = citys.allKeys.sort({ (obj1: AnyObject, obj2: AnyObject) -> Bool in
@@ -59,17 +57,27 @@ class CitysSelectViewController: BaseTableViewController {
             selectIndex = NSIndexPath.init(forRow: 0, inSection: 0)
         }
     }
+    
     //MARK: --索引
     func initIndexView() {
         tableView.sectionIndexColor = UIColor(RGBHex: 0x666666)
-        
-    
     }
     
     //MARK: --nav
     func initNav() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "确定", style: .Plain, target: self, action: #selector(rightItemTapped))
+        if navigationItem.rightBarButtonItem == nil {
+            let sureBtn = UIButton.init(frame: CGRectMake(0, 0, 40, 30))
+            sureBtn.setTitle("确定", forState: .Normal)
+            sureBtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            sureBtn.backgroundColor = UIColor.clearColor()
+            sureBtn.addTarget(self, action: #selector(rightItemTapped), forControlEvents: .TouchUpInside)
+            
+            let sureItem = UIBarButtonItem.init(customView: sureBtn)
+            navigationItem.rightBarButtonItem = sureItem
+            
+        }
     }
+    
     func rightItemTapped() {
         let values = citys.valueForKey(keys![selectIndex!.section] as! String) as! NSMutableArray
         cityName = values[selectIndex!.row] as? String
@@ -79,6 +87,7 @@ class CitysSelectViewController: BaseTableViewController {
     
         navigationController?.popViewControllerAnimated(true)
     }
+    
     //Mark: --table's delegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return keys == nil ? 0 : keys!.count
@@ -88,9 +97,11 @@ class CitysSelectViewController: BaseTableViewController {
         let values = citys.valueForKey(keys![section] as! String) as! NSMutableArray
         return values.count
     }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return keys![section] as? String
     }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let values = citys.valueForKey(keys![indexPath.section] as! String) as! NSMutableArray
@@ -99,14 +110,17 @@ class CitysSelectViewController: BaseTableViewController {
         cell.citySelectBtn.selected = (selectIndex != nil) && (selectIndex == indexPath)
         return cell
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let lastIndex:NSIndexPath = selectIndex == nil ? indexPath : selectIndex!
         selectIndex = indexPath
         tableView.reloadRowsAtIndexPaths([lastIndex,selectIndex!], withRowAnimation: .Automatic)
     }
+    
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         return keys as? [String]
     }
+    
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         let indexPath = NSIndexPath.init(forRow: 0, inSection: index)
         tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)

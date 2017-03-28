@@ -32,6 +32,19 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if navigationItem.rightBarButtonItem == nil {
+            let sureBtn = UIButton.init(frame: CGRectMake(0, 0, 40, 30))
+            sureBtn.setTitle("完成", forState: .Normal)
+            sureBtn.setTitleColor(UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1), forState: .Normal)
+            sureBtn.backgroundColor = UIColor.whiteColor()
+            sureBtn.addTarget(self, action: #selector(finishItemTapped(_:)), forControlEvents: .TouchUpInside)
+            
+            let sureItem = UIBarButtonItem.init(customView: sureBtn)
+            navigationItem.rightBarButtonItem = sureItem
+            
+        }
+        
         if (CurrentUserHelper.shared.userInfo.head_url != nil){
             let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
             iconImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
@@ -48,9 +61,8 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         sexLabel.text = CurrentUserHelper.shared.userInfo.gender == 1 ? "男" : "女"
         nameText.delegate = self
         nameText!.clearButtonMode = .WhileEditing
-        
-        
     }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imagePicker.delegate = self
@@ -60,8 +72,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             openLocation()
         }
     }
+    
     //MARK: --上传头像
-    @IBAction func finishItemTapped(sender: AnyObject) {
+    func finishItemTapped(sender: AnyObject) {
         let sex = sexLabel.text == "男" ? 1 : 0
         if CurrentUserHelper.shared.userInfo.nickname == nameText.text &&
             CurrentUserHelper.shared.userInfo.address == cityLabel.text && CurrentUserHelper.shared.userInfo.gender == sex &&
@@ -106,8 +119,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             }else{
                 self?.navigationController?.popViewControllerAnimated(true)
             }
-        }, error: errorBlockFunc())
+            }, error: errorBlockFunc())
     }
+    
     //MARK: --常住地选择
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CitysSelectViewController.className() {
@@ -120,6 +134,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             return
         }
     }
+    
     //MARK: --TABLEVIEW
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
        
@@ -168,6 +183,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         alterController.addAction(alterActionCancel)
         presentViewController(alterController, animated: true, completion: nil)
     }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         haveChangeImage = true
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
@@ -236,9 +252,11 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         locationManager.startUpdatingLocation()
     }
+    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         openLocation()
     }
+    
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         CurrentUserHelper.shared.userInfo.latitude = newLocation.coordinate.latitude
         CurrentUserHelper.shared.userInfo.longitude = newLocation.coordinate.longitude
@@ -279,7 +297,6 @@ extension NodifyUserInfoViewController:UITextFieldDelegate{
         }
         return true
     }
-
 }
 
 
