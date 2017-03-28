@@ -112,7 +112,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     // 先上传图片
     func sendMessage() {
-        
         textView?.resignFirstResponder()
         self.view.endEditing(true)
         
@@ -140,14 +139,13 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     func uploadImages() {
-        
         let asset:ZLPhotoAssets = imageArray![imgIndex] as! ZLPhotoAssets
         let image:UIImage = asset.originImage()
-//        let image:UIImage = imageArray![imgIndex] as! UIImage
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
             if imageUrl == nil {
-                SVProgressHUD.dismiss()
                 SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
+                self.left?.userInteractionEnabled = true
+                self.right?.userInteractionEnabled = true
                 return
             }
             
@@ -188,15 +186,14 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             print(response)
             let resultModel:SendDynamicResultModel = response as! SendDynamicResultModel
             if resultModel.result == 0 {
-                SVProgressHUD.dismiss()
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 0, completion: {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 1, completion: {
                     self.navigationController?.popViewControllerAnimated(true)
                     self.delegate?.sendMsgViewDidSendMessage()
                 })
             }
             }, error: { (error) in
-                self.left?.userInteractionEnabled = false
-                self.right?.userInteractionEnabled = false
+                self.left?.userInteractionEnabled = true
+                self.right?.userInteractionEnabled = true
         } )
     }
     
@@ -294,10 +291,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         imageArray?.addObjectsFromArray(assets)
         collection?.reloadData()
-    }
-    
-    func btnsDisable() {
-        topView?.userInteractionEnabled = false
     }
     
     override func didReceiveMemoryWarning() {

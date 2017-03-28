@@ -56,6 +56,7 @@ extension UIViewController {
         view.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     //查询用户余额
     func requestUserCash(complete: CompleteBlock) {
         AppAPIHelper.userAPI().userCash(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
@@ -74,6 +75,7 @@ extension UIViewController {
 
         }, error: errorBlockFunc())
     }
+    
     /**
      查询认证状态
      */
@@ -95,13 +97,11 @@ extension UIViewController {
     
     /**
      七牛上传图片
-     
      - parameter image:     图片
      - parameter imageName: 图片名
      - parameter complete:  图片完成Block
      */
     func qiniuUploadImage(image: UIImage, imageName: String, complete:CompleteBlock) {
-        
         //1,请求token
         AppAPIHelper.commenAPI().imageToken({ (result) in
             let token = result?.valueForKey("img_token_") as! String
@@ -127,7 +127,6 @@ extension UIViewController {
     
     /**
      七牛上传图片
-     
      - parameter image:     图片
      - parameter imagePath: 图片服务器路径
      - parameter imageName: 图片名
@@ -162,7 +161,6 @@ extension UIViewController {
     
     /**
      缓存图片
-     
      - parameter image:     图片
      - parameter imageName: 图片名
      - returns: 图片沙盒路径
