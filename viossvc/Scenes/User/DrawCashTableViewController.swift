@@ -73,7 +73,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     
     func updateView(drawCash: String) {
         drawCashBtn.enabled = drawCash.characters.count != 0
-        drawCashBtn.backgroundColor = drawCashBtn.enabled ? UIColor(RGBHex: 0x141f33) : UIColor(RGBHex: 0xaaaaaa)
+        drawCashBtn.backgroundColor = drawCashBtn.enabled ? UIColor.init(red: 252/255.0, green: 163/255.0, blue: 17/255.0, alpha: 1) : UIColor.init(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1)
     }
     
     //MARK: --DrawCash
@@ -134,10 +134,9 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let resultText = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        if resultText == "0" {
-            return false
-        }
-        
+//        if resultText == "0" {
+//            return false
+//        }
         let userCash = Double(CurrentUserHelper.shared.userInfo.user_cash_) / 100
         if (resultText.characters.count != 0 && Double(resultText)! > userCash ){
             showErrorWithStatus("提现金额超限")
