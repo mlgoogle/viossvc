@@ -55,17 +55,14 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(hexString: "#ffffff")
-        
         getPriceList()
         initTableView()
         hideKeyboard()
-        
     }
     
     func registerNotify() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
     }
     
     func getPriceList() {
@@ -108,7 +105,6 @@ class PriceAndContactSettingVC: UIViewController, UITableViewDelegate, UITableVi
     //MARK: -- Nav
     func initNav()  {
         title = "金额设置"
-        
     }
     
     //MARK: -- tableView
