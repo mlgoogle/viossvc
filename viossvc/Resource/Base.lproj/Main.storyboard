@@ -163,8 +163,8 @@
                                                     <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WCl-t9-bcO">
-                                                    <rect key="frame" x="525" y="13" width="40" height="18"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WCl-t9-bcO">
+                                                    <rect key="frame" x="534" y="13" width="31" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -362,7 +362,7 @@
                         <outlet property="myClientCell" destination="2Yp-55-GN6" id="8Eg-qk-8ht"/>
                         <outlet property="priceSettingCell" destination="UMM-5N-Qts" id="Xak-Hz-6sc"/>
                         <outlet property="qustionContent" destination="PQ3-LK-rbM" id="idr-Ub-WTF"/>
-                        <outlet property="userCashLabel" destination="WCl-t9-bcO" id="NbM-h4-kSS"/>
+                        <outlet property="userCashLabel" destination="WCl-t9-bcO" id="xxr-Af-MYy"/>
                         <outlet property="userContentView" destination="7AY-hs-n6h" id="gS3-vk-JnS"/>
                         <outlet property="userHeaderImage" destination="Ldt-fc-ZTn" id="vEQ-56-ceQ"/>
                         <outlet property="userNameLabel" destination="qkr-pL-oyW" id="v2e-1r-ZAJ"/>
@@ -546,7 +546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0950E789-84BF-43F2-8C8E-B6B76EB7D4CC" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2FC162A9-9FBE-4224-AA23-3D0BB5C88805" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -5833,7 +5833,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0950E789-84BF-43F2-8C8E-B6B76EB7D4CC" width="125" height="125">
+        <image name="2FC162A9-9FBE-4224-AA23-3D0BB5C88805" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
