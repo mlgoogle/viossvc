@@ -143,11 +143,11 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         let asset:ZLPhotoAssets = imageArray![imgIndex] as! ZLPhotoAssets
         let image:UIImage = asset.originImage()
-//        let image:UIImage = imageArray![imgIndex] as! UIImage
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
             if imageUrl == nil {
-                SVProgressHUD.dismiss()
                 SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
+                self.left?.userInteractionEnabled = true
+                self.right?.userInteractionEnabled = true
                 return
             }
             
@@ -188,8 +188,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             print(response)
             let resultModel:SendDynamicResultModel = response as! SendDynamicResultModel
             if resultModel.result == 0 {
-                SVProgressHUD.dismiss()
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 0, completion: {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 1, completion: {
                     self.navigationController?.popViewControllerAnimated(true)
                     self.delegate?.sendMsgViewDidSendMessage()
                 })
