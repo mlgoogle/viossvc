@@ -155,8 +155,8 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         
         let title = indexPath.row == 0 ? "头像" : "性别"
-        let firstActionTitle = indexPath.row == 0 ? "照相机":"男"
-        let secondActionTitle = indexPath.row == 0 ? "相册":"女"
+        let firstActionTitle = indexPath.row == 0 ? "相机":"男"
+        let secondActionTitle = indexPath.row == 0 ? "从系统相册选择":"女"
         let alterController: UIAlertController = UIAlertController.init(title: title, message: nil, preferredStyle: .ActionSheet)
         let alterActionFirst: UIAlertAction = UIAlertAction.init(title: firstActionTitle, style: .Default) { [weak self](action) in
             if indexPath.row != 0{
@@ -167,6 +167,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             self?.imagePicker.sourceType = .Camera
             self?.presentViewController((self?.imagePicker)!, animated: true, completion: nil)
         }
+        
         let alterActionSecond: UIAlertAction = UIAlertAction.init(title: secondActionTitle, style: .Default) { [weak self](action) in
             if indexPath.row != 0{
                 self?.sexLabel.text = secondActionTitle
@@ -177,7 +178,6 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         
         let alterActionCancel: UIAlertAction = UIAlertAction.init(title: "取消", style: .Cancel, handler: nil)
-        
         alterController.addAction(alterActionFirst)
         alterController.addAction(alterActionSecond)
         alterController.addAction(alterActionCancel)
@@ -201,13 +201,6 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             
             //上传头像图片
             AppAPIHelper.userAPI().authHeaderUrl(CurrentUserHelper.shared.userInfo.uid, head_url_: (self?.imageUrl)! , complete: { (result) in
-                
-                if result == nil {
-               
-                    
-                    
-                }
-                
                 }, error: self!.errorBlockFunc())
         })
     }

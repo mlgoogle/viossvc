@@ -112,7 +112,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     // 先上传图片
     func sendMessage() {
-        
         textView?.resignFirstResponder()
         self.view.endEditing(true)
         
@@ -140,7 +139,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     func uploadImages() {
-        
         let asset:ZLPhotoAssets = imageArray![imgIndex] as! ZLPhotoAssets
         let image:UIImage = asset.originImage()
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
@@ -194,8 +192,8 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
                 })
             }
             }, error: { (error) in
-                self.left?.userInteractionEnabled = false
-                self.right?.userInteractionEnabled = false
+                self.left?.userInteractionEnabled = true
+                self.right?.userInteractionEnabled = true
         } )
     }
     
@@ -293,10 +291,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         imageArray?.addObjectsFromArray(assets)
         collection?.reloadData()
-    }
-    
-    func btnsDisable() {
-        topView?.userInteractionEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
