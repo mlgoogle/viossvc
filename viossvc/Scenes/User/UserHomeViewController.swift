@@ -42,8 +42,6 @@ class UserHomeViewController: BaseTableViewController {
     
     var bankCardNum = 0 // 记录一共有几张卡
     
-    
-    
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,11 +142,9 @@ class UserHomeViewController: BaseTableViewController {
         }
         
         if CurrentUserHelper.shared.userInfo.praise_lv > 0 {
-            for i in 100...104 {
-                if i <= 100 + CurrentUserHelper.shared.userInfo.praise_lv {
-                    let starImage: UIImageView = userContentView.viewWithTag(i) as! UIImageView
-                    starImage.image = UIImage.init(named: "my_star_fill")
-                }
+            for i in 0..<CurrentUserHelper.shared.userInfo.praise_lv {
+                let starImage: UIImageView = userContentView.viewWithTag(i + 100) as! UIImageView
+                starImage.image = UIImage.init(named: "star-select")
             }
         }
         
