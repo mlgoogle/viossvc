@@ -16,6 +16,8 @@ protocol SendMsgViewDelegate {
 class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,UIActionSheetDelegate,ZLPhotoPickerViewControllerDelegate {
     
     var topView:UIView?
+    var left:UIButton?
+    var right:UIButton?
     var textView:UITextView?
     var placeHolderLabel:UILabel?
     var collection:UICollectionView?
@@ -37,7 +39,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func viewDidLoad() {
@@ -62,6 +63,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         leftBtn.setTitle("取消", forState: .Normal)
         topView?.addSubview(leftBtn)
         leftBtn.addTarget(self, action: #selector(SendMsgViewController.backAction), forControlEvents: .TouchUpInside)
+        self.left = leftBtn
         
         let rightBtn:UIButton = UIButton.init(frame: CGRectMake(ScreenWidth - 65, 27, 50, 30))
         rightBtn.titleLabel?.font = UIFont.systemFontOfSize(16)
@@ -69,6 +71,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         rightBtn.setTitle("发布", forState: .Normal)
         topView?.addSubview(rightBtn)
         rightBtn.addTarget(self, action: #selector(SendMsgViewController.sendMessage), forControlEvents: .TouchUpInside)
+        self.right = rightBtn
         
         let topTitle:UILabel = UILabel.init(frame: CGRectMake((leftBtn.Right) + 10 , (leftBtn.Top), (rightBtn.Left) - leftBtn.Right - 20, (leftBtn.Height)))
         topView?.addSubview(topTitle)
@@ -121,13 +124,16 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             return
         }
         
-        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.Clear)
+        SVProgressHUD.showProgressMessage(ProgressMessage: "正在发送")
+        self.left?.userInteractionEnabled = false
+        self.right?.userInteractionEnabled = false
         
         if imageArray?.count > 0 {
             imgIndex = 0
             self.uploadImages()
           
-        }else {
+        } else {
             finallSendDymicMessage()
         }
         
@@ -139,7 +145,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         let image:UIImage = asset.originImage()
 //        let image:UIImage = imageArray![imgIndex] as! UIImage
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
-            
             if imageUrl == nil {
                 SVProgressHUD.dismiss()
                 SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
@@ -152,17 +157,13 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             if self.imgIndex == self.imageArray?.count {
                 // 出口
                 self.finallSendDymicMessage()
-            }else {
+            } else {
                 self.uploadImages()
             }
         }
     }
     
-    
     func finallSendDymicMessage() {
-        
-        print(imgUrlArray)
-        
         var urlString:String? = ""
         
         if imgUrlArray.count != 0 {
@@ -178,6 +179,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
                 }
             }
         }
+        
         let message:String = (headerView?.textView?.text)!
         let sendModel:SendDynamicMessageModel = SendDynamicMessageModel()
         sendModel.dynamic_text = message
@@ -187,13 +189,15 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             let resultModel:SendDynamicResultModel = response as! SendDynamicResultModel
             if resultModel.result == 0 {
                 SVProgressHUD.dismiss()
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 1.5, completion: {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "发布成功", ForDuration: 0, completion: {
                     self.navigationController?.popViewControllerAnimated(true)
+                    self.delegate?.sendMsgViewDidSendMessage()
                 })
-                
-                self.delegate?.sendMsgViewDidSendMessage()
             }
-            }, error: nil )
+            }, error: { (error) in
+                self.left?.userInteractionEnabled = false
+                self.right?.userInteractionEnabled = false
+        } )
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -205,7 +209,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     // MARK: UICollectionViewDelegate
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if imageArray?.count == 9 {
@@ -220,12 +223,11 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         if indexPath.row == imageArray?.count {
             cell.imageView?.image = UIImage.init(named: "AddPic")
-        }else {
+        } else {
             let asset = imageArray![indexPath.row]
             cell.imageView?.image = asset.originImage()
         }
         return cell
-        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -253,7 +255,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             let actionSheet = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册选择图片")
             
             actionSheet.showInView(self.view)
-        }else {
+        } else {
             // 显示图片
             PhotoBroswerVC.show(self, type:PhotoBroswerVCTypePush , index: UInt(indexPath.row), photoModelBlock: { [weak self]() -> [AnyObject]! in
                 

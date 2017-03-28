@@ -88,7 +88,7 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
                 SVProgressHUD.showSuccessMessage(SuccessMessage: "简介更新成功", ForDuration: 1.5 , completion: {
                     self?.navigationController?.popViewControllerAnimated(true)
                 })
-            }else {
+            } else {
                 SVProgressHUD.showErrorMessage(ErrorMessage: "简介更新失败，请稍后再试", ForDuration: 1.5, completion: {
                 })
             }
