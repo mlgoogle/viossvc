@@ -128,9 +128,9 @@ class ServantPersonalCell: UITableViewCell {
         }else if time >= 3600 && time < 86400 {
             let day:Int64 = Int64(time) / 3600
             timeLabelString = String(day) + "小时"
-        }else if time >= 86400 && time < 604800 {
+        }else if time >= 86400 {
             let day:Int64 = Int64(time) / 86400
-            timeLabelString = String(day) + "天"
+            timeLabelString = String(day) + "天前"
         }
         
         return timeLabelString
