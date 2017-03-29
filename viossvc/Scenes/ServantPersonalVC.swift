@@ -34,48 +34,68 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     var pageNum:Int = 0
     var dataArray = [servantDynamicModel]()
     var timer:NSTimer? // 刷新用
+    var offsetY:CGFloat = 0.0
     
     // MARK: - 函数方法
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if offsetY < 0 {
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        }
+    }
+    
+    public override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        if userDefaults.floatForKey("guideVersion") < 1.2 {
+        if userDefaults.floatForKey("guideVersion") < ((NSBundle.mainBundle().infoDictionary! ["CFBundleShortVersionString"])?.floatValue) {
             loadGuide()
-        }else{
+        } else {
             initViews()
         }
         //接收通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateImageAndName), name: "updateImageAndName", object: nil)
     }
+    
     //移除通知
-    deinit{
+    deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
     //通知实现
-    func updateImageAndName(notification: NSNotification?){
+    func updateImageAndName(notification: NSNotification?) {
         headerView?.didUpdateUI(CurrentUserHelper.shared.userInfo.head_url!, name: CurrentUserHelper.shared.userInfo.nickname!, star: CurrentUserHelper.shared.userInfo.praise_lv)
     }
-
     
     func loadGuide() {
-        
         let guidView:GuidView = GuidView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
         guidView.delegate = self
         UIApplication.sharedApplication().keyWindow?.addSubview(guidView)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setFloat(1.2, forKey: "guideVersion")
+        userDefaults.setFloat(((NSBundle.mainBundle().infoDictionary! ["CFBundleShortVersionString"])?.floatValue)!, forKey: "guideVersion")
     }
     
     func initViews() {
-        
         personalInfo = CurrentUserHelper.shared.userInfo
         
         addViews()
@@ -101,8 +121,8 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     }
     
     // 加载页面
-    func addViews(){
-        tableView = UITableView.init(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - 44), style: .Grouped)
+    func addViews() {
+        tableView = UITableView.init(frame: CGRectMake(0, -20, ScreenWidth, ScreenHeight + 20), style: .Grouped)
         tableView?.backgroundColor = UIColor.init(decR: 242, decG: 242, decB: 242, a: 1)
         tableView?.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
         tableView?.delegate = self
@@ -121,10 +141,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         tableView?.registerClass(ServantPicAndLabelCell.self, forCellReuseIdentifier: "ServantPicAndLabelCell")
         view.addSubview(tableView!)
         
-        tableView?.snp_makeConstraints(closure: { (make) in
-            make.left.right.top.bottom.equalTo(view)
-        })
-        
         header.setRefreshingTarget(self, refreshingAction: #selector(ServantPersonalVC.headerRefresh))
         footer.setRefreshingTarget(self, refreshingAction: #selector(ServantPersonalVC.footerRefresh))
         tableView?.mj_header = header
@@ -134,10 +150,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         topView = UIView.init(frame: CGRectMake(0, 0, ScreenWidth, 64))
         topView?.backgroundColor = UIColor.clearColor()
         view.addSubview(topView!)
-        // 挡住 header
-        let topbar = UIView.init(frame: CGRectMake(0, 0, ScreenWidth, 20))
-        topbar.backgroundColor = UIColor.whiteColor()
-        topView?.addSubview(topbar)
         
         leftBtn = UIButton.init(frame: CGRectMake(15, 27, 30, 30))
         leftBtn!.layer.masksToBounds = true
@@ -170,7 +182,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     }
     
     func reportAction() {
-        print("-----右上角举报实现~")
         let sendMsgView:SendMsgViewController = SendMsgViewController()
         sendMsgView.hidesBottomBarWhenPushed = true
         sendMsgView.delegate = self
@@ -178,14 +189,11 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     }
     
     // MARK: - UITableViewDelegate
-    
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return dataArray.count
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         if indexPath.row < dataArray.count {
             
             let model:servantDynamicModel = dataArray[indexPath.row]
@@ -202,7 +210,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
                 
                 return cell
                 
-            }else if detailText.characters.count  == 0 && urlArray.count == 1 {
+            } else if detailText.characters.count  == 0 && urlArray.count == 1 {
                 // 只有一张图片的cell
                 let cell = tableView.dequeueReusableCellWithIdentifier("ServantOnePicCell", forIndexPath: indexPath) as! ServantOnePicCell
                 cell.delegate = self
@@ -211,7 +219,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
                 cell.updateImage(model)
                 return cell
                 
-            }else {
+            } else {
                 // 复合cell
                 let cell = tableView.dequeueReusableCellWithIdentifier("ServantPicAndLabelCell", forIndexPath: indexPath) as! ServantPicAndLabelCell
                 cell.delegate = self
@@ -227,9 +235,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         return UITableViewCell.init()
     }
     
-    
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         headerView = ServantHeaderView.init(frame: CGRectMake(0, 0, ScreenWidth, 379))
         headerView?.didUpdateUI(CurrentUserHelper.shared.userInfo.head_url!, name: CurrentUserHelper.shared.userInfo.nickname!, star: CurrentUserHelper.shared.userInfo.praise_lv)
         headerView?.updateFansCount(self.fansCount)
@@ -237,40 +243,28 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     }
     
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return 316
     }
     
-//    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        
-//        var footer:ServantFooterView?
-//        
-//        if dataArray.count == 0 {
-//            footer = ServantFooterView.init(frame:CGRectMake(0, 0, ScreenWidth, 55),detail: "Ta很神秘，还未发布任何动态")
-//        }else {
-//            footer = ServantFooterView.init(frame:CGRectMake(0, 0, ScreenWidth, 55),detail: "暂无更多动态")
-//        }
-//        
-//        return footer
-//    }
-    
-    
     public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.001
+        return 0.1
     }
     
     // 滑动的时候改变顶部 topView
     public func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         let color:UIColor = UIColor.whiteColor()
-        let offsetY:CGFloat = scrollView.contentOffset.y
+        offsetY = scrollView.contentOffset.y
         
-        if offsetY < 64 {
+        if offsetY < 0 {
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+            
             topView?.backgroundColor = color.colorWithAlphaComponent(0)
             topTitle?.text = ""
             leftBtn?.setImage(UIImage.init(named: "message-1"), forState:.Normal)
             rightBtn?.setImage(UIImage.init(named: "sendDynamic-1"), forState: .Normal)
-        }else {
+        } else {
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+            
             let alpha:CGFloat = 1 - ((128 - offsetY) / 128)
             topView?.backgroundColor = color.colorWithAlphaComponent(alpha)
             
@@ -351,7 +345,7 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         footer.state = .NoMoreData
         if dataArray.count == 0 {
             footer.setTitle("您还未发布任何动态，快去发布吧", forState: .NoMoreData)
-        }else {
+        } else {
             footer.setTitle("暂无更多动态", forState: .NoMoreData)
         }
     }

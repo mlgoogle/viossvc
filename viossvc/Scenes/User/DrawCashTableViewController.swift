@@ -46,7 +46,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             let bankNum = CurrentUserHelper.shared.userInfo.currentBankCardNumber! as NSString
             let bankName = CurrentUserHelper.shared.userInfo.currentBanckCardName! as NSString
             if bankNum == "" || bankName == ""{
-                bankNameLabel.text = "银行卡格式错误"
+                bankNameLabel.text = "未知银行"
                 return
             }
             
@@ -84,8 +84,8 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             return
         }
         
-        if bankNameLabel.text == "银行卡格式错误"{
-            SVProgressHUD.showErrorMessage(ErrorMessage: "银行卡格式错误", ForDuration: 1, completion: nil)
+        if bankNameLabel.text == "未知银行"{
+            SVProgressHUD.showErrorMessage(ErrorMessage: "未知银行", ForDuration: 1, completion: nil)
             return
         }
         
