@@ -36,7 +36,8 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
                 ], complete: { [weak self](response) in
                     if response == nil{
                         SVProgressHUD.showSuccessMessage(SuccessMessage: "绑定成功", ForDuration: 1, completion: {
-                            self?.navigationController?.popViewControllerAnimated(true)
+                            
+                            self!.updataDefultBankCard(self!.cardNumberTextfield.text!,bankName: self!.bankNameTextfield.text!)
                             NSNotificationCenter.defaultCenter().postNotificationName("updateBankCards", object: nil, userInfo: nil)
                         })
                         return
@@ -50,6 +51,18 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
             }) { (error) in
                 SVProgressHUD.showErrorMessage(ErrorMessage: error.localizedDescription, ForDuration: 1, completion: nil)
             }
+        }
+    }
+    
+    func updataDefultBankCard(carNumber:String,bankName:String) {
+        navigationController?.popViewControllerAnimated(true)
+        
+        AppAPIHelper.userAPI().defaultBanKCard(carNumber, complete: { [weak self](result) in
+            
+            CurrentUserHelper.shared.userInfo.currentBankCardNumber = carNumber
+            CurrentUserHelper.shared.userInfo.currentBanckCardName = bankName
+            self?.navigationController?.popViewControllerAnimated(true)
+            }) { (error) in
         }
     }
     

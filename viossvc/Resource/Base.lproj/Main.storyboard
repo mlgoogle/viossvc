@@ -546,7 +546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1088F0FB-95B4-47D3-BE2F-361B8BBC4703" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C31A6AAD-A905-440C-85E0-8F9BC5F1370E" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
                                                     <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
@@ -5834,7 +5834,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1088F0FB-95B4-47D3-BE2F-361B8BBC4703" width="125" height="125">
+        <image name="C31A6AAD-A905-440C-85E0-8F9BC5F1370E" width="125" height="125">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -6977,6 +6977,6 @@ AAAAQQAAAAAAAAAAAAAAAAAA/nI
         <image name="wodefuwu" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5MR-6j-d18"/>
+        <segue reference="jM7-2C-9M1"/>
     </inferredMetricsTieBreakers>
 </document>
