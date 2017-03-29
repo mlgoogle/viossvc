@@ -150,12 +150,9 @@ class CurrentUserHelper: NSObject {
         return (keychainItem.objectForKey(kSecAttrAccount) as? String,keychainItem.objectForKey(kSecValueData) as? String)
     }
     
-    
     private func updateDeviceToken() {
         if isLogin && _deviceToken != nil {
             AppAPIHelper.userAPI().updateDeviceToken(uid, deviceToken: _deviceToken!, complete: nil, error: nil)
         }
     }
-    
-    
 }

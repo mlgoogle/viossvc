@@ -251,10 +251,7 @@ class MyInformationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
     }
     
-    
-    
     //tableViewDelegate
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return dateArray.count
     }
