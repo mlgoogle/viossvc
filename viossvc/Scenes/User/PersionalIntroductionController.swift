@@ -96,6 +96,9 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         }) { (error) in
         }
     }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
     
     func addData() {
         let req:PersionalIntroductionMode = PersionalIntroductionMode()
