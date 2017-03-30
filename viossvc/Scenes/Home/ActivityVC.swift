@@ -38,10 +38,7 @@ class ActivityVC: UIViewController,UIWebViewDelegate {
         navigationController?.popViewControllerAnimated(true)
     }
 
-    
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
         return true
     }
-    
 }

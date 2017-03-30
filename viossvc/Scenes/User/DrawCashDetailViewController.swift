@@ -69,12 +69,25 @@ class DrawCashDetailViewController: BaseTableViewController {
             }
         }, error: errorBlockFunc())
     }
+    
     //MARK: --UI
     func initUI() {
         navigationItem.backBarButtonItem = nil
         navigationItem.hidesBackButton = true
         
+        if navigationItem.rightBarButtonItem == nil {
+            let sureBtn = UIButton.init(frame: CGRectMake(0, 0, 40, 30))
+            sureBtn.setTitle("确定", forState: .Normal)
+            sureBtn.titleLabel?.font = UIFont.systemFontOfSize(S18)
+            sureBtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            sureBtn.backgroundColor = UIColor.clearColor()
+            sureBtn.addTarget(self, action: #selector(rightItemTapped), forControlEvents: .TouchUpInside)
+            
+            let sureItem = UIBarButtonItem.init(customView: sureBtn)
+            navigationItem.rightBarButtonItem = sureItem
+        }
     }
+    
     func updateUI(model: DrawCashRecordModel) {
         let bankNum = ((model.account)! as NSString).substringWithRange(NSRange.init(location: model.account!.length()-4, length: 4))
         let bankName = model.bank_name
@@ -87,7 +100,8 @@ class DrawCashDetailViewController: BaseTableViewController {
         
         stats = model.status
     }
-    @IBAction func finishBtnTapped(sender: AnyObject) {
+    
+    func rightItemTapped(sender: UIButton) {
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }

@@ -14,7 +14,6 @@ class ServantFooterView: UIView {
     
     var detailWord:String?
     
-    
     init(frame: CGRect, detail:String) {
         
         super.init(frame: frame)

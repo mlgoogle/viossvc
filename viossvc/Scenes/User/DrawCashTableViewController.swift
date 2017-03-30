@@ -46,7 +46,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             let bankNum = CurrentUserHelper.shared.userInfo.currentBankCardNumber! as NSString
             let bankName = CurrentUserHelper.shared.userInfo.currentBanckCardName! as NSString
             if bankNum == "" || bankName == ""{
-                bankNameLabel.text = "银行卡格式错误"
+                bankNameLabel.text = "未知银行"
                 return
             }
             
@@ -84,8 +84,8 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             return
         }
         
-        if bankNameLabel.text == "银行卡格式错误"{
-            SVProgressHUD.showErrorMessage(ErrorMessage: "银行卡格式错误", ForDuration: 1, completion: nil)
+        if bankNameLabel.text == "未知银行"{
+            SVProgressHUD.showErrorMessage(ErrorMessage: "未知银行", ForDuration: 1, completion: nil)
             return
         }
         
@@ -127,6 +127,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             self?.navigationController?.pushViewController(controller, animated: true)
         }, error: errorBlockFunc())
     }
+    
     //textField's Delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -134,9 +135,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let resultText = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-//        if resultText == "0" {
-//            return false
-//        }
+        
         let userCash = Double(CurrentUserHelper.shared.userInfo.user_cash_) / 100
         if (resultText.characters.count != 0 && Double(resultText)! > userCash ){
             showErrorWithStatus("提现金额超限")
