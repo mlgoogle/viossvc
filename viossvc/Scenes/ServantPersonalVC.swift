@@ -39,13 +39,11 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
     // MARK: - 函数方法
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -177,7 +175,6 @@ public class ServantPersonalVC : UIViewController,UITableViewDelegate,UITableVie
         vc.title = "我的消息"
         vc.hidesBottomBarWhenPushed = true
         navigationController?.setNavigationBarHidden(false, animated: false)
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     

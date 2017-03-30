@@ -134,47 +134,58 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             return
         }
     }
+    //设置头像点击区域
+    @IBAction func iconImageDidClick(sender: AnyObject) {
+        view.endEditing(true)
+        MobClick.event(AppConst.Event.user_icon)
+        let title = "头像"
+        let firstActionTitle = "相机"
+        let secondActionTitle = "从系统相册选择"
+        let alterController: UIAlertController = UIAlertController.init(title: title, message: nil, preferredStyle: .ActionSheet)
+        let alterActionFirst: UIAlertAction = UIAlertAction.init(title: firstActionTitle, style: .Default) { [weak self](action) in
+            self?.imagePicker.sourceType = .Camera
+            self?.presentViewController((self?.imagePicker)!, animated: true, completion: nil)
+        }
+        
+        let alterActionSecond: UIAlertAction = UIAlertAction.init(title: secondActionTitle, style: .Default) { [weak self](action) in
+            self?.imagePicker.sourceType = .PhotoLibrary
+            self?.presentViewController((self?.imagePicker)!, animated: true, completion: nil)
+        }
+        
+        let alterActionCancel: UIAlertAction = UIAlertAction.init(title: "取消", style: .Cancel, handler: nil)
+        alterController.addAction(alterActionFirst)
+        alterController.addAction(alterActionSecond)
+        alterController.addAction(alterActionCancel)
+        presentViewController(alterController, animated: true, completion: nil)
+    }
     
     //MARK: --TABLEVIEW
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       
-        if indexPath.row == 1 || indexPath.row == 4 {
+        view.endEditing(true)
+        if indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 0{
             return
         }
-        
         if indexPath.row == 3  {
-            
             let push:PersionalIntroductionController = PersionalIntroductionController.init()
             navigationController?.pushViewController(push, animated: true)
             return
         }
-        if indexPath.row == 0 {
-            MobClick.event(AppConst.Event.user_icon)
-        }else{
-            MobClick.event(AppConst.Event.user_sex)
-        }
-        
-        let title = indexPath.row == 0 ? "头像" : "性别"
-        let firstActionTitle = indexPath.row == 0 ? "相机":"男"
-        let secondActionTitle = indexPath.row == 0 ? "从系统相册选择":"女"
+        MobClick.event(AppConst.Event.user_sex)
+        let title = "性别"
+        let firstActionTitle = "男"
+        let secondActionTitle = "女"
         let alterController: UIAlertController = UIAlertController.init(title: title, message: nil, preferredStyle: .ActionSheet)
         let alterActionFirst: UIAlertAction = UIAlertAction.init(title: firstActionTitle, style: .Default) { [weak self](action) in
             if indexPath.row != 0{
                 self?.sexLabel.text = firstActionTitle
                 return
             }
-            
-            self?.imagePicker.sourceType = .Camera
-            self?.presentViewController((self?.imagePicker)!, animated: true, completion: nil)
         }
-        
         let alterActionSecond: UIAlertAction = UIAlertAction.init(title: secondActionTitle, style: .Default) { [weak self](action) in
             if indexPath.row != 0{
                 self?.sexLabel.text = secondActionTitle
                 return
             }
-            self?.imagePicker.sourceType = .PhotoLibrary
-            self?.presentViewController((self?.imagePicker)!, animated: true, completion: nil)
         }
         
         let alterActionCancel: UIAlertAction = UIAlertAction.init(title: "取消", style: .Cancel, handler: nil)
