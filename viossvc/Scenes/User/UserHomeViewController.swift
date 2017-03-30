@@ -164,11 +164,22 @@ class UserHomeViewController: BaseTableViewController {
     }
     func askTapGestureTapped() {
         MobClick.event(AppConst.Event.user_question)
-        let serviceTel = "0571-87611687"
-        let alert = UIAlertController.init(title: "呼叫", message: serviceTel, preferredStyle: .Alert)
-        let ensure = UIAlertAction.init(title: "确定", style: .Default, handler: { (action: UIAlertAction) in
-            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(serviceTel)")!)
-        })
+        let serviceTel = "联系客服"
+        let alert = UIAlertController.init(title: serviceTel, message: "yundian2017", preferredStyle: .Alert)
+        let abString = NSMutableAttributedString(string: serviceTel)
+        abString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(15), range: NSMakeRange(0, serviceTel.length()))
+        abString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSMakeRange(0, serviceTel.length()))
+        alert.setValue(abString, forKey: "attributedTitle")
+        
+        let ensure = UIAlertAction.init(title: "复制微信号", style: .Default, handler: { (action: UIAlertAction) in
+            let pasteboard = UIPasteboard.generalPasteboard()
+            if serviceTel != "" {
+                pasteboard.string = serviceTel
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "复制成功", ForDuration: 1.0, completion: {
+                    SVProgressHUD.dismiss()
+                })
+            }
+            })
         let cancel = UIAlertAction.init(title: "取消", style: .Cancel, handler: { (action: UIAlertAction) in
             
         })
