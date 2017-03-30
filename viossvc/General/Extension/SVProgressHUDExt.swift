@@ -9,7 +9,7 @@
 import Foundation
 import SVProgressHUD
 
-extension SVProgressHUD{
+extension SVProgressHUD {
     
     public class func showErrorMessage(ErrorMessage message: String, ForDuration duration: Double, completion: (() -> Void)?) {
         initStyle()
@@ -37,7 +37,7 @@ extension SVProgressHUD{
 
     public class func initStyle(){
         SVProgressHUD.setDefaultStyle(.Dark)
-        SVProgressHUD.setDefaultMaskType(.None)
+        SVProgressHUD.setDefaultMaskType(.Clear)
     }
     
     public class func dismissWithDuration(Duration duration: Double,completion: (() -> Void)?){

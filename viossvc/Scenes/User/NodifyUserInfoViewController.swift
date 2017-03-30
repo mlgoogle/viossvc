@@ -258,10 +258,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         nameText.resignFirstResponder()
     }
-    
 }
 
-extension NodifyUserInfoViewController:UITextFieldDelegate{
+extension NodifyUserInfoViewController:UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         nameText.resignFirstResponder()
