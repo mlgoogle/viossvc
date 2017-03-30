@@ -159,7 +159,7 @@ class ServantHeaderView: UIView {
         headerView?.kf_setImageWithURL(NSURL.init(string: headerUrl), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         nameLabel?.text = name
         
-        let count:Int = star
+        let count:Int = star > 0 ? star : 0
         for i in 0..<count {
             
             let starImage:UIImageView = UIImageView.init(frame: CGRectMake( CGFloat(Float(i)) * 30.0, 0, 20, 20))
