@@ -123,10 +123,7 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
             return
         }
         
-        SVProgressHUD.setDefaultMaskType(.Clear)
         SVProgressHUD.showProgressMessage(ProgressMessage: "正在发送")
-        self.left?.userInteractionEnabled = false
-        self.right?.userInteractionEnabled = false
         
         if imageArray?.count > 0 {
             imgIndex = 0
@@ -144,8 +141,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
         self.qiniuUploadImage(image, imageName: "") { (imageUrl) in
             if imageUrl == nil {
                 SVProgressHUD.showErrorMessage(ErrorMessage: "图片上传出错，请稍后再试", ForDuration: 1, completion: nil)
-                self.left?.userInteractionEnabled = true
-                self.right?.userInteractionEnabled = true
                 return
             }
             
@@ -192,8 +187,6 @@ class SendMsgViewController: UIViewController,UICollectionViewDelegate,UICollect
                 })
             }
             }, error: { (error) in
-                self.left?.userInteractionEnabled = true
-                self.right?.userInteractionEnabled = true
         } )
     }
     
