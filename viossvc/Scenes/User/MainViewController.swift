@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
         if  CurrentUserHelper.shared.autoLogin({ [weak self] (model) in
             self?.didAutoLoginComplete(model as? UserInfoModel)
             }, error: errorBlockFunc()) {
-            SVProgressHUD.showWithStatus("登录中...")
+            SVProgressHUD.showProgressMessage(ProgressMessage: "登录中...")
         }
     }
     

@@ -82,13 +82,10 @@ class AppConst {
     
     class Network {
         #if true //是否测试环境
-        static let TcpServerIP:String = "192.168.199.131"
-        static let TcpServerPort:UInt16 = 10001
-//        static let TcpServerIP:String = "61.147.114.78"
-//        static let TcpServerPort:UInt16 = 10011
-
-//        static let TcpServerIP:String = "192.168.199.131";
-//        static let TcpServerPort:UInt16 = 10001;
+//        static let TcpServerIP:String = "192.168.199.131"
+//        static let TcpServerPort:UInt16 = 10001
+        static let TcpServerIP:String = "61.147.114.78"
+        static let TcpServerPort:UInt16 = 10011
         static let TttpHostUrl:String = "http://61.147.114.78";
         #else
         static let TcpServerIP:String = "103.40.192.101";
@@ -99,6 +96,7 @@ class AppConst {
         static let qiniuHost = "http://ofr5nvpm7.bkt.clouddn.com/"
         static let qiniuImgStyle = "?imageView2/2/w/160/h/160/interlace/0/q/100"
     }
+    
     class Text {
         static let PhoneFormatErr = "请输入正确的手机号"
         static let VerifyCodeErr  = "请输入正确的验证码"

@@ -90,8 +90,6 @@ class LoginViewController: BaseLoginViewController {
         textField2.text = account.password
     }
 
-    
-    
     @IBAction func didActionLogin(sender: AnyObject) {
         MobClick.event(AppConst.Event.login)
         if checkTextFieldEmpty([textField1,textField2]) && checkPhoneFormat(textField1.text!) {
@@ -109,6 +107,4 @@ class LoginViewController: BaseLoginViewController {
         navController!.popViewControllerAnimated(false);
         navController?.pushViewControllerWithIdentifier(MainViewController.className(), animated: false, valuesForKeys: [MainViewController.childViewControllerIdentifierKey:RegisterViewController.className(),MainViewController.childViewControllerDataKey:false]);
     }
-    
-
 }
