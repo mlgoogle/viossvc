@@ -236,11 +236,5 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func persionalIntroduct(model:PersionalIntroductionMode, complete:CompleteBlock?,error:ErrorBlock?){
         let packet = SocketDataPacket(opcode:.persionalIntroduct,model: model)
         startModelRequest(packet, modelClass: PersionalIntroductResultModel.classForCoder(), complete: complete, error: error)
-//        startModelRequest(packet, modelClass: PersionalIntroductResultModel.classForCoder(), complete: { (response) in
-//            
-//            print(response)
-//            }) { (error) in
-//                print(error)
-//        }
     }
 }

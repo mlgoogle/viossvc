@@ -78,15 +78,12 @@ class RegisterModel: SMSVerifyRetModel {
     var smsType:SMSVerifyModel.SMSType = .Register
 }
 
-
-
 class NotifyUserInfoModel: UserInfoModel {
 
 }
 
 class UserBankCardsModel: BaseModel {
 
-    
 }
 
 class DrawCashRecordModel: BaseModel {
