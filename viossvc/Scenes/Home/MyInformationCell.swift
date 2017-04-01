@@ -62,17 +62,11 @@ class MyInformationCell: UITableViewCell {
     }
     
     func setupUI() {
-        
-        
-        
-        
-        
         contentView.addSubview(clientName)
         contentView.addSubview(weiXinNumber)
         contentView.addSubview(timeLabel)
         contentView.addSubview(paymentSucceed)
-        
-        
+
         clientName.text = "客户 @你好吗"
         clientName.font = UIFont.systemFontOfSize(16)
         clientName.textColor = UIColor.init(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
@@ -82,7 +76,6 @@ class MyInformationCell: UITableViewCell {
             make.top.equalTo(contentView).offset(14)
             make.height.equalTo(16)
         }
-        
         //        weiXinNumber.text = "微信号widjk-156841355423"
         weiXinNumber.textColor = UIColor.init(red: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
         weiXinNumber.font = UIFont.systemFontOfSize(14)

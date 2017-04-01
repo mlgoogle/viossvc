@@ -166,17 +166,15 @@ class UserHomeViewController: BaseTableViewController {
         MobClick.event(AppConst.Event.user_question)
         let serviceWeChat = "yundian2017"
         let alert = UIAlertController.init(title: "优悦助理客服微信号", message: serviceWeChat, preferredStyle: .Alert)
-        
-        let ensure = UIAlertAction.init(title: "复制微信号", style: .Cancel, handler: { (action: UIAlertAction) in
+        let ensure = UIAlertAction.init(title: "复制微信号", style: .Default, handler: { (action: UIAlertAction) in
             UIPasteboard.generalPasteboard().string = serviceWeChat
-            SVProgressHUD.showSuccessMessage(SuccessMessage: "复制成功", ForDuration: 0, completion: {
+            SVProgressHUD.showSuccessMessage(SuccessMessage: "复制成功", ForDuration: 1.0, completion: {
                 SVProgressHUD.dismiss()
             })
             })
-        let cancel = UIAlertAction.init(title: "取消", style: .Default, handler: { (action: UIAlertAction) in
+        let cancel = UIAlertAction.init(title: "取消", style: .Cancel, handler: { (action: UIAlertAction) in
             
         })
-
         alert.addAction(cancel)
         alert.addAction(ensure)
         presentViewController(alert, animated: true, completion: nil)
