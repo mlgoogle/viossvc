@@ -108,10 +108,7 @@ class PersionalIntroductionController: UIViewController,UITextViewDelegate {
         req.type = 1
         
         AppAPIHelper.userAPI().persionalIntroduct(req, complete: { [weak self](response) in
-            if response == nil {
-                
-            }
-            else{
+            if response != nil {
                 let model = response as! PersionalIntroductResultModel
                 if model.result?.length() != 0 {
                     
